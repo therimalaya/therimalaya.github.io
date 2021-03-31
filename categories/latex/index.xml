@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LaTeX on Mathatistics</title>
+    <link>/categories/latex/</link>
+    <description>Recent content in LaTeX on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Thu, 25 Feb 2016 00:00:00 +0000</lastBuildDate><atom:link href="/categories/latex/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LaTeX autocompletion in RStudio</title>
+      <link>/posts/latex-autocomplete-rstudio/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/latex-autocomplete-rstudio/</guid>
+      <description>When I was working on my Masters thesis, I needed the latex autocompletion feature in Rsudio, but could not find it anywhere. There is no option to create custom snippet either. But recently I found some basic and necessary auto-completion for latex is available in RStudio. Following are some of the these you want to use, but remember to press Shift + Tab for autocomplete. Further this will only work on sweave or knitr file only, which is pretty obvious.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Interpreting Biplot | Mathatistics</title>
+  <meta name="description" content="Hugo is a general-purpose website framework. Technically speaking, Hugo is a static site generator. Unlike systems that dynamically build a page with each visitor request, Hugo builds pages when you create or update your content. Since websites are viewed far more often than they are edited, Hugo is designed to provide an optimal viewing experience for your website’s end users and an ideal writing experience for website authors.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <meta name="googlebot" content="index,follow,snippet,archive">
+  <meta property="og:title" content="Interpreting Biplot" />
+<meta property="og:description" content="Obviously, the name suggests itself that there are two aspect of data plotted in latent scale. Biplot in case of principal component analysis (PCA) plot both variable and observation in latent scale (scores and loadings). Throughout this article, I will use USArrests data from datasets package. Lets fit a PCA model using princomp function. However, this can also be done using prcomp. The later one uses singular value decomposition while the former one uses eigenvalue decomposition." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/posts/interpreting-biplot/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-03-18T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2017-03-18T00:00:00&#43;00:00" />
+
+
+  <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Interpreting Biplot"/>
+<meta name="twitter:description" content="Obviously, the name suggests itself that there are two aspect of data plotted in latent scale. Biplot in case of principal component analysis (PCA) plot both variable and observation in latent scale (scores and loadings). Throughout this article, I will use USArrests data from datasets package. Lets fit a PCA model using princomp function. However, this can also be done using prcomp. The later one uses singular value decomposition while the former one uses eigenvalue decomposition."/>
+
+  
+  
+    
+  
+  
+  
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css' rel='stylesheet' type='text/css' />
+
+
+
+  <link rel="stylesheet" href=/lib/bootstrap/css/bootstrap.min.css>
+  <link rel="stylesheet" href="/css/style-white.css">
+  <link rel="stylesheet" href="/css/ui-extra.css">
+  
+  
+  
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  
+
+  
+<link rel="icon" type="image/png" href="/images/favicon.ico" />
+
+  
+  
+  
+  
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+  <div class="content index py4">
+
+  <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li>
+          <a class="icon" href=" /posts/model-assessment-variable-selection/">
+            <i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a class="icon" href="/blog/2019-01-18-es6/">
+            <i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i>
+          </a>
+        </li>
+        
+        <li>
+          <a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+            <i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i>
+          </a>
+        </li>
+        <li>
+          <a class="icon" href="#">
+            <i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i>
+          </a>
+        </li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=%2fposts%2finterpreting-biplot%2f">
+      <i class="fab fa-facebook " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=%2fposts%2finterpreting-biplot%2f&text=Interpreting%20Biplot">
+      <i class="fab fa-twitter " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-linkedin " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=%2fposts%2finterpreting-biplot%2f&is_video=false&description=Interpreting%20Biplot">
+      <i class="fab fa-pinterest " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Interpreting%20Biplot&body=Check out this article: %2fposts%2finterpreting-biplot%2f">
+      <i class="fas fa-envelope " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-get-pocket " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-reddit " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-digg " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=%2fposts%2finterpreting-biplot%2f&name=Interpreting%20Biplot&description=Obviously%2c%20the%20name%20suggests%20itself%20that%20there%20are%20two%20aspect%20of%20data%20plotted%20in%20latent%20scale.%20Biplot%20in%20case%20of%20principal%20component%20analysis%20%28PCA%29%20plot%20both%20variable%20and%20observation%20in%20latent%20scale%20%28scores%20and%20loadings%29.%20Throughout%20this%20article%2c%20I%20will%20use%20USArrests%20data%20from%20datasets%20package.%20Lets%20fit%20a%20PCA%20model%20using%20princomp%20function.%20However%2c%20this%20can%20also%20be%20done%20using%20prcomp.%20The%20later%20one%20uses%20singular%20value%20decomposition%20while%20the%20former%20one%20uses%20eigenvalue%20decomposition.">
+      <i class="fab fa-tumblr " aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=%2fposts%2finterpreting-biplot%2f&t=Interpreting%20Biplot">
+      <i class="fab fa-hacker-news " aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+
+  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        Interpreting Biplot
+      </h1>
+      <div class="meta">
+        
+        <div class="postdate">
+          
+          <time datetime="2017-03-18 00:00:00 &#43;0000 UTC" itemprop="datePublished">Mar 18, 2017</time>
+          
+        </div>
+        
+        <div class="article-category">
+            <i class="fas fa-archive"></i>
+            
+            
+            <a class="category-link" href="/categories/statistics">statistics</a>
+            
+        </div>
+        
+        
+        <div class="article-tag">
+            <i class="fas fa-tag"></i>
+            
+            
+            <a class="tag-link" href="/tags/biplot" rel="tag">biplot</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/interpretation-of-biplot" rel="tag">interpretation of biplot</a>
+            
+             ,  
+            <a class="tag-link" href="/tags/pca" rel="tag">pca</a>
+            
+        </div>
+        
+      </div>
+    </header>
+
+  
+    <div class="content" itemprop="articleBody">
+      
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<p>Obviously, the name suggests itself that there are two aspect of data plotted in latent scale. Biplot in case of principal component analysis (PCA) plot both variable and observation in latent scale (scores and loadings). Throughout this article, I will use <a href="https://www.rdocumentation.org/packages/datasets/versions/3.3.2/topics/USArrests"><code>USArrests</code></a> data from <code>datasets</code> package. Lets fit a PCA model using <code>princomp</code> function. However, this can also be done using <code>prcomp</code>. The later one uses singular value decomposition while the former one uses eigenvalue decomposition. Here I have used correlation rather than covariance to compute principal components because there are large values in case of <code>Murder</code> and <code>UrbanPop</code></p>
+<pre class="r"><code>pc.a &lt;- princomp(USArrests, cor = TRUE)
+plot(pc.a, type = &quot;lines&quot;, pch = 22, bg = &quot;grey&quot;,
+     main = &quot;Variance explained by each componets in PCA&quot;)
+text(1:4, pc.a$sdev^2, pos = 4,
+     labels = round(cumsum(pls::explvar(pc.a)), 1))
+box()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:get-records"></span>
+<img src="/posts/2017-03-18-interpreting-biplot_files/figure-html/get-records-1.png" alt="Variance of each components and the proportaion of the total variance explained for each additional components is displayed as label" width="100%" />
+<p class="caption">
+Figure 1: Variance of each components and the proportaion of the total variance explained for each additional components is displayed as label
+</p>
+</div>
+<p>Here, with three components, we have captured 95.7 percent of total variation present in <code>USArrests</code> dataset. Lets get the biplot and try to understand it.</p>
+<pre class="r"><code>library(ggfortify)
+autoplot(
+  pc.a, label = T, shape = FALSE,
+  loadings = TRUE, loadings.label = TRUE,
+  label.size = 3.5, label.repel = TRUE)</code></pre>
+<p><img src="/posts/2017-03-18-interpreting-biplot_files/figure-html/biplot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+
+    </div>
+  </article>
+
+  
+  
+
+
+
+
+
+  <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/posts">Writings</a></li>
+         
+          <li><a href="/tags">Tags</a></li>
+         
+          <li><a href="/about">About</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      
+      <ul>
+  
+  
+    
+  
+  
+  <li>
+    <a class="icon" href="http://www.facebook.com/sharer.php?u=%2fposts%2finterpreting-biplot%2f">
+      <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://twitter.com/share?url=%2fposts%2finterpreting-biplot%2f&text=Interpreting%20Biplot">
+      <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.linkedin.com/shareArticle?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-linkedin fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=%2fposts%2finterpreting-biplot%2f&is_video=false&description=Interpreting%20Biplot">
+      <i class="fab fa-pinterest fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="mailto:?subject=Interpreting%20Biplot&body=Check out this article: %2fposts%2finterpreting-biplot%2f">
+      <i class="fas fa-envelope fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://getpocket.com/save?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://reddit.com/submit?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-reddit fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.stumbleupon.com/submit?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://digg.com/submit?url=%2fposts%2finterpreting-biplot%2f&title=Interpreting%20Biplot">
+      <i class="fab fa-digg fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="http://www.tumblr.com/share/link?url=%2fposts%2finterpreting-biplot%2f&name=Interpreting%20Biplot&description=Obviously%2c%20the%20name%20suggests%20itself%20that%20there%20are%20two%20aspect%20of%20data%20plotted%20in%20latent%20scale.%20Biplot%20in%20case%20of%20principal%20component%20analysis%20%28PCA%29%20plot%20both%20variable%20and%20observation%20in%20latent%20scale%20%28scores%20and%20loadings%29.%20Throughout%20this%20article%2c%20I%20will%20use%20USArrests%20data%20from%20datasets%20package.%20Lets%20fit%20a%20PCA%20model%20using%20princomp%20function.%20However%2c%20this%20can%20also%20be%20done%20using%20prcomp.%20The%20later%20one%20uses%20singular%20value%20decomposition%20while%20the%20former%20one%20uses%20eigenvalue%20decomposition.">
+      <i class="fab fa-tumblr fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+  <li>
+    <a class="icon" href="https://news.ycombinator.com/submitlink?u=%2fposts%2finterpreting-biplot%2f&t=Interpreting%20Biplot">
+      <i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i>
+    </a>
+  </li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;">
+          <i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;">
+          <i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;">
+          <i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+          <i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+
+  <footer id="footer">
+  <div class="footer-left">
+    Copyright  &copy; 2021  Mathatistics 
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+        <li><a href="/">Home</a></li>
+         
+        <li><a href="/posts">Writings</a></li>
+         
+        <li><a href="/tags">Tags</a></li>
+         
+        <li><a href="/about">About</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+
+  </div>
+</body>
+
+<link rel="stylesheet" href=/lib/font-awesome/css/all.min.css>
+<script src=/lib/jquery/jquery.min.js></script>
+<script src=/lib/bootstrap/js/bootstrap.min.js></script>
+<script src=/js/main.js></script>
+<script src=/js/tabset.js></script>
+<script src=/js/accordion.js></script>
+
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.css" integrity="sha384-t5CR+zwDAROtph0PXGte6ia8heboACF9R5l/DiY+WZ3P2lxNgvJkQk5n7GPvLMYw" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/katex.min.js" integrity="sha384-FaFLTlohFghEIZkw6VGwmf9ISTubWAVYW8tG8+w2LAIftJEULZABrF9PPFv+tVkH" crossorigin="anonymous"></script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.0/dist/contrib/auto-render.min.js" integrity="sha384-bHBqxz8fokvgoJ/sc17HODNxa42TlaEhB+w8ZJXTc2nZf1VgEaFZeZvT4Mznfz0v" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+
+</html>

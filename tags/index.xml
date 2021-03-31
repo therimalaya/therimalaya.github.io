@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Mathatistics</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ANOVA</title>
+      <link>/tags/anova/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/anova/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Statistics</title>
+      <link>/tags/statistics/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/statistics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Algorithms</title>
+      <link>/tags/algorithms/</link>
+      <pubDate>Sat, 06 Jun 2020 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/algorithms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>programming language</title>
+      <link>/tags/programming-language/</link>
+      <pubDate>Wed, 29 Apr 2020 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/programming-language/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>racket</title>
+      <link>/tags/racket/</link>
+      <pubDate>Sat, 29 Feb 2020 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/racket/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SML</title>
+      <link>/tags/sml/</link>
+      <pubDate>Mon, 30 Dec 2019 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/sml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RPA</title>
+      <link>/tags/rpa/</link>
+      <pubDate>Sat, 23 Nov 2019 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/rpa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JavaScript</title>
+      <link>/tags/javascript/</link>
+      <pubDate>Sun, 10 Nov 2019 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue.js</title>
+      <link>/tags/vue.js/</link>
+      <pubDate>Fri, 25 Jan 2019 09:00:00 +0000</pubDate>
+      
+      <guid>/tags/vue.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>biplot</title>
+      <link>/tags/biplot/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/biplot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>interpretation of biplot</title>
+      <link>/tags/interpretation-of-biplot/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/interpretation-of-biplot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pca</title>
+      <link>/tags/pca/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/pca/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Modeling</title>
+      <link>/tags/modeling/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/modeling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LaTeX</title>
+      <link>/tags/latex/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/latex/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Markdown</title>
+      <link>/tags/markdown/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/markdown/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regression</title>
+      <link>/tags/regression/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Visualization</title>
+      <link>/tags/visualization/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/visualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>php</title>
+      <link>/tags/php/</link>
+      <pubDate>Wed, 11 Jan 2017 18:39:17 +0000</pubDate>
+      
+      <guid>/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ruby</title>
+      <link>/tags/ruby/</link>
+      <pubDate>Thu, 08 Dec 2016 22:54:49 +0000</pubDate>
+      
+      <guid>/tags/ruby/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Tue, 29 Nov 2016 21:08:52 +0000</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>knitr</title>
+      <link>/tags/knitr/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/knitr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>latex autocompletion</title>
+      <link>/tags/latex-autocompletion/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/latex-autocompletion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rstat</title>
+      <link>/tags/rstat/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rstat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rstudio</title>
+      <link>/tags/rstudio/</link>
+      <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rstudio/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

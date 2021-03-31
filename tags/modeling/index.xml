@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Modeling on Mathatistics</title>
+    <link>/tags/modeling/</link>
+    <description>Recent content in Modeling on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Sun, 05 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/modeling/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Model assessment and variable selection</title>
+      <link>/posts/model-assessment-variable-selection/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/model-assessment-variable-selection/</guid>
+      <description>Whenever we add a variable in our model, we are not only adding information but also noise that clutter the information and makes the analysis difficult. Simpler model is always better since they contain less noise and they are easy to interpret. In real life, things are not that simple. But relax, there are statistical methods that make model assessment and perform variable selection and gives optimal set of variables for us.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ANOVA on Mathatistics</title>
+    <link>/tags/anova/</link>
+    <description>Recent content in ANOVA on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/anova/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How ANOVA analyze the variance</title>
+      <link>/posts/how-anova-analyze-the-variance/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/how-anova-analyze-the-variance/</guid>
+      <description>Often we Analysis of Variance (ANOVA) to analyze the variances to find if different cases results in similar outcome and if the difference is significant. Following are some simple examples,
+ The effect of different diets on growth of fishes Comparing the height of three different species of a plant Type of flour used for baking a bread  These are some common examples where in some cases data are collected by setting up an experiment and in other cases they are collected through sampling.</description>
+    </item>
+    
+  </channel>
+</rss>

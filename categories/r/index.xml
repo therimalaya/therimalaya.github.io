@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Mathatistics</title>
+    <link>/categories/r/</link>
+    <description>Recent content in R on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Wed, 01 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Using Data from different Packages</title>
+      <link>/posts/dataset-in-r/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/dataset-in-r/</guid>
+      <description>Most of the time we need data either for teaching purpose or learning things. Whatever be the reason, data are really important things. R and different packages of R contains different datasets which we can use directly just by installing them. Many books related to R illustrate there examples using these data sources. We can find the dataset from differnt sources as data()
+The datasets from the package datasets and other loaded packages is shown in default.</description>
+    </item>
+    
+  </channel>
+</rss>

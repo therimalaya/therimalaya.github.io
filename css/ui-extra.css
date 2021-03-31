@@ -1,0 +1,38 @@
+/* ACCORDION */
+.accordion-header {
+  margin-top: 0;
+}
+
+/* HIGHLIGHT */
+pre {
+  padding: 0;
+}
+.hljs {
+  padding: 10px;
+}
+
+/* DETAILS-SUMMARY */
+summary {
+  background-color: aliceblue;
+  padding: 10px;
+}
+summary:focus {
+  outline: none;
+}
+details > summary:before {
+  content: "\f152";
+  font-family: "Font Awesome 5 Free";
+}
+details[open] > summary:before {
+  content: "\f150";
+  font-family: "Font Awesome 5 Free";
+}
+details > summary > :not(:first-child) {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+details > summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-column-gap: 10px;
+}

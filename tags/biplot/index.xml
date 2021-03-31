@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>biplot on Mathatistics</title>
+    <link>/tags/biplot/</link>
+    <description>Recent content in biplot on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Sat, 18 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/biplot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Interpreting Biplot</title>
+      <link>/posts/interpreting-biplot/</link>
+      <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/interpreting-biplot/</guid>
+      <description>Obviously, the name suggests itself that there are two aspect of data plotted in latent scale. Biplot in case of principal component analysis (PCA) plot both variable and observation in latent scale (scores and loadings). Throughout this article, I will use USArrests data from datasets package. Lets fit a PCA model using princomp function. However, this can also be done using prcomp. The later one uses singular value decomposition while the former one uses eigenvalue decomposition.</description>
+    </item>
+    
+  </channel>
+</rss>

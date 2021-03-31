@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statistics on Mathatistics</title>
+    <link>/tags/statistics/</link>
+    <description>Recent content in Statistics on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Mon, 29 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How ANOVA analyze the variance</title>
+      <link>/posts/how-anova-analyze-the-variance/</link>
+      <pubDate>Mon, 29 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/how-anova-analyze-the-variance/</guid>
+      <description>Often we Analysis of Variance (ANOVA) to analyze the variances to find if different cases results in similar outcome and if the difference is significant. Following are some simple examples,
+ The effect of different diets on growth of fishes Comparing the height of three different species of a plant Type of flour used for baking a bread  These are some common examples where in some cases data are collected by setting up an experiment and in other cases they are collected through sampling.</description>
+    </item>
+    
+    <item>
+      <title>Model assessment and variable selection</title>
+      <link>/posts/model-assessment-variable-selection/</link>
+      <pubDate>Sun, 05 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/model-assessment-variable-selection/</guid>
+      <description>Whenever we add a variable in our model, we are not only adding information but also noise that clutter the information and makes the analysis difficult. Simpler model is always better since they contain less noise and they are easy to interpret. In real life, things are not that simple. But relax, there are statistical methods that make model assessment and perform variable selection and gives optimal set of variables for us.</description>
+    </item>
+    
+    <item>
+      <title>Basic Scatter Plot and linear fitted line</title>
+      <link>/posts/basic-scatter-plot-with-reg-line/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-scatter-plot-with-reg-line/</guid>
+      <description>Lets scatter into some points created by data in xy-space. Data are scattered everywhere but what relation is there between some specific variable with other. Cutting down to simple talking and stick to the heading, we can use mtcars dataset in R.
+The dataset from Motor Trend US magazine, 1974 comprises fuel consumption and 10 various aspects of automobile design and their performance for 32 automobiles of different models.</description>
+    </item>
+    
+    <item>
+      <title>Scatter plot with multiple group</title>
+      <link>/posts/scatter-plot-multple-group/</link>
+      <pubDate>Tue, 12 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/scatter-plot-multple-group/</guid>
+      <description>In many situations, it becomes essential to have a plot with multiple categories. For example, colour the scatter plot according to gender and have two different regression line for each of them.
+Lets scatter the some points using data from mtcars, available default in R. Continuing the discussing from this post, where we had plotted mile per gallon (mpg) vs displacement (disp). Here we will create a separate regression line and colour the points accordingly based on number of cylinder (cyl) in the cars.</description>
+    </item>
+    
+  </channel>
+</rss>

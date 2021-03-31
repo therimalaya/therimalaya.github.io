@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Mathatistics</title>
+    <link>/tags/r/</link>
+    <description>Recent content in R on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Wed, 01 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basic Scatter Plot and linear fitted line</title>
+      <link>/posts/basic-scatter-plot-with-reg-line/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/basic-scatter-plot-with-reg-line/</guid>
+      <description>Lets scatter into some points created by data in xy-space. Data are scattered everywhere but what relation is there between some specific variable with other. Cutting down to simple talking and stick to the heading, we can use mtcars dataset in R.
+The dataset from Motor Trend US magazine, 1974 comprises fuel consumption and 10 various aspects of automobile design and their performance for 32 automobiles of different models.</description>
+    </item>
+    
+    <item>
+      <title>Create LaTeX, HTML and Markdown tables in R</title>
+      <link>/posts/latex-html-tables-in-r/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/latex-html-tables-in-r/</guid>
+      <description>R can do data analysis and it can create beautiful reports. You can build all these documents directly in R using rmarkdown which is powered by powerful pandoc. In lots of occasions, user just wants to get some output format of tables that we can use in other platform such as Microsoft word, LaTeX, HTML or Markdown. Here I will discuss about some packages that helps us doing so including xtable, pander, knitr, stargazer and tables.</description>
+    </item>
+    
+    <item>
+      <title>Scatter plot with multiple group</title>
+      <link>/posts/scatter-plot-multple-group/</link>
+      <pubDate>Tue, 12 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/scatter-plot-multple-group/</guid>
+      <description>In many situations, it becomes essential to have a plot with multiple categories. For example, colour the scatter plot according to gender and have two different regression line for each of them.
+Lets scatter the some points using data from mtcars, available default in R. Continuing the discussing from this post, where we had plotted mile per gallon (mpg) vs displacement (disp). Here we will create a separate regression line and colour the points accordingly based on number of cylinder (cyl) in the cars.</description>
+    </item>
+    
+  </channel>
+</rss>

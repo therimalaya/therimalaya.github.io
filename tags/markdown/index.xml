@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on Mathatistics</title>
+    <link>/tags/markdown/</link>
+    <description>Recent content in Markdown on Mathatistics</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Mathatistics</copyright>
+    <lastBuildDate>Wed, 01 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create LaTeX, HTML and Markdown tables in R</title>
+      <link>/posts/latex-html-tables-in-r/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/latex-html-tables-in-r/</guid>
+      <description>R can do data analysis and it can create beautiful reports. You can build all these documents directly in R using rmarkdown which is powered by powerful pandoc. In lots of occasions, user just wants to get some output format of tables that we can use in other platform such as Microsoft word, LaTeX, HTML or Markdown. Here I will discuss about some packages that helps us doing so including xtable, pander, knitr, stargazer and tables.</description>
+    </item>
+    
+  </channel>
+</rss>
