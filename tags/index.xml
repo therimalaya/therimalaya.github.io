@@ -27,69 +27,6 @@
     </item>
     
     <item>
-      <title>Algorithms</title>
-      <link>/tags/algorithms/</link>
-      <pubDate>Sat, 06 Jun 2020 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/algorithms/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>programming language</title>
-      <link>/tags/programming-language/</link>
-      <pubDate>Wed, 29 Apr 2020 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/programming-language/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>racket</title>
-      <link>/tags/racket/</link>
-      <pubDate>Sat, 29 Feb 2020 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/racket/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SML</title>
-      <link>/tags/sml/</link>
-      <pubDate>Mon, 30 Dec 2019 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/sml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>RPA</title>
-      <link>/tags/rpa/</link>
-      <pubDate>Sat, 23 Nov 2019 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/rpa/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>JavaScript</title>
-      <link>/tags/javascript/</link>
-      <pubDate>Sun, 10 Nov 2019 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Vue.js</title>
-      <link>/tags/vue.js/</link>
-      <pubDate>Fri, 25 Jan 2019 09:00:00 +0000</pubDate>
-      
-      <guid>/tags/vue.js/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>biplot</title>
       <link>/tags/biplot/</link>
       <pubDate>Sat, 18 Mar 2017 00:00:00 +0000</pubDate>
@@ -167,33 +104,6 @@
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/visualization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>php</title>
-      <link>/tags/php/</link>
-      <pubDate>Wed, 11 Jan 2017 18:39:17 +0000</pubDate>
-      
-      <guid>/tags/php/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ruby</title>
-      <link>/tags/ruby/</link>
-      <pubDate>Thu, 08 Dec 2016 22:54:49 +0000</pubDate>
-      
-      <guid>/tags/ruby/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>/tags/linux/</link>
-      <pubDate>Tue, 29 Nov 2016 21:08:52 +0000</pubDate>
-      
-      <guid>/tags/linux/</guid>
       <description></description>
     </item>
     

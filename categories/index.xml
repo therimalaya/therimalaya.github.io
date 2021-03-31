@@ -7,16 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Mathatistics</copyright>
-    <lastBuildDate>Sat, 06 Jun 2020 09:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>notes</title>
-      <link>/categories/notes/</link>
-      <pubDate>Sat, 06 Jun 2020 09:00:00 +0000</pubDate>
-      
-      <guid>/categories/notes/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Sat, 18 Mar 2017 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>statistics</title>
       <link>/categories/statistics/</link>
@@ -32,15 +23,6 @@
       <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>life</title>
-      <link>/categories/life/</link>
-      <pubDate>Sat, 22 Oct 2016 16:56:54 +0000</pubDate>
-      
-      <guid>/categories/life/</guid>
       <description></description>
     </item>
     
