@@ -1,0 +1,46 @@
+.card-grid {
+  display: grid;
+  grid-row-gap: 10px;
+}
+.card.presentation {
+    background: inherit;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    font-size: 80%;
+}
+.card-body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#refs div {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #3d3d3d;
+  display: list-item;
+  list-style: circle;
+  font-size: 95%;
+}
+
+#refs div::marker {
+  font-size: 120%;
+}
+
+div#refs {
+  text-indent: 0;
+}
+
+.grid .quarto-figure, 
+.grid .figure :is(p, .figure-caption, img) {
+  margin: 0;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
+}
+.grid section p:last-child {
+  margin: 0;
+}
+.card-body a, h5.anchored a {
+  text-decoration: none;
+  color: steelblue;
+}

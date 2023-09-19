@@ -1,0 +1,28 @@
+.carousel-indicators {
+  margin-bottom: -1.7rem;
+}
+.carousel-indicators button[data-bs-target] {
+  background-color: dimgray;
+  width: 15px;
+  height: 15px;
+  margin: 0px 5px;
+  border-radius: 50%;
+}
+#carouselGallery .cell-output-display:not(.no-overflow-x) {
+  overflow-x: hidden;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-flow: row;
+  column-gap: 5px;
+  row-gap: 5px;
+  justify-content: space-around;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  padding: 10px;
+}
+.grid-container .img-fluid {
+  border-radius: 5%;
+}

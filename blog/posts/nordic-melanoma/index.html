@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Raju Rimal">
+<meta name="dcterms.date" content="2023-06-20">
+
+<title>Mathatistics - Melanoma Incidence in Nordic Countries</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/mathatistics.svg" rel="icon" type="image/svg+xml">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script type="module" src="../../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/mathatistics.svg" alt="Mathatistics" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Mathatistics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../photography">
+ <span class="menu-text">Photo Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../portfolio">
+ <span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../resume">
+ <span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../blog.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/therimalaya"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#data-preparation" id="toc-data-preparation" class="nav-link" data-scroll-target="#data-preparation">Data Preparation</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a>
+  <ul class="collapse">
+  <li><a href="#annual-percentge-change-apc" id="toc-annual-percentge-change-apc" class="nav-link" data-scroll-target="#annual-percentge-change-apc">Annual percentge change (APC)</a></li>
+  <li><a href="#apc-within-segments" id="toc-apc-within-segments" class="nav-link" data-scroll-target="#apc-within-segments">APC within segments</a></li>
+  </ul></li>
+  <li><a href="#model-1" id="toc-model-1" class="nav-link" data-scroll-target="#model-1">Model</a>
+  <ul class="collapse">
+  <li><a href="#incidence-model-summary" id="toc-incidence-model-summary" class="nav-link" data-scroll-target="#incidence-model-summary">Incidence model summary</a></li>
+  <li><a href="#mortality-model-summary" id="toc-mortality-model-summary" class="nav-link" data-scroll-target="#mortality-model-summary">Mortality model summary</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Melanoma Incidence in Nordic Countries</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">With special focus on Norway</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Raju Rimal </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">20 June 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Cutaneous melanoma (CM) is the most aggressive and lethal form of skin cancer. Melanoma can be cured if caught and treated early but if left untreated, it may spread to other parts and can be fatal. In the recent years, melanoma has increased dramatically in fair skinned population worldwide including Nordic countries like Norway, Denmark, and Sweden. Norway is ranked fifth in incidence and third in mortality worldwide. This increase can be an effect of increased awareness in general public and health care provider.</p>
+<p>This article explores <strong><em>melanoma incidence</em></strong> and <strong><em>mortality</em></strong> in nordic countries by <strong><em>sex</em></strong> and their <strong><em>trend</em></strong> over 40-years period from 1980–2020. Further, I try to step through the analysis process from data collection to create plots and tables.</p>
+</section>
+<section id="data-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation">Data Preparation</h2>
+<p>Data on melanoma were obtained from NORDCAN <span class="citation" data-cites="nordcan-2023">Engholm et al. (<a href="#ref-engholm_nordcan_2010" role="doc-biblioref">2010</a>)</span>, Association of the Nordic Cancer Registries, IARC. Using NORDCAN 2.0 API<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> crude and age-adjusted rates were downloaded as JSON and converted to tabular data for further analysis. R<span class="citation" data-cites="r_core_team_r_2020">(<a href="#ref-r_core_team_r_2020" role="doc-biblioref">R Core Team 2020</a>)</span> software was used for data gathering, cleanup, analysis, and plotting.</p>
+<p>The API endpoint has four placeholder <code>type</code>, <code>sex</code>, <code>country</code>, and <code>cancer</code> following design was used to create individual endpoint. These individual url are used to download the JSON file as list in R.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Data API</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Sample JSON</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Data download</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Data Preparation</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="data-api tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<details>
+<summary>Code for preparing download URL</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>design_map <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="at">Male =</span> <span class="dv">1</span>, <span class="at">Female =</span> <span class="dv">2</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">c</span>(<span class="at">Incidence =</span> <span class="dv">0</span>, <span class="at">Mortality =</span> <span class="dv">1</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cancer =</span> <span class="fu">c</span>(<span class="at">Melanoma =</span> <span class="dv">290</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Denmark =</span> <span class="dv">208</span>, <span class="at">Finland =</span> <span class="dv">246</span>, <span class="at">Iceland =</span> <span class="dv">352</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Norway =</span> <span class="dv">578</span>, <span class="at">Sweden =</span> <span class="dv">752</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>label_values <span class="ot">&lt;-</span> <span class="cf">function</span>(data, label_map, var) {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  label_vec <span class="ot">&lt;-</span> label_map[[var]]</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(<span class="fu">names</span>(label_vec), label_vec)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  data[[var]] <span class="ot">&lt;-</span> data[, label[<span class="fu">as.character</span>(<span class="fu">get</span>(var))]]</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">CJ</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">cancer =</span> <span class="dv">290</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="dv">208</span>, <span class="dv">246</span>, <span class="dv">352</span>, <span class="dv">578</span>, <span class="dv">752</span>)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>design[, url <span class="sc">:</span><span class="er">=</span> glue<span class="sc">::</span><span class="fu">glue_data</span>(.SD, </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0"</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>)]</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span> </span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"sex"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"type"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"cancer"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"country"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<dl>
+<dt>API URL:</dt>
+<dd>
+<code>https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0</code>
+</dd>
+</dl>
+<p>Replacing the placeholders <code>type</code> (Incidence: 0, Mortality: 1), <code>sex</code> (Male: 1, Female: 2), <code>country</code> (Denmark: 208, Finland: 246, Iceland: 352, Norway: 578, and Sweden: 752), and <code>cancer</code> (Melanoma: 290) prepare the data API.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2" data-startfrom="123" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 122;"><span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a>json_data <span class="op">=</span> <span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"Data/nordcan.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a>json_data[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<details>
+<summary>Code for data download</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"Data/nordcan-json.Rds"</span>)) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  design[, data <span class="sc">:</span><span class="er">=</span> <span class="fu">map</span>(url, <span class="sc">~</span><span class="fu">read_json</span>(.x) <span class="sc">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">"dataset"</span>))]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(design, <span class="at">file =</span> <span class="st">"Data/nordcan-json.Rds"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  design <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Data/nordcan-json.Rds"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>design[, .(sex, type, country, data)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>       sex      type country       data
+ 1:   Male Incidence Denmark &lt;list[41]&gt;
+ 2:   Male Incidence Finland &lt;list[41]&gt;
+ 3:   Male Incidence Iceland &lt;list[41]&gt;
+ 4:   Male Incidence  Norway &lt;list[41]&gt;
+ 5:   Male Incidence  Sweden &lt;list[41]&gt;
+ 6:   Male Mortality Denmark &lt;list[41]&gt;
+ 7:   Male Mortality Finland &lt;list[41]&gt;
+ 8:   Male Mortality Iceland &lt;list[41]&gt;
+ 9:   Male Mortality  Norway &lt;list[41]&gt;
+10:   Male Mortality  Sweden &lt;list[41]&gt;
+11: Female Incidence Denmark &lt;list[41]&gt;
+12: Female Incidence Finland &lt;list[41]&gt;
+13: Female Incidence Iceland &lt;list[41]&gt;
+14: Female Incidence  Norway &lt;list[41]&gt;
+15: Female Incidence  Sweden &lt;list[41]&gt;
+16: Female Mortality Denmark &lt;list[41]&gt;
+17: Female Mortality Finland &lt;list[41]&gt;
+18: Female Mortality Iceland &lt;list[41]&gt;
+19: Female Mortality  Norway &lt;list[41]&gt;
+20: Female Mortality  Sweden &lt;list[41]&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<div class="cell">
+<details>
+<summary>Rate data frame</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rate_df <span class="ot">&lt;-</span> design[, <span class="fu">map_df</span>(data, <span class="cf">function</span>(dta) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">map_int</span>(dta, <span class="st">"year"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">asr_w =</span> <span class="fu">map_dbl</span>(dta, <span class="st">"asr"</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">asr_e =</span> <span class="fu">map_dbl</span>(dta, <span class="st">"asr_e"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">asr_n =</span> <span class="fu">map_dbl</span>(dta, <span class="st">"asr_n"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">crude_rate =</span> <span class="fu">map_dbl</span>(dta, <span class="st">"crude_rate"</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">map_dbl</span>(dta, <span class="st">"total"</span>),</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">population =</span> <span class="fu">map_dbl</span>(dta, <span class="st">"total_pop"</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">cum_risk =</span> <span class="fu">map</span>(dta, <span class="st">"cum_risk"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">unlist</span>()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="st">"cum_risk"</span> <span class="sc">%in%</span> <span class="fu">names</span>(out)) {</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    out[, cum_risk <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(cum_risk)]</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>}), by <span class="ot">=</span> .(sex, type, country)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Classes 'data.table' and 'data.frame':  820 obs. of  10 variables:
+ $ sex       : chr  "Male" "Male" "Male" "Male" ...
+ $ type      : chr  "Incidence" "Incidence" "Incidence" "Incidence" ...
+ $ country   : chr  "Denmark" "Denmark" "Denmark" "Denmark" ...
+ $ year      : int  1980 1981 1982 1983 1984 1985 1986 1987 1988 1989 ...
+ $ asr_w     : num  11.9 10.9 12.2 13.4 13.8 ...
+ $ asr_e     : num  12.7 12.1 13.1 14.5 15.3 ...
+ $ asr_n     : num  13.5 13.1 14.1 15.2 16 ...
+ $ crude_rate: num  12.4 12 13.1 14.3 14.8 ...
+ $ count     : num  196 191 210 230 239 234 269 283 291 306 ...
+ $ population: num  1585436 1593815 1601416 1609960 1618038 ...
+ - attr(*, ".internal.selfref")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Rate by age</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rate_by_age <span class="ot">&lt;-</span> design[, <span class="fu">map_df</span>(data, <span class="cf">function</span>(dta) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  year <span class="ot">&lt;-</span> <span class="fu">map_int</span>(dta, <span class="st">"year"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  count_df <span class="ot">&lt;-</span> <span class="fu">map_df</span>(dta, <span class="st">"ages"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">year =</span> year) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt.data.table</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">id.vars =</span> <span class="st">"year"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">variable.name =</span> <span class="st">"age_group"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.name =</span> <span class="st">"count"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  pop_df <span class="ot">&lt;-</span> <span class="fu">map_df</span>(dta, <span class="st">"populations"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">year =</span> year) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt.data.table</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">id.vars =</span> <span class="st">"year"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">variable.name =</span> <span class="st">"age_group"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.name =</span> <span class="st">"population"</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  asr_df <span class="ot">&lt;-</span> <span class="fu">map_df</span>(dta, <span class="st">"age_specific_rate"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">modify</span>(as.numeric) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(<span class="at">year =</span> <span class="fu">as.numeric</span>(year)) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">melt.data.table</span>(</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">id.vars =</span> <span class="st">"year"</span>,</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">variable.name =</span> <span class="st">"age_group"</span>,</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.name =</span> <span class="st">"asr"</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> <span class="fu">reduce</span>(</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(count_df, pop_df, asr_df),</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>    merge.data.table,</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"age_group"</span>)</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>  age_lbl <span class="ot">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">85</span>, <span class="dv">5</span>),</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">85</span>, <span class="dv">5</span>) <span class="sc">+</span> <span class="dv">4</span>,</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">sep =</span> <span class="st">"-"</span></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>  age_lbl[<span class="fu">length</span>(age_lbl)] <span class="ot">&lt;-</span> <span class="st">"85+"</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(age_lbl) <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">18</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  out[, age_group <span class="sc">:</span><span class="er">=</span> age_lbl[age_group]]</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>  out[, year <span class="sc">:</span><span class="er">=</span> <span class="fu">as.integer</span>(year)]</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>  out[, count <span class="sc">:</span><span class="er">=</span> <span class="fu">as.integer</span>(count)]</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  out[, population <span class="sc">:</span><span class="er">=</span> <span class="fu">as.integer</span>(population)]</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>  out[, asr <span class="sc">:</span><span class="er">=</span> <span class="fu">as.numeric</span>(asr)]</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out[])</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>}), by <span class="ot">=</span> .(sex, type, country)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Classes 'data.table' and 'data.frame':  14760 obs. of  8 variables:
+ $ sex       : chr  "Male" "Male" "Male" "Male" ...
+ $ type      : chr  "Incidence" "Incidence" "Incidence" "Incidence" ...
+ $ country   : chr  "Denmark" "Denmark" "Denmark" "Denmark" ...
+ $ year      : int  1980 1980 1980 1980 1980 1980 1980 1980 1980 1980 ...
+ $ age_group : chr  "0-4" "5-9" "10-14" "15-19" ...
+ $ count     : int  0 1 1 1 2 8 12 16 13 23 ...
+ $ population: int  164317 185710 203405 199741 190444 191785 215098 184439 149015 135409 ...
+ $ asr       : num  0 0.538 0.492 0.501 1.05 ...
+ - attr(*, ".internal.selfref")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<p>For the following analysis, crude rates were used in visualization and modelling. Stratified by <code>sex</code>, <code>country</code> and <code>type</code> following plots presents the the <code>crude_rate</code> over the <code>year</code> of diagnosis. Additionally, using <code>count</code> and <code>population</code>, a poisson regression model (<a href="#eq-poisson-model-1">Equation&nbsp;1</a>) was fitted.</p>
+<p><span id="eq-poisson-model-1"><span class="math display">\[
+\begin{align}
+\log\left(\frac{\lambda}{Y}\right) &amp;= \beta_0 + \beta_1 x + \varepsilon \\
+\text{equivalently, } \log\left(\lambda\right) &amp;= \beta_0 + \beta_1 x + \log(Y) + \varepsilon
+\end{align}
+\tag{1}\]</span></span></p>
+<p>where, <span class="math inline">\(\lambda\)</span> is the number of events (<code>count</code>), <span class="math inline">\(Y\)</span> is the number of exposed (<code>population</code>) and <span class="math inline">\(x\)</span> is the <code>year</code> of diagnosis.</p>
+<p>Additionally, using segmented regression the change points in the trend was identified and the annual percentage change (APC) and average annual percentage change (AAPC) in crude rate were calculated. For each strata, following R-code for poisson regression model and segmented regression model were used.</p>
+<div class="cell">
+<details>
+<summary>Data within each strata</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>nested_df <span class="ot">&lt;-</span> rate_df[, .(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">list</span>(.SD)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>), by <span class="ot">=</span> .(sex, type, country)]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nested_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sex      type country               data
+1: Male Incidence Denmark &lt;data.table[41x7]&gt;
+2: Male Incidence Finland &lt;data.table[41x7]&gt;
+3: Male Incidence Iceland &lt;data.table[41x7]&gt;
+4: Male Incidence  Norway &lt;data.table[41x7]&gt;
+5: Male Incidence  Sweden &lt;data.table[41x7]&gt;
+6: Male Mortality Denmark &lt;data.table[41x7]&gt;</code></pre>
+</div>
+</div>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Poisson regression model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  count <span class="sc">~</span> year <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(population)),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> rate_df,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="callout-note callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Segmented regression model
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sgmt_model <span class="ot">&lt;-</span> <span class="fu">segmented</span>(model, <span class="at">npsi =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Poisson and segmented fit</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fitted_df <span class="ot">&lt;-</span> nested_df[, <span class="fu">map_df</span>(data, <span class="cf">function</span>(dta) {</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    count <span class="sc">~</span> year <span class="sc">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(population)),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> dta</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  sgmt_fit <span class="ot">&lt;-</span> <span class="fu">segmented</span>(fit, <span class="at">npsi =</span> <span class="dv">2</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.table</span>(<span class="at">fit =</span> <span class="fu">list</span>(fit), <span class="at">sgmt_fit =</span> <span class="fu">list</span>(sgmt_fit))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}), by <span class="ot">=</span> .(sex, type, country)]</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fitted_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>    sex      type country       fit        sgmt_fit
+1: Male Incidence Denmark &lt;glm[30]&gt; &lt;segmented[42]&gt;
+2: Male Incidence Finland &lt;glm[30]&gt; &lt;segmented[42]&gt;
+3: Male Incidence Iceland &lt;glm[30]&gt; &lt;segmented[42]&gt;
+4: Male Incidence  Norway &lt;glm[30]&gt; &lt;segmented[42]&gt;
+5: Male Incidence  Sweden &lt;glm[30]&gt; &lt;segmented[42]&gt;
+6: Male Mortality Denmark &lt;glm[30]&gt; &lt;segmented[42]&gt;</code></pre>
+</div>
+</div>
+<p>Following plots highlighting Norway and Finland for comparison show a higher melanoma incidence and mortality rate in Norway compared to Finland. A plateau was observed in melanoma incidence in Norway in both male and female.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Crude rate</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Poisson fit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Segmented fit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">All countries</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<p><img src="Plots/Line-Nor-Fin.svg" class="img-fluid"></p>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p><img src="Plots/GLM-Nor-Fin.svg" class="img-fluid"></p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<p><img src="Plots/Sgmt-Nor-Fin.svg" class="img-fluid"></p>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Poisson fit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Segmented fit</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><img src="Plots/GLM-all.svg" class="img-fluid"></p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p><img src="Plots/Sgmt-all.svg" class="img-fluid"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li>Norway has higher melanoma incidence and mortality than Finland.</li>
+<li>Finland has lowest melanoma incidence and mortality in both sexes</li>
+<li>Norway has highest melanoma mortality followed by Sweden in both sexes</li>
+<li>Denmark has surpassed both Norway and Sweden in melanoma incidence in the recent years</li>
+<li>A plateau period was observed in melanoma incidence in Norway.</li>
+<li>Most countries has raise in melanoma incidence after 2005.</li>
+<li>A declining melanoma moratlity was observed in all countries in recent years.</li>
+</ul>
+</section>
+<section id="model" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="model">Model</h2>
+<section id="annual-percentge-change-apc" class="level3">
+<h3 class="anchored" data-anchor-id="annual-percentge-change-apc">Annual percentge change (APC)</h3>
+<p><img src="Plots/model-summary-plot.svg" class="img-fluid" style="width:100.0%"></p>
+</section>
+<section id="apc-within-segments" class="level3">
+<h3 class="anchored" data-anchor-id="apc-within-segments">APC within segments</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a_apc <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Results/APC.Rds"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>apc <span class="ot">&lt;-</span> <span class="fu">copy</span>(a_apc[[<span class="dv">1</span>]])</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>aapc <span class="ot">&lt;-</span> <span class="fu">copy</span>(a_apc[[<span class="dv">2</span>]])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>apc[, label_period <span class="sc">:</span><span class="er">=</span> glue<span class="sc">::</span><span class="fu">glue_data</span>(.SD, <span class="st">"{label}&lt;br&gt;{psi}"</span>)]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>apc[, segment <span class="sc">:</span><span class="er">=</span> <span class="fu">gsub</span>(<span class="st">"slope"</span>, <span class="st">""</span>, segment)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>apc[country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Norway"</span>, <span class="st">"Denmark"</span>)] <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dcast.data.table</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  country <span class="sc">+</span> segment <span class="sc">~</span> type <span class="sc">+</span> sex,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.var =</span> <span class="st">"label_period"</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> gt<span class="sc">::</span><span class="fu">gt</span>(</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="st">"apc-table"</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">rowname_col =</span> <span class="st">"segment"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">groupname_col =</span> <span class="st">"country"</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> gt<span class="sc">::</span><span class="fu">tab_spanner_delim</span>(<span class="st">"_"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_markdown</span>(<span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">sub_missing</span>(<span class="fu">everything</span>(), <span class="at">missing_text =</span> <span class="st">"-"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_stubhead</span>(<span class="st">"Segment"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">data_row.padding =</span> <span class="st">"0px"</span>,</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="st">"100%"</span>,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.font.size =</span> <span class="st">"small"</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.font.weight =</span> <span class="st">"bold"</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="apc-table" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#apc-table table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#apc-table thead, #apc-table tbody, #apc-table tfoot, #apc-table tr, #apc-table td, #apc-table th {
+  border-style: none;
+}
+
+#apc-table p {
+  margin: 0;
+  padding: 0;
+}
+
+#apc-table .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: small;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#apc-table .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#apc-table .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#apc-table .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#apc-table .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#apc-table .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apc-table .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#apc-table .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#apc-table .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#apc-table .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#apc-table .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#apc-table .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#apc-table .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#apc-table .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#apc-table .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#apc-table .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#apc-table .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#apc-table .gt_row {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#apc-table .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apc-table .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#apc-table .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#apc-table .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#apc-table .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apc-table .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#apc-table .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#apc-table .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apc-table .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apc-table .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#apc-table .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apc-table .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#apc-table .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#apc-table .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#apc-table .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apc-table .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#apc-table .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#apc-table .gt_left {
+  text-align: left;
+}
+
+#apc-table .gt_center {
+  text-align: center;
+}
+
+#apc-table .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#apc-table .gt_font_normal {
+  font-weight: normal;
+}
+
+#apc-table .gt_font_bold {
+  font-weight: bold;
+}
+
+#apc-table .gt_font_italic {
+  font-style: italic;
+}
+
+#apc-table .gt_super {
+  font-size: 65%;
+}
+
+#apc-table .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#apc-table .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#apc-table .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#apc-table .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#apc-table .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#apc-table .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#apc-table .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Segment">Segment</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Incidence">
+        <span class="gt_column_spanner">Incidence</span>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Mortality">
+        <span class="gt_column_spanner">Mortality</span>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Female">Female</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Male">Male</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Female">Female</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Male">Male</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="Denmark">Denmark</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_right gt_stub"><div class="gt_from_md"><p>1</p>
+</div></th>
+<td headers="Denmark stub_1_1 Incidence_Female" class="gt_row gt_center"><div class="gt_from_md"><p>2.73 (2.42, 3.04)<br>1980-2002</p>
+</div></td>
+<td headers="Denmark stub_1_1 Incidence_Male" class="gt_row gt_center"><div class="gt_from_md"><p>3.53 (3.22, 3.84)<br>1980-2004</p>
+</div></td>
+<td headers="Denmark stub_1_1 Mortality_Female" class="gt_row gt_center"><div class="gt_from_md"><p>10.46 (-6.14, 29.98)<br>1980-1982</p>
+</div></td>
+<td headers="Denmark stub_1_1 Mortality_Male" class="gt_row gt_center"><div class="gt_from_md"><p>0.62 (0.08, 1.16)<br>1980-2004</p>
+</div></td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_right gt_stub"><div class="gt_from_md"><p>2</p>
+</div></th>
+<td headers="Denmark stub_1_2 Incidence_Female" class="gt_row gt_center"><div class="gt_from_md"><p>6.92 (5.8, 8.04)<br>2002-2011</p>
+</div></td>
+<td headers="Denmark stub_1_2 Incidence_Male" class="gt_row gt_center"><div class="gt_from_md"><p>9.86 (7.38, 12.39)<br>2004-2009</p>
+</div></td>
+<td headers="Denmark stub_1_2 Mortality_Female" class="gt_row gt_center"><div class="gt_from_md"><p>0.65 (0.26, 1.03)<br>1982-2014</p>
+</div></td>
+<td headers="Denmark stub_1_2 Mortality_Male" class="gt_row gt_center"><div class="gt_from_md"><p>4.02 (0.85, 7.29)<br>2004-2012</p>
+</div></td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_right gt_stub"><div class="gt_from_md"><p>3</p>
+</div></th>
+<td headers="Denmark stub_1_3 Incidence_Female" class="gt_row gt_center"><div class="gt_from_md"><p>1.79 (1.18, 2.41)<br>2011-2020</p>
+</div></td>
+<td headers="Denmark stub_1_3 Incidence_Male" class="gt_row gt_center"><div class="gt_from_md"><p>3.12 (2.55, 3.69)<br>2009-2020</p>
+</div></td>
+<td headers="Denmark stub_1_3 Mortality_Female" class="gt_row gt_center"><div class="gt_from_md"><p>-1.98 (-6.26, 2.5)<br>2014-2020</p>
+</div></td>
+<td headers="Denmark stub_1_3 Mortality_Male" class="gt_row gt_center"><div class="gt_from_md"><p>-2.14 (-4.06, -0.17)<br>2012-2020</p>
+</div></td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="5" class="gt_group_heading" scope="colgroup" id="Norway">Norway</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_4" scope="row" class="gt_row gt_right gt_stub"><div class="gt_from_md"><p>1</p>
+</div></th>
+<td headers="Norway stub_1_4 Incidence_Female" class="gt_row gt_center"><div class="gt_from_md"><p>3.92 (2.9, 4.96)<br>1980-1990</p>
+</div></td>
+<td headers="Norway stub_1_4 Incidence_Male" class="gt_row gt_center"><div class="gt_from_md"><p>5.49 (4.32, 6.67)<br>1980-1991</p>
+</div></td>
+<td headers="Norway stub_1_4 Mortality_Female" class="gt_row gt_center"><div class="gt_from_md"><p>1 (0.18, 1.84)<br>1980-2000</p>
+</div></td>
+<td headers="Norway stub_1_4 Mortality_Male" class="gt_row gt_center"><div class="gt_from_md"><p>17.06 (-0.38, 37.54)<br>1980-1982</p>
+</div></td></tr>
+    <tr><th id="stub_1_5" scope="row" class="gt_row gt_right gt_stub"><div class="gt_from_md"><p>2</p>
+</div></th>
+<td headers="Norway stub_1_5 Incidence_Female" class="gt_row gt_center"><div class="gt_from_md"><p>-0.1 (-1.26, 1.08)<br>1990-1999</p>
+</div></td>
+<td headers="Norway stub_1_5 Incidence_Male" class="gt_row gt_center"><div class="gt_from_md"><p>0.45 (-0.44, 1.35)<br>1991-2002</p>
+</div></td>
+<td headers="Norway stub_1_5 Mortality_Female" class="gt_row gt_center"><div class="gt_from_md"><p>2.7 (1.31, 4.1)<br>2000-2013</p>
+</div></td>
+<td headers="Norway stub_1_5 Mortality_Male" class="gt_row gt_center"><div class="gt_from_md"><p>1.79 (1.4, 2.19)<br>1982-2011</p>
+</div></td></tr>
+    <tr><th id="stub_1_6" scope="row" class="gt_row gt_right gt_stub"><div class="gt_from_md"><p>3</p>
+</div></th>
+<td headers="Norway stub_1_6 Incidence_Female" class="gt_row gt_center"><div class="gt_from_md"><p>3.62 (3.35, 3.88)<br>1999-2020</p>
+</div></td>
+<td headers="Norway stub_1_6 Incidence_Male" class="gt_row gt_center"><div class="gt_from_md"><p>4.39 (4.08, 4.69)<br>2002-2020</p>
+</div></td>
+<td headers="Norway stub_1_6 Mortality_Female" class="gt_row gt_center"><div class="gt_from_md"><p>-5.01 (-8.14, -1.76)<br>2013-2020</p>
+</div></td>
+<td headers="Norway stub_1_6 Mortality_Male" class="gt_row gt_center"><div class="gt_from_md"><p>-1.97 (-3.79, -0.12)<br>2011-2020</p>
+</div></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="model-1" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="model-1">Model</h2>
+<p><strong>Incidence model:</strong></p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mdl_inc <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> rate_df,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> count <span class="sc">~</span> year <span class="sc">+</span> sex <span class="sc">+</span> country,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">offset =</span> <span class="fu">log</span>(population),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subset =</span> type <span class="sc">==</span> <span class="st">"Incidence"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p><strong>Mortality model</strong></p>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mdl_mor <span class="ot">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> rate_df,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">formula =</span> count <span class="sc">~</span> year <span class="sc">+</span> sex <span class="sc">+</span> country,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">offset =</span> <span class="fu">log</span>(population),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">poisson</span>(<span class="at">link =</span> <span class="st">"log"</span>),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">subset =</span> type <span class="sc">==</span> <span class="st">"Mortality"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<section id="incidence-model-summary" class="level3">
+<h3 class="anchored" data-anchor-id="incidence-model-summary">Incidence model summary</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(mdl_inc, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_at</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>), round, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 7
+  term           estimate std.error statistic   p.value conf.low conf.high
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)       0         0.383   -205.   0            0         0    
+2 year              1.04      0        185.   0            1.04      1.04 
+3 sexMale           1.01      0.004      1.90 5.68e-  2    1         1.02 
+4 countryFinland    0.649     0.007    -62.6  0            0.64      0.658
+5 countryIceland    0.494     0.028    -25.6  1.86e-144    0.468     0.521
+6 countryNorway     1.05      0.006      8.09 5.84e- 16    1.04      1.06 
+7 countrySweden     0.936     0.005    -12.1  1.41e- 33    0.926     0.946</code></pre>
+</div>
+</div>
+</section>
+<section id="mortality-model-summary" class="level3">
+<h3 class="anchored" data-anchor-id="mortality-model-summary">Mortality model summary</h3>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(mdl_mor, <span class="at">conf.int =</span> <span class="cn">TRUE</span>, <span class="at">exponentiate =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_at</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">6</span><span class="sc">:</span><span class="dv">7</span>), round, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 7
+  term           estimate std.error statistic   p.value conf.low conf.high
+  &lt;chr&gt;             &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 (Intercept)       0         0.844    -40.9  0            0         0    
+2 year              1.01      0         29.2  1.53e-187    1.01      1.01 
+3 sexMale           1.46      0.01      38.0  0            1.43      1.49 
+4 countryFinland    0.731     0.016    -19.2  1.67e- 82    0.708     0.755
+5 countryIceland    0.611     0.061     -8.02 1.05e- 15    0.54      0.688
+6 countryNorway     1.24      0.015     14.6  3.57e- 48    1.20      1.27 
+7 countrySweden     1.03      0.013      2.2  2.78e-  2    1.00      1.06 </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Melanoma incidence and moratlity is increasing in all countries</li>
+<li>Norway has highest mortality rate through out the period and has highest increase in both incidence and mortality.</li>
+<li>Melanoma incidence increased rapidly in Denmark between 2002 and 2011 in women and 2004-2009 in men surpassing Norway.</li>
+<li>Mortality is decreasing in all countries in recent period.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-engholm_nordcan_2010" class="csl-entry" role="doc-biblioentry">
+Engholm, Gerda, Jacques Ferlay, Niels Christensen, Freddie Bray, Marianne L. Gjerstorff, Åsa Klint, Jóanis E. Køtlum, Elínborg Ólafsdóttir, Eero Pukkala, and Hans H. Storm. 2010. <span>“<span>NORDCAN</span> – a Nordic Tool for Cancer Information, Planning, Quality Control and Research.”</span> <em>Acta Oncologica</em> 49 (5): 725–36. <a href="https://doi.org/ch4598">https://doi.org/ch4598</a>.
+</div>
+<div id="ref-nordcan-2023" class="csl-entry" role="doc-biblioentry">
+Larønningen, S., J. Ferlay, H. Beydogan, F. Bray, G. Engholm, M. Ervik, J. Gulbrandsen, et al. 2022. <span>“<span>NORDCAN</span>: Cancer Incidence, Mortality, Prevalence and Survival in the Nordic Countries, Version 9.2 (23.06.2022).”</span> 2022. <a href="https://nordcan.iarc.fr/">https://nordcan.iarc.fr/</a>.
+</div>
+<div id="ref-muggeo_segmented_2008" class="csl-entry" role="doc-biblioentry">
+Muggeo, Vito M. R. 2008. <span>“Segmented: An r Package to Fit Regression Models with Broken-Line Relationships.”</span> <em>R News</em> 8 (1): 20–25. <a href="https://cran.r-project.org/doc/Rnews/">https://cran.r-project.org/doc/Rnews/</a>.
+</div>
+<div id="ref-cancer_registry_of_norway_cancer_2022-1" class="csl-entry" role="doc-biblioentry">
+Norway, Cancer Registry of. 2022. <span>“Cancer in <span>Norway</span> 2021: <span>Cancer</span> Incidence, Mortality, Survival and Prevalence in <span>Norway</span>.”</span> 0806-3621. Cancer Registry of Norway. <a href="https://www.kreftregisteret.no/globalassets/cancer-in-norway/2021/cin_report.pdf">https://www.kreftregisteret.no/globalassets/cancer-in-norway/2021/cin_report.pdf</a>.
+</div>
+<div id="ref-r_core_team_r_2020" class="csl-entry" role="doc-biblioentry">
+R Core Team. 2020. <span>“R: <span>A</span> Language and Environment for Statistical Computing.”</span> Manual. Vienna, Austria. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-welch_rapid_2021" class="csl-entry" role="doc-biblioentry">
+Welch, H. Gilbert, Benjamin L. Mazer, and Adewole S. Adamson. 2021. <span>“The <span>Rapid</span> <span>Rise</span> in <span>Cutaneous</span> <span>Melanoma</span> <span>Diagnoses</span>.”</span> <em>New England Journal of Medicine</em> 384 (1): 72–79. <a href="https://doi.org/gm6vs4">https://doi.org/gm6vs4</a>.
+</div>
+<div id="ref-whiteman_growing_2016" class="csl-entry" role="doc-biblioentry">
+Whiteman, David C., Adele C. Green, and Catherine M. Olsen. 2016. <span>“The <span>Growing</span> <span>Burden</span> of <span>Invasive</span> <span>Melanoma</span>: <span>Projections</span> of <span>Incidence</span> <span>Rates</span> and <span>Numbers</span> of <span>New</span> <span>Cases</span> in <span>Six</span> <span>Susceptible</span> <span>Populations</span> Through 2031.”</span> <em>The Journal of Investigative Dermatology</em> 136 (6): 1161–71. <a href="https://doi.org/f8psv4">https://doi.org/f8psv4</a>.
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><code>https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"json_data = await FileAttachment(\"Data/nordcan.json\").json()\njson_data[0]\n"}]}
+</script>
+<script type="module">
+window._ojs.paths.runtimeToDoc = "../../blog/posts/nordic-melanoma";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "../../..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb23" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Melanoma Incidence in Nordic Countries"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "With special focus on Norway"</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Raju Rimal"</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "20 June, 2023"</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="an">code-overflow:</span><span class="co"> scroll</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="an">date-format:</span><span class="co"> "DD MMMM YYYY"</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> References.bib</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="an">citations-hover:</span><span class="co"> true</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="an">preview-links:</span><span class="co"> true</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> </span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">  toggle: true</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a><span class="co">    css: style.css</span></span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a><span class="an">editor_options:</span><span class="co"> </span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co">  chunk_output_type: console</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="an">nocite:</span><span class="co"> "@*"</span></span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot2"</span>, <span class="st">"data.table"</span>, <span class="st">"purrr"</span>, <span class="st">"gt"</span>, </span>
+<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a>  <span class="st">"jsonlite"</span>, <span class="st">"DT"</span>, <span class="st">"segmented"</span></span>
+<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pkg <span class="cf">in</span> pkgs) <span class="fu">require</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">scipen =</span> <span class="dv">4</span></span>
+<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
+<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a>Cutaneous melanoma (CM) is the most aggressive and lethal form of skin cancer. Melanoma can be cured if caught and treated early but if left untreated, it may spread to other parts and can be fatal. In the recent years, melanoma has increased dramatically in fair skinned population worldwide including Nordic countries like Norway, Denmark, and Sweden. Norway is ranked fifth in incidence and third in mortality worldwide. This increase can be an effect of increased awareness in general public and health care provider.</span>
+<span id="cb23-42"><a href="#cb23-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-43"><a href="#cb23-43" aria-hidden="true" tabindex="-1"></a>This article explores ***melanoma incidence*** and ***mortality*** in nordic countries by ***sex*** and their ***trend*** over 40-years period from 1980--2020. Further, I try to step through the analysis process from data collection to create plots and tables.</span>
+<span id="cb23-44"><a href="#cb23-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-45"><a href="#cb23-45" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Preparation</span></span>
+<span id="cb23-46"><a href="#cb23-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-47"><a href="#cb23-47" aria-hidden="true" tabindex="-1"></a>Data on melanoma were obtained from NORDCAN <span class="co">[</span><span class="ot">@nordcan-2023, @engholm_nordcan_2010</span><span class="co">]</span>, Association of the Nordic Cancer Registries, IARC. Using NORDCAN 2.0 API^<span class="co">[</span><span class="ot">`https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0`</span><span class="co">]</span> crude and age-adjusted rates were downloaded as JSON and converted to tabular data for further analysis. R<span class="co">[</span><span class="ot">@r_core_team_r_2020</span><span class="co">]</span> software was used for data gathering, cleanup, analysis, and plotting.</span>
+<span id="cb23-48"><a href="#cb23-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-49"><a href="#cb23-49" aria-hidden="true" tabindex="-1"></a>The API endpoint has four placeholder <span class="in">`type`</span>, <span class="in">`sex`</span>, <span class="in">`country`</span>, and <span class="in">`cancer`</span> following design was used to create individual endpoint. These individual url are used to download the JSON file as list in R.</span>
+<span id="cb23-50"><a href="#cb23-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-51"><a href="#cb23-51" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb23-52"><a href="#cb23-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-53"><a href="#cb23-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Data API {.data-api}</span></span>
+<span id="cb23-54"><a href="#cb23-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-57"><a href="#cb23-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-58"><a href="#cb23-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Code for preparing download URL</span></span>
+<span id="cb23-59"><a href="#cb23-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| </span></span>
+<span id="cb23-60"><a href="#cb23-60" aria-hidden="true" tabindex="-1"></a>design_map <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb23-61"><a href="#cb23-61" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="fu">c</span>(<span class="at">Male =</span> <span class="dv">1</span>, <span class="at">Female =</span> <span class="dv">2</span>),</span>
+<span id="cb23-62"><a href="#cb23-62" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">c</span>(<span class="at">Incidence =</span> <span class="dv">0</span>, <span class="at">Mortality =</span> <span class="dv">1</span>),</span>
+<span id="cb23-63"><a href="#cb23-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">cancer =</span> <span class="fu">c</span>(<span class="at">Melanoma =</span> <span class="dv">290</span>),</span>
+<span id="cb23-64"><a href="#cb23-64" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(</span>
+<span id="cb23-65"><a href="#cb23-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">Denmark =</span> <span class="dv">208</span>, <span class="at">Finland =</span> <span class="dv">246</span>, <span class="at">Iceland =</span> <span class="dv">352</span>,</span>
+<span id="cb23-66"><a href="#cb23-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">Norway =</span> <span class="dv">578</span>, <span class="at">Sweden =</span> <span class="dv">752</span></span>
+<span id="cb23-67"><a href="#cb23-67" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-68"><a href="#cb23-68" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-69"><a href="#cb23-69" aria-hidden="true" tabindex="-1"></a>label_values <span class="ot">&lt;-</span> <span class="cf">function</span>(data, label_map, var) {</span>
+<span id="cb23-70"><a href="#cb23-70" aria-hidden="true" tabindex="-1"></a>  label_vec <span class="ot">&lt;-</span> label_map[[var]]</span>
+<span id="cb23-71"><a href="#cb23-71" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> <span class="st">`</span><span class="at">names&lt;-</span><span class="st">`</span>(<span class="fu">names</span>(label_vec), label_vec)</span>
+<span id="cb23-72"><a href="#cb23-72" aria-hidden="true" tabindex="-1"></a>  data[[var]] <span class="ot">&lt;-</span> data[, label[<span class="fu">as.character</span>(<span class="fu">get</span>(var))]]</span>
+<span id="cb23-73"><a href="#cb23-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(data)</span>
+<span id="cb23-74"><a href="#cb23-74" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-75"><a href="#cb23-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-76"><a href="#cb23-76" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> <span class="fu">CJ</span>(</span>
+<span id="cb23-77"><a href="#cb23-77" aria-hidden="true" tabindex="-1"></a>  <span class="at">sex =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
+<span id="cb23-78"><a href="#cb23-78" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">1</span>,</span>
+<span id="cb23-79"><a href="#cb23-79" aria-hidden="true" tabindex="-1"></a>  <span class="at">cancer =</span> <span class="dv">290</span>,</span>
+<span id="cb23-80"><a href="#cb23-80" aria-hidden="true" tabindex="-1"></a>  <span class="at">country =</span> <span class="fu">c</span>(<span class="dv">208</span>, <span class="dv">246</span>, <span class="dv">352</span>, <span class="dv">578</span>, <span class="dv">752</span>)</span>
+<span id="cb23-81"><a href="#cb23-81" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-82"><a href="#cb23-82" aria-hidden="true" tabindex="-1"></a>design[, url <span class="sc">:</span><span class="er">=</span> glue<span class="sc">::</span><span class="fu">glue_data</span>(.SD, </span>
+<span id="cb23-83"><a href="#cb23-83" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0"</span></span>
+<span id="cb23-84"><a href="#cb23-84" aria-hidden="true" tabindex="-1"></a>)]</span>
+<span id="cb23-85"><a href="#cb23-85" aria-hidden="true" tabindex="-1"></a>design <span class="ot">&lt;-</span> design <span class="sc">%&gt;%</span> </span>
+<span id="cb23-86"><a href="#cb23-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"sex"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-87"><a href="#cb23-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"type"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-88"><a href="#cb23-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"cancer"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-89"><a href="#cb23-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">label_values</span>(design_map, <span class="st">"country"</span>)</span>
+<span id="cb23-90"><a href="#cb23-90" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-91"><a href="#cb23-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-92"><a href="#cb23-92" aria-hidden="true" tabindex="-1"></a>API URL:</span>
+<span id="cb23-93"><a href="#cb23-93" aria-hidden="true" tabindex="-1"></a>: <span class="in">`https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0`</span></span>
+<span id="cb23-94"><a href="#cb23-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-95"><a href="#cb23-95" aria-hidden="true" tabindex="-1"></a>Replacing the placeholders <span class="in">`type`</span> (Incidence: 0, Mortality: 1), <span class="in">`sex`</span> (Male: 1, Female: 2), <span class="in">`country`</span> (Denmark: 208, Finland: 246, Iceland: 352, Norway: 578, and Sweden: 752), and <span class="in">`cancer`</span> (Melanoma: 290) prepare the data API.</span>
+<span id="cb23-96"><a href="#cb23-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-97"><a href="#cb23-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-100"><a href="#cb23-100" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-101"><a href="#cb23-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb23-102"><a href="#cb23-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb23-103"><a href="#cb23-103" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(</span>
+<span id="cb23-104"><a href="#cb23-104" aria-hidden="true" tabindex="-1"></a>  design, </span>
+<span id="cb23-105"><a href="#cb23-105" aria-hidden="true" tabindex="-1"></a>  <span class="at">rowname_col =</span> <span class="st">"country"</span>, </span>
+<span id="cb23-106"><a href="#cb23-106" aria-hidden="true" tabindex="-1"></a>  <span class="at">groupname_col =</span> <span class="fu">c</span>(<span class="st">"sex"</span>, <span class="st">"type"</span>),</span>
+<span id="cb23-107"><a href="#cb23-107" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> gt<span class="sc">::</span><span class="fu">cols_hide</span>(<span class="st">"cancer"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-108"><a href="#cb23-108" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">"right"</span>, <span class="at">columns =</span> <span class="fu">c</span>(country)) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-109"><a href="#cb23-109" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">"left"</span>, <span class="at">columns =</span> <span class="fu">c</span>(url)) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-110"><a href="#cb23-110" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(</span>
+<span id="cb23-111"><a href="#cb23-111" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> gt<span class="sc">::</span><span class="fu">cell_text</span>(</span>
+<span id="cb23-112"><a href="#cb23-112" aria-hidden="true" tabindex="-1"></a>      <span class="at">font =</span> <span class="st">"monospace"</span>,</span>
+<span id="cb23-113"><a href="#cb23-113" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="st">"smaller"</span></span>
+<span id="cb23-114"><a href="#cb23-114" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb23-115"><a href="#cb23-115" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> gt<span class="sc">::</span><span class="fu">cells_body</span>(<span class="at">columns =</span> <span class="fu">c</span>(url))</span>
+<span id="cb23-116"><a href="#cb23-116" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-117"><a href="#cb23-117" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(url <span class="sc">~</span> <span class="st">"API Endpoint"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-118"><a href="#cb23-118" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
+<span id="cb23-119"><a href="#cb23-119" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb23-120"><a href="#cb23-120" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb23-121"><a href="#cb23-121" aria-hidden="true" tabindex="-1"></a>    <span class="at">container.height =</span> <span class="st">"500px"</span></span>
+<span id="cb23-122"><a href="#cb23-122" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-123"><a href="#cb23-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb23-124"><a href="#cb23-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-125"><a href="#cb23-125" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sample JSON </span></span>
+<span id="cb23-126"><a href="#cb23-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-129"><a href="#cb23-129" aria-hidden="true" tabindex="-1"></a><span class="in">```{ojs}</span></span>
+<span id="cb23-130"><a href="#cb23-130" aria-hidden="true" tabindex="-1"></a><span class="co">//| code-summary: JSON object</span></span>
+<span id="cb23-131"><a href="#cb23-131" aria-hidden="true" tabindex="-1"></a>json_data <span class="op">=</span> <span class="cf">await</span> <span class="fu">FileAttachment</span>(<span class="st">"Data/nordcan.json"</span>)<span class="op">.</span><span class="fu">json</span>()</span>
+<span id="cb23-132"><a href="#cb23-132" aria-hidden="true" tabindex="-1"></a>json_data[<span class="dv">0</span>]</span>
+<span id="cb23-133"><a href="#cb23-133" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-134"><a href="#cb23-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-135"><a href="#cb23-135" aria-hidden="true" tabindex="-1"></a><span class="vs">### Data download</span></span>
+<span id="cb23-136"><a href="#cb23-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-139"><a href="#cb23-139" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-140"><a href="#cb23-140" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>summary<span class="op">:</span> Code <span class="cf">for</span> data download</span>
+<span id="cb23-141"><a href="#cb23-141" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="op">!</span>file<span class="op">.</span><span class="fu">exists</span>(<span class="st">"Data/nordcan-json.Rds"</span>)) {</span>
+<span id="cb23-142"><a href="#cb23-142" aria-hidden="true" tabindex="-1"></a>  design[<span class="op">,</span> <span class="dt">data</span> <span class="op">:=</span> <span class="fu">map</span>(url<span class="op">,</span> <span class="op">~</span><span class="fu">read_json</span>(<span class="op">.</span><span class="at">x</span>) <span class="op">%&gt;%</span> <span class="fu">pluck</span>(<span class="st">"dataset"</span>))]</span>
+<span id="cb23-143"><a href="#cb23-143" aria-hidden="true" tabindex="-1"></a>  <span class="fu">saveRDS</span>(design<span class="op">,</span> file <span class="op">=</span> <span class="st">"Data/nordcan-json.Rds"</span>)</span>
+<span id="cb23-144"><a href="#cb23-144" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb23-145"><a href="#cb23-145" aria-hidden="true" tabindex="-1"></a>  design <span class="op">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Data/nordcan-json.Rds"</span>)</span>
+<span id="cb23-146"><a href="#cb23-146" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb23-147"><a href="#cb23-147" aria-hidden="true" tabindex="-1"></a>design[<span class="op">,</span> <span class="op">.</span>(sex<span class="op">,</span> type<span class="op">,</span> country<span class="op">,</span> data)]</span>
+<span id="cb23-148"><a href="#cb23-148" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-149"><a href="#cb23-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-150"><a href="#cb23-150" aria-hidden="true" tabindex="-1"></a><span class="vs">### Data Preparation</span></span>
+<span id="cb23-151"><a href="#cb23-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-154"><a href="#cb23-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-155"><a href="#cb23-155" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>summary<span class="op">:</span> Rate data frame</span>
+<span id="cb23-156"><a href="#cb23-156" aria-hidden="true" tabindex="-1"></a>rate_df <span class="op">&lt;-</span> design[<span class="op">,</span> <span class="fu">map_df</span>(data<span class="op">,</span> <span class="kw">function</span>(dta) {</span>
+<span id="cb23-157"><a href="#cb23-157" aria-hidden="true" tabindex="-1"></a>  out <span class="op">&lt;-</span> data<span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb23-158"><a href="#cb23-158" aria-hidden="true" tabindex="-1"></a>    year <span class="op">=</span> <span class="fu">map_int</span>(dta<span class="op">,</span> <span class="st">"year"</span>)<span class="op">,</span></span>
+<span id="cb23-159"><a href="#cb23-159" aria-hidden="true" tabindex="-1"></a>    asr_w <span class="op">=</span> <span class="fu">map_dbl</span>(dta<span class="op">,</span> <span class="st">"asr"</span>)<span class="op">,</span></span>
+<span id="cb23-160"><a href="#cb23-160" aria-hidden="true" tabindex="-1"></a>    asr_e <span class="op">=</span> <span class="fu">map_dbl</span>(dta<span class="op">,</span> <span class="st">"asr_e"</span>)<span class="op">,</span></span>
+<span id="cb23-161"><a href="#cb23-161" aria-hidden="true" tabindex="-1"></a>    asr_n <span class="op">=</span> <span class="fu">map_dbl</span>(dta<span class="op">,</span> <span class="st">"asr_n"</span>)<span class="op">,</span></span>
+<span id="cb23-162"><a href="#cb23-162" aria-hidden="true" tabindex="-1"></a>    crude_rate <span class="op">=</span> <span class="fu">map_dbl</span>(dta<span class="op">,</span> <span class="st">"crude_rate"</span>)<span class="op">,</span></span>
+<span id="cb23-163"><a href="#cb23-163" aria-hidden="true" tabindex="-1"></a>    count <span class="op">=</span> <span class="fu">map_dbl</span>(dta<span class="op">,</span> <span class="st">"total"</span>)<span class="op">,</span></span>
+<span id="cb23-164"><a href="#cb23-164" aria-hidden="true" tabindex="-1"></a>    population <span class="op">=</span> <span class="fu">map_dbl</span>(dta<span class="op">,</span> <span class="st">"total_pop"</span>)<span class="op">,</span></span>
+<span id="cb23-165"><a href="#cb23-165" aria-hidden="true" tabindex="-1"></a>    cum_risk <span class="op">=</span> <span class="fu">map</span>(dta<span class="op">,</span> <span class="st">"cum_risk"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-166"><a href="#cb23-166" aria-hidden="true" tabindex="-1"></a>      <span class="fu">unlist</span>()</span>
+<span id="cb23-167"><a href="#cb23-167" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-168"><a href="#cb23-168" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="st">"cum_risk"</span> <span class="op">%</span><span class="kw">in</span><span class="op">%</span> <span class="fu">names</span>(out)) {</span>
+<span id="cb23-169"><a href="#cb23-169" aria-hidden="true" tabindex="-1"></a>    out[<span class="op">,</span> <span class="dt">cum_risk</span> <span class="op">:=</span> <span class="im">as</span><span class="op">.</span><span class="fu">numeric</span>(cum_risk)]</span>
+<span id="cb23-170"><a href="#cb23-170" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb23-171"><a href="#cb23-171" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>(out)</span>
+<span id="cb23-172"><a href="#cb23-172" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span> by <span class="op">=</span> <span class="op">.</span>(sex<span class="op">,</span> type<span class="op">,</span> country)]</span>
+<span id="cb23-173"><a href="#cb23-173" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-174"><a href="#cb23-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-177"><a href="#cb23-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-178"><a href="#cb23-178" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> echo<span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb23-179"><a href="#cb23-179" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>fold<span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb23-180"><a href="#cb23-180" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rate_df)</span>
+<span id="cb23-181"><a href="#cb23-181" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-182"><a href="#cb23-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-185"><a href="#cb23-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-186"><a href="#cb23-186" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>summary<span class="op">:</span> Rate by age</span>
+<span id="cb23-187"><a href="#cb23-187" aria-hidden="true" tabindex="-1"></a>rate_by_age <span class="op">&lt;-</span> design[<span class="op">,</span> <span class="fu">map_df</span>(data<span class="op">,</span> <span class="kw">function</span>(dta) {</span>
+<span id="cb23-188"><a href="#cb23-188" aria-hidden="true" tabindex="-1"></a>  year <span class="op">&lt;-</span> <span class="fu">map_int</span>(dta<span class="op">,</span> <span class="st">"year"</span>)</span>
+<span id="cb23-189"><a href="#cb23-189" aria-hidden="true" tabindex="-1"></a>  count_df <span class="op">&lt;-</span> <span class="fu">map_df</span>(dta<span class="op">,</span> <span class="st">"ages"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-190"><a href="#cb23-190" aria-hidden="true" tabindex="-1"></a>    <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>() <span class="op">%&gt;%</span></span>
+<span id="cb23-191"><a href="#cb23-191" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(year <span class="op">=</span> year) <span class="op">%&gt;%</span> </span>
+<span id="cb23-192"><a href="#cb23-192" aria-hidden="true" tabindex="-1"></a>    melt<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb23-193"><a href="#cb23-193" aria-hidden="true" tabindex="-1"></a>      id<span class="op">.</span><span class="at">vars</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb23-194"><a href="#cb23-194" aria-hidden="true" tabindex="-1"></a>      variable<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">"age_group"</span><span class="op">,</span></span>
+<span id="cb23-195"><a href="#cb23-195" aria-hidden="true" tabindex="-1"></a>      value<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">"count"</span></span>
+<span id="cb23-196"><a href="#cb23-196" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-197"><a href="#cb23-197" aria-hidden="true" tabindex="-1"></a>  pop_df <span class="op">&lt;-</span> <span class="fu">map_df</span>(dta<span class="op">,</span> <span class="st">"populations"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-198"><a href="#cb23-198" aria-hidden="true" tabindex="-1"></a>    <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>() <span class="op">%&gt;%</span></span>
+<span id="cb23-199"><a href="#cb23-199" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(year <span class="op">=</span> year) <span class="op">%&gt;%</span> </span>
+<span id="cb23-200"><a href="#cb23-200" aria-hidden="true" tabindex="-1"></a>    melt<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb23-201"><a href="#cb23-201" aria-hidden="true" tabindex="-1"></a>      id<span class="op">.</span><span class="at">vars</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb23-202"><a href="#cb23-202" aria-hidden="true" tabindex="-1"></a>      variable<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">"age_group"</span><span class="op">,</span></span>
+<span id="cb23-203"><a href="#cb23-203" aria-hidden="true" tabindex="-1"></a>      value<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">"population"</span></span>
+<span id="cb23-204"><a href="#cb23-204" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-205"><a href="#cb23-205" aria-hidden="true" tabindex="-1"></a>  asr_df <span class="op">&lt;-</span> <span class="fu">map_df</span>(dta<span class="op">,</span> <span class="st">"age_specific_rate"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-206"><a href="#cb23-206" aria-hidden="true" tabindex="-1"></a>    <span class="fu">modify</span>(<span class="im">as</span><span class="op">.</span><span class="at">numeric</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-207"><a href="#cb23-207" aria-hidden="true" tabindex="-1"></a>    <span class="im">as</span><span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>() <span class="op">%&gt;%</span></span>
+<span id="cb23-208"><a href="#cb23-208" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cbind</span>(year <span class="op">=</span> <span class="im">as</span><span class="op">.</span><span class="fu">numeric</span>(year)) <span class="op">%&gt;%</span> </span>
+<span id="cb23-209"><a href="#cb23-209" aria-hidden="true" tabindex="-1"></a>    melt<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb23-210"><a href="#cb23-210" aria-hidden="true" tabindex="-1"></a>      id<span class="op">.</span><span class="at">vars</span> <span class="op">=</span> <span class="st">"year"</span><span class="op">,</span></span>
+<span id="cb23-211"><a href="#cb23-211" aria-hidden="true" tabindex="-1"></a>      variable<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">"age_group"</span><span class="op">,</span></span>
+<span id="cb23-212"><a href="#cb23-212" aria-hidden="true" tabindex="-1"></a>      value<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">"asr"</span></span>
+<span id="cb23-213"><a href="#cb23-213" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb23-214"><a href="#cb23-214" aria-hidden="true" tabindex="-1"></a>  out <span class="op">&lt;-</span> <span class="fu">reduce</span>(</span>
+<span id="cb23-215"><a href="#cb23-215" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(count_df<span class="op">,</span> pop_df<span class="op">,</span> asr_df)<span class="op">,</span></span>
+<span id="cb23-216"><a href="#cb23-216" aria-hidden="true" tabindex="-1"></a>    merge<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="at">table</span><span class="op">,</span></span>
+<span id="cb23-217"><a href="#cb23-217" aria-hidden="true" tabindex="-1"></a>    by <span class="op">=</span> <span class="fu">c</span>(<span class="st">"year"</span><span class="op">,</span> <span class="st">"age_group"</span>)</span>
+<span id="cb23-218"><a href="#cb23-218" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-219"><a href="#cb23-219" aria-hidden="true" tabindex="-1"></a>  age_lbl <span class="op">&lt;-</span> <span class="fu">paste</span>(</span>
+<span id="cb23-220"><a href="#cb23-220" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">85</span><span class="op">,</span> <span class="dv">5</span>)<span class="op">,</span></span>
+<span id="cb23-221"><a href="#cb23-221" aria-hidden="true" tabindex="-1"></a>    <span class="fu">seq</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">85</span><span class="op">,</span> <span class="dv">5</span>) <span class="op">+</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb23-222"><a href="#cb23-222" aria-hidden="true" tabindex="-1"></a>    sep <span class="op">=</span> <span class="st">"-"</span></span>
+<span id="cb23-223"><a href="#cb23-223" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-224"><a href="#cb23-224" aria-hidden="true" tabindex="-1"></a>  age_lbl[<span class="fu">length</span>(age_lbl)] <span class="op">&lt;-</span> <span class="st">"85+"</span></span>
+<span id="cb23-225"><a href="#cb23-225" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(age_lbl) <span class="op">&lt;-</span> <span class="dv">1</span><span class="op">:</span><span class="dv">18</span></span>
+<span id="cb23-226"><a href="#cb23-226" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb23-227"><a href="#cb23-227" aria-hidden="true" tabindex="-1"></a>  out[<span class="op">,</span> <span class="dt">age_group</span> <span class="op">:=</span> age_lbl[age_group]]</span>
+<span id="cb23-228"><a href="#cb23-228" aria-hidden="true" tabindex="-1"></a>  out[<span class="op">,</span> <span class="dt">year</span> <span class="op">:=</span> <span class="im">as</span><span class="op">.</span><span class="fu">integer</span>(year)]</span>
+<span id="cb23-229"><a href="#cb23-229" aria-hidden="true" tabindex="-1"></a>  out[<span class="op">,</span> <span class="dt">count</span> <span class="op">:=</span> <span class="im">as</span><span class="op">.</span><span class="fu">integer</span>(count)]</span>
+<span id="cb23-230"><a href="#cb23-230" aria-hidden="true" tabindex="-1"></a>  out[<span class="op">,</span> <span class="dt">population</span> <span class="op">:=</span> <span class="im">as</span><span class="op">.</span><span class="fu">integer</span>(population)]</span>
+<span id="cb23-231"><a href="#cb23-231" aria-hidden="true" tabindex="-1"></a>  out[<span class="op">,</span> <span class="dt">asr</span> <span class="op">:=</span> <span class="im">as</span><span class="op">.</span><span class="fu">numeric</span>(asr)]</span>
+<span id="cb23-232"><a href="#cb23-232" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span>(out[])</span>
+<span id="cb23-233"><a href="#cb23-233" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span> by <span class="op">=</span> <span class="op">.</span>(sex<span class="op">,</span> type<span class="op">,</span> country)]</span>
+<span id="cb23-234"><a href="#cb23-234" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-235"><a href="#cb23-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-238"><a href="#cb23-238" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-239"><a href="#cb23-239" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> echo<span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb23-240"><a href="#cb23-240" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>fold<span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb23-241"><a href="#cb23-241" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(rate_by_age)</span>
+<span id="cb23-242"><a href="#cb23-242" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-243"><a href="#cb23-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-244"><a href="#cb23-244" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb23-245"><a href="#cb23-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-246"><a href="#cb23-246" aria-hidden="true" tabindex="-1"></a><span class="vs">## Analysis</span></span>
+<span id="cb23-247"><a href="#cb23-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-248"><a href="#cb23-248" aria-hidden="true" tabindex="-1"></a><span class="vs">For the following analysis, crude rates were used in visualization and modelling. Stratified by `</span><span class="fu">sex</span><span class="vs">`, `</span><span class="fu">country</span><span class="vs">` and `</span><span class="fu">type</span><span class="vs">` following plots presents the the `</span><span class="fu">crude_rate</span><span class="vs">` over the `</span><span class="fu">year</span><span class="vs">` of diagnosis. Additionally, using `</span><span class="fu">count</span><span class="vs">` and `</span><span class="fu">population</span><span class="vs">`, a poisson regression model (@eq-poisson-model-1) was fitted.</span></span>
+<span id="cb23-249"><a href="#cb23-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-250"><a href="#cb23-250" aria-hidden="true" tabindex="-1"></a><span class="vs">$$</span></span>
+<span id="cb23-251"><a href="#cb23-251" aria-hidden="true" tabindex="-1"></a><span class="sc">\b</span><span class="vs">egin{align}</span></span>
+<span id="cb23-252"><a href="#cb23-252" aria-hidden="true" tabindex="-1"></a><span class="sc">\l</span><span class="vs">og</span><span class="sc">\l</span><span class="vs">eft(</span><span class="sc">\f</span><span class="vs">rac{</span><span class="sc">\l</span><span class="vs">ambda}{Y}</span><span class="sc">\r</span><span class="vs">ight) &amp;= </span><span class="sc">\b</span><span class="vs">eta_0 + </span><span class="sc">\b</span><span class="vs">eta_1 x + </span><span class="sc">\v</span><span class="vs">arepsilon </span><span class="sc">\\</span></span>
+<span id="cb23-253"><a href="#cb23-253" aria-hidden="true" tabindex="-1"></a><span class="sc">\t</span><span class="vs">ext{equivalently, } </span><span class="sc">\l</span><span class="vs">og</span><span class="sc">\l</span><span class="vs">eft(</span><span class="sc">\l</span><span class="vs">ambda</span><span class="sc">\r</span><span class="vs">ight) &amp;= </span><span class="sc">\b</span><span class="vs">eta_0 + </span><span class="sc">\b</span><span class="vs">eta_1 x + </span><span class="sc">\l</span><span class="vs">og(Y) + </span><span class="sc">\v</span><span class="vs">arepsilon</span></span>
+<span id="cb23-254"><a href="#cb23-254" aria-hidden="true" tabindex="-1"></a><span class="sc">\e</span><span class="vs">nd{align} </span></span>
+<span id="cb23-255"><a href="#cb23-255" aria-hidden="true" tabindex="-1"></a><span class="vs">$$ {#eq-poisson-model-1}</span></span>
+<span id="cb23-256"><a href="#cb23-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-257"><a href="#cb23-257" aria-hidden="true" tabindex="-1"></a><span class="vs">where, $</span><span class="sc">\l</span><span class="vs">ambda$ is the number of events (`</span><span class="fu">count</span><span class="vs">`), $Y$ is the number of exposed (`</span><span class="fu">population</span><span class="vs">`) and $x$ is the `</span><span class="fu">year</span><span class="vs">` of diagnosis.</span></span>
+<span id="cb23-258"><a href="#cb23-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-259"><a href="#cb23-259" aria-hidden="true" tabindex="-1"></a><span class="vs">Additionally, using segmented regression the change points in the trend was identified and the annual percentage change (APC) and average annual percentage change (AAPC) in crude rate were calculated. For each strata, following R-code for poisson regression model and segmented regression model were used.</span></span>
+<span id="cb23-260"><a href="#cb23-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-263"><a href="#cb23-263" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-264"><a href="#cb23-264" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>summary<span class="op">:</span> Data within each strata</span>
+<span id="cb23-265"><a href="#cb23-265" aria-hidden="true" tabindex="-1"></a>nested_df <span class="op">&lt;-</span> rate_df[<span class="op">,</span> <span class="op">.</span>(</span>
+<span id="cb23-266"><a href="#cb23-266" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> <span class="fu">list</span>(<span class="op">.</span><span class="at">SD</span>)</span>
+<span id="cb23-267"><a href="#cb23-267" aria-hidden="true" tabindex="-1"></a>)<span class="op">,</span> by <span class="op">=</span> <span class="op">.</span>(sex<span class="op">,</span> type<span class="op">,</span> country)]</span>
+<span id="cb23-268"><a href="#cb23-268" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nested_df)</span>
+<span id="cb23-269"><a href="#cb23-269" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-270"><a href="#cb23-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-271"><a href="#cb23-271" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {.callout-note icon="false"}</span></span>
+<span id="cb23-272"><a href="#cb23-272" aria-hidden="true" tabindex="-1"></a><span class="vs">### Poisson regression model</span></span>
+<span id="cb23-273"><a href="#cb23-273" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>r</span>
+<span id="cb23-274"><a href="#cb23-274" aria-hidden="true" tabindex="-1"></a>model <span class="op">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb23-275"><a href="#cb23-275" aria-hidden="true" tabindex="-1"></a>  count <span class="op">~</span> year <span class="op">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(population))<span class="op">,</span></span>
+<span id="cb23-276"><a href="#cb23-276" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> rate_df<span class="op">,</span></span>
+<span id="cb23-277"><a href="#cb23-277" aria-hidden="true" tabindex="-1"></a>  family <span class="op">=</span> <span class="fu">poisson</span>(link <span class="op">=</span> <span class="st">"log"</span>)</span>
+<span id="cb23-278"><a href="#cb23-278" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-279"><a href="#cb23-279" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-280"><a href="#cb23-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-281"><a href="#cb23-281" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb23-282"><a href="#cb23-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-283"><a href="#cb23-283" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {.callout-note icon="false"}</span></span>
+<span id="cb23-284"><a href="#cb23-284" aria-hidden="true" tabindex="-1"></a><span class="vs">### Segmented regression model</span></span>
+<span id="cb23-285"><a href="#cb23-285" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>r</span>
+<span id="cb23-286"><a href="#cb23-286" aria-hidden="true" tabindex="-1"></a>sgmt_model <span class="op">&lt;-</span> <span class="fu">segmented</span>(model<span class="op">,</span> npsi <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb23-287"><a href="#cb23-287" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-288"><a href="#cb23-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-289"><a href="#cb23-289" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb23-290"><a href="#cb23-290" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-293"><a href="#cb23-293" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-294"><a href="#cb23-294" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>summary<span class="op">:</span> Poisson and segmented fit</span>
+<span id="cb23-295"><a href="#cb23-295" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> warning<span class="op">:</span> <span class="kw">false</span></span>
+<span id="cb23-296"><a href="#cb23-296" aria-hidden="true" tabindex="-1"></a>fitted_df <span class="op">&lt;-</span> nested_df[<span class="op">,</span> <span class="fu">map_df</span>(data<span class="op">,</span> <span class="kw">function</span>(dta) {</span>
+<span id="cb23-297"><a href="#cb23-297" aria-hidden="true" tabindex="-1"></a>  fit <span class="op">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb23-298"><a href="#cb23-298" aria-hidden="true" tabindex="-1"></a>    count <span class="op">~</span> year <span class="op">+</span> <span class="fu">offset</span>(<span class="fu">log</span>(population))<span class="op">,</span></span>
+<span id="cb23-299"><a href="#cb23-299" aria-hidden="true" tabindex="-1"></a>    family <span class="op">=</span> <span class="fu">poisson</span>(link <span class="op">=</span> <span class="st">"log"</span>)<span class="op">,</span></span>
+<span id="cb23-300"><a href="#cb23-300" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> dta</span>
+<span id="cb23-301"><a href="#cb23-301" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-302"><a href="#cb23-302" aria-hidden="true" tabindex="-1"></a>  sgmt_fit <span class="op">&lt;-</span> <span class="fu">segmented</span>(fit<span class="op">,</span> npsi <span class="op">=</span> <span class="dv">2</span>)</span>
+<span id="cb23-303"><a href="#cb23-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-304"><a href="#cb23-304" aria-hidden="true" tabindex="-1"></a>  data<span class="op">.</span><span class="fu">table</span>(fit <span class="op">=</span> <span class="fu">list</span>(fit)<span class="op">,</span> sgmt_fit <span class="op">=</span> <span class="fu">list</span>(sgmt_fit))</span>
+<span id="cb23-305"><a href="#cb23-305" aria-hidden="true" tabindex="-1"></a>})<span class="op">,</span> by <span class="op">=</span> <span class="op">.</span>(sex<span class="op">,</span> type<span class="op">,</span> country)]</span>
+<span id="cb23-306"><a href="#cb23-306" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fitted_df)</span>
+<span id="cb23-307"><a href="#cb23-307" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-308"><a href="#cb23-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-309"><a href="#cb23-309" aria-hidden="true" tabindex="-1"></a><span class="vs">Following plots highlighting Norway and Finland for comparison show a higher melanoma incidence and mortality rate in Norway compared to Finland. A plateau was observed in melanoma incidence in Norway in both male and female.  </span></span>
+<span id="cb23-310"><a href="#cb23-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-311"><a href="#cb23-311" aria-hidden="true" tabindex="-1"></a><span class="vs">::: panel-tabset</span></span>
+<span id="cb23-312"><a href="#cb23-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-313"><a href="#cb23-313" aria-hidden="true" tabindex="-1"></a><span class="vs">### Crude rate</span></span>
+<span id="cb23-314"><a href="#cb23-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-315"><a href="#cb23-315" aria-hidden="true" tabindex="-1"></a><span class="vs">![](Plots/Line-Nor-Fin.svg)</span></span>
+<span id="cb23-316"><a href="#cb23-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-317"><a href="#cb23-317" aria-hidden="true" tabindex="-1"></a><span class="vs">### Poisson fit</span></span>
+<span id="cb23-318"><a href="#cb23-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-319"><a href="#cb23-319" aria-hidden="true" tabindex="-1"></a><span class="vs">![](Plots/GLM-Nor-Fin.svg)</span></span>
+<span id="cb23-320"><a href="#cb23-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-321"><a href="#cb23-321" aria-hidden="true" tabindex="-1"></a><span class="vs">### Segmented fit</span></span>
+<span id="cb23-322"><a href="#cb23-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-323"><a href="#cb23-323" aria-hidden="true" tabindex="-1"></a><span class="vs">![](Plots/Sgmt-Nor-Fin.svg)</span></span>
+<span id="cb23-324"><a href="#cb23-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-325"><a href="#cb23-325" aria-hidden="true" tabindex="-1"></a><span class="vs">### All countries</span></span>
+<span id="cb23-326"><a href="#cb23-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-327"><a href="#cb23-327" aria-hidden="true" tabindex="-1"></a><span class="vs">::: panel-tabset</span></span>
+<span id="cb23-328"><a href="#cb23-328" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-329"><a href="#cb23-329" aria-hidden="true" tabindex="-1"></a><span class="vs">### Poisson fit</span></span>
+<span id="cb23-330"><a href="#cb23-330" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-331"><a href="#cb23-331" aria-hidden="true" tabindex="-1"></a><span class="vs">![](Plots/GLM-all.svg)</span></span>
+<span id="cb23-332"><a href="#cb23-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-333"><a href="#cb23-333" aria-hidden="true" tabindex="-1"></a><span class="vs">### Segmented fit</span></span>
+<span id="cb23-334"><a href="#cb23-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-335"><a href="#cb23-335" aria-hidden="true" tabindex="-1"></a><span class="vs">![](Plots/Sgmt-all.svg)</span></span>
+<span id="cb23-336"><a href="#cb23-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-337"><a href="#cb23-337" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb23-338"><a href="#cb23-338" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+<span id="cb23-339"><a href="#cb23-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-340"><a href="#cb23-340" aria-hidden="true" tabindex="-1"></a><span class="vs">- Norway has higher melanoma incidence and mortality than Finland.</span></span>
+<span id="cb23-341"><a href="#cb23-341" aria-hidden="true" tabindex="-1"></a><span class="vs">- Finland has lowest melanoma incidence and mortality in both sexes</span></span>
+<span id="cb23-342"><a href="#cb23-342" aria-hidden="true" tabindex="-1"></a><span class="vs">- Norway has highest melanoma mortality followed by Sweden in both sexes</span></span>
+<span id="cb23-343"><a href="#cb23-343" aria-hidden="true" tabindex="-1"></a><span class="vs">- Denmark has surpassed both Norway and Sweden in melanoma incidence in the recent years</span></span>
+<span id="cb23-344"><a href="#cb23-344" aria-hidden="true" tabindex="-1"></a><span class="vs">- A plateau period was observed in melanoma incidence in Norway.</span></span>
+<span id="cb23-345"><a href="#cb23-345" aria-hidden="true" tabindex="-1"></a><span class="vs">- Most countries has raise in melanoma incidence after 2005.</span></span>
+<span id="cb23-346"><a href="#cb23-346" aria-hidden="true" tabindex="-1"></a><span class="vs">- A declining melanoma moratlity was observed in all countries in recent years. </span></span>
+<span id="cb23-347"><a href="#cb23-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-348"><a href="#cb23-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-349"><a href="#cb23-349" aria-hidden="true" tabindex="-1"></a><span class="vs">## Model {.smaller}</span></span>
+<span id="cb23-350"><a href="#cb23-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-351"><a href="#cb23-351" aria-hidden="true" tabindex="-1"></a><span class="vs">### Annual percentge change (APC)</span></span>
+<span id="cb23-352"><a href="#cb23-352" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-353"><a href="#cb23-353" aria-hidden="true" tabindex="-1"></a><span class="vs">![](Plots/model-summary-plot.svg){width="100%"}</span></span>
+<span id="cb23-354"><a href="#cb23-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-355"><a href="#cb23-355" aria-hidden="true" tabindex="-1"></a><span class="vs">### APC within segments</span></span>
+<span id="cb23-356"><a href="#cb23-356" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-359"><a href="#cb23-359" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-360"><a href="#cb23-360" aria-hidden="true" tabindex="-1"></a>a_apc <span class="op">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">"Results/APC.Rds"</span>)</span>
+<span id="cb23-361"><a href="#cb23-361" aria-hidden="true" tabindex="-1"></a>apc <span class="op">&lt;-</span> <span class="fu">copy</span>(a_apc[[<span class="dv">1</span>]])</span>
+<span id="cb23-362"><a href="#cb23-362" aria-hidden="true" tabindex="-1"></a>aapc <span class="op">&lt;-</span> <span class="fu">copy</span>(a_apc[[<span class="dv">2</span>]])</span>
+<span id="cb23-363"><a href="#cb23-363" aria-hidden="true" tabindex="-1"></a>apc[<span class="op">,</span> label_period <span class="op">:=</span> glue<span class="op">::</span><span class="fu">glue_data</span>(<span class="op">.</span><span class="at">SD</span><span class="op">,</span> <span class="st">"{label}&lt;br&gt;{psi}"</span>)]</span>
+<span id="cb23-364"><a href="#cb23-364" aria-hidden="true" tabindex="-1"></a>apc[<span class="op">,</span> segment <span class="op">:=</span> <span class="fu">gsub</span>(<span class="st">"slope"</span><span class="op">,</span> <span class="st">""</span><span class="op">,</span> segment)]</span>
+<span id="cb23-365"><a href="#cb23-365" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-366"><a href="#cb23-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-369"><a href="#cb23-369" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-370"><a href="#cb23-370" aria-hidden="true" tabindex="-1"></a>apc[country <span class="op">%</span><span class="kw">in</span><span class="op">%</span> <span class="fu">c</span>(<span class="st">"Norway"</span><span class="op">,</span> <span class="st">"Denmark"</span>)] <span class="op">%&gt;%</span> </span>
+<span id="cb23-371"><a href="#cb23-371" aria-hidden="true" tabindex="-1"></a>  dcast<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">table</span>(</span>
+<span id="cb23-372"><a href="#cb23-372" aria-hidden="true" tabindex="-1"></a>  country <span class="op">+</span> segment <span class="op">~</span> type <span class="op">+</span> sex<span class="op">,</span></span>
+<span id="cb23-373"><a href="#cb23-373" aria-hidden="true" tabindex="-1"></a>  value<span class="op">.</span><span class="at">var</span> <span class="op">=</span> <span class="st">"label_period"</span></span>
+<span id="cb23-374"><a href="#cb23-374" aria-hidden="true" tabindex="-1"></a>) <span class="op">%&gt;%</span> gt<span class="op">::</span><span class="fu">gt</span>(</span>
+<span id="cb23-375"><a href="#cb23-375" aria-hidden="true" tabindex="-1"></a>  id <span class="op">=</span> <span class="st">"apc-table"</span><span class="op">,</span></span>
+<span id="cb23-376"><a href="#cb23-376" aria-hidden="true" tabindex="-1"></a>  rowname_col <span class="op">=</span> <span class="st">"segment"</span><span class="op">,</span></span>
+<span id="cb23-377"><a href="#cb23-377" aria-hidden="true" tabindex="-1"></a>  groupname_col <span class="op">=</span> <span class="st">"country"</span></span>
+<span id="cb23-378"><a href="#cb23-378" aria-hidden="true" tabindex="-1"></a>) <span class="op">%&gt;%</span> gt<span class="op">::</span><span class="fu">tab_spanner_delim</span>(<span class="st">"_"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-379"><a href="#cb23-379" aria-hidden="true" tabindex="-1"></a>  gt<span class="op">::</span><span class="fu">fmt_markdown</span>(<span class="fu">everything</span>()) <span class="op">%&gt;%</span> </span>
+<span id="cb23-380"><a href="#cb23-380" aria-hidden="true" tabindex="-1"></a>  gt<span class="op">::</span><span class="fu">sub_missing</span>(<span class="fu">everything</span>()<span class="op">,</span> missing_text <span class="op">=</span> <span class="st">"-"</span>) <span class="op">%&gt;%</span></span>
+<span id="cb23-381"><a href="#cb23-381" aria-hidden="true" tabindex="-1"></a>  gt<span class="op">::</span><span class="fu">tab_stubhead</span>(<span class="st">"Segment"</span>) <span class="op">%&gt;%</span> </span>
+<span id="cb23-382"><a href="#cb23-382" aria-hidden="true" tabindex="-1"></a>  gt<span class="op">::</span><span class="fu">tab_options</span>(</span>
+<span id="cb23-383"><a href="#cb23-383" aria-hidden="true" tabindex="-1"></a>    data_row<span class="op">.</span><span class="at">padding</span> <span class="op">=</span> <span class="st">"0px"</span><span class="op">,</span></span>
+<span id="cb23-384"><a href="#cb23-384" aria-hidden="true" tabindex="-1"></a>    table<span class="op">.</span><span class="at">width</span> <span class="op">=</span> <span class="st">"100%"</span><span class="op">,</span></span>
+<span id="cb23-385"><a href="#cb23-385" aria-hidden="true" tabindex="-1"></a>    table<span class="op">.</span><span class="at">font</span><span class="op">.</span><span class="at">size</span> <span class="op">=</span> <span class="st">"small"</span><span class="op">,</span></span>
+<span id="cb23-386"><a href="#cb23-386" aria-hidden="true" tabindex="-1"></a>    column_labels<span class="op">.</span><span class="at">font</span><span class="op">.</span><span class="at">weight</span> <span class="op">=</span> <span class="st">"bold"</span><span class="op">,</span></span>
+<span id="cb23-387"><a href="#cb23-387" aria-hidden="true" tabindex="-1"></a>    row_group<span class="op">.</span><span class="at">font</span><span class="op">.</span><span class="at">weight</span> <span class="op">=</span> <span class="st">"bold"</span></span>
+<span id="cb23-388"><a href="#cb23-388" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb23-389"><a href="#cb23-389" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-390"><a href="#cb23-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-391"><a href="#cb23-391" aria-hidden="true" tabindex="-1"></a><span class="vs">## Model {.smaller}</span></span>
+<span id="cb23-392"><a href="#cb23-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-393"><a href="#cb23-393" aria-hidden="true" tabindex="-1"></a><span class="vs">**Incidence model:**</span></span>
+<span id="cb23-394"><a href="#cb23-394" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-397"><a href="#cb23-397" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-398"><a href="#cb23-398" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> echo<span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb23-399"><a href="#cb23-399" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>fold<span class="op">:</span> show</span>
+<span id="cb23-400"><a href="#cb23-400" aria-hidden="true" tabindex="-1"></a>mdl_inc <span class="op">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb23-401"><a href="#cb23-401" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> rate_df<span class="op">,</span></span>
+<span id="cb23-402"><a href="#cb23-402" aria-hidden="true" tabindex="-1"></a>  formula <span class="op">=</span> count <span class="op">~</span> year <span class="op">+</span> sex <span class="op">+</span> country<span class="op">,</span></span>
+<span id="cb23-403"><a href="#cb23-403" aria-hidden="true" tabindex="-1"></a>  offset <span class="op">=</span> <span class="fu">log</span>(population)<span class="op">,</span></span>
+<span id="cb23-404"><a href="#cb23-404" aria-hidden="true" tabindex="-1"></a>  family <span class="op">=</span> <span class="fu">poisson</span>(link <span class="op">=</span> <span class="st">"log"</span>)<span class="op">,</span></span>
+<span id="cb23-405"><a href="#cb23-405" aria-hidden="true" tabindex="-1"></a>  subset <span class="op">=</span> type <span class="op">==</span> <span class="st">"Incidence"</span></span>
+<span id="cb23-406"><a href="#cb23-406" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-407"><a href="#cb23-407" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-408"><a href="#cb23-408" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-409"><a href="#cb23-409" aria-hidden="true" tabindex="-1"></a><span class="vs">**Mortality model**</span></span>
+<span id="cb23-410"><a href="#cb23-410" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-413"><a href="#cb23-413" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb23-414"><a href="#cb23-414" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> echo<span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb23-415"><a href="#cb23-415" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> code<span class="op">-</span>fold<span class="op">:</span> show</span>
+<span id="cb23-416"><a href="#cb23-416" aria-hidden="true" tabindex="-1"></a>mdl_mor <span class="op">&lt;-</span> <span class="fu">glm</span>(</span>
+<span id="cb23-417"><a href="#cb23-417" aria-hidden="true" tabindex="-1"></a>  data <span class="op">=</span> rate_df<span class="op">,</span></span>
+<span id="cb23-418"><a href="#cb23-418" aria-hidden="true" tabindex="-1"></a>  formula <span class="op">=</span> count <span class="op">~</span> year <span class="op">+</span> sex <span class="op">+</span> country<span class="op">,</span></span>
+<span id="cb23-419"><a href="#cb23-419" aria-hidden="true" tabindex="-1"></a>  offset <span class="op">=</span> <span class="fu">log</span>(population)<span class="op">,</span></span>
+<span id="cb23-420"><a href="#cb23-420" aria-hidden="true" tabindex="-1"></a>  family <span class="op">=</span> <span class="fu">poisson</span>(link <span class="op">=</span> <span class="st">"log"</span>)<span class="op">,</span></span>
+<span id="cb23-421"><a href="#cb23-421" aria-hidden="true" tabindex="-1"></a>  subset <span class="op">=</span> type <span class="op">==</span> <span class="st">"Mortality"</span></span>
+<span id="cb23-422"><a href="#cb23-422" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-423"><a href="#cb23-423" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-424"><a href="#cb23-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-425"><a href="#cb23-425" aria-hidden="true" tabindex="-1"></a><span class="vs">### Incidence model summary</span></span>
+<span id="cb23-426"><a href="#cb23-426" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>{r<span class="op">,</span> prompt<span class="op">=</span>FALSE<span class="op">,</span> comment <span class="op">=</span> <span class="st">""</span>}</span>
+<span id="cb23-427"><a href="#cb23-427" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> echo<span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb23-428"><a href="#cb23-428" aria-hidden="true" tabindex="-1"></a>broom<span class="op">::</span><span class="fu">tidy</span>(mdl_inc<span class="op">,</span> conf<span class="op">.</span><span class="at">int</span> <span class="op">=</span> TRUE<span class="op">,</span> exponentiate <span class="op">=</span> TRUE) <span class="op">%&gt;%</span> </span>
+<span id="cb23-429"><a href="#cb23-429" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_at</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span><span class="op">,</span> <span class="dv">6</span><span class="op">:</span><span class="dv">7</span>)<span class="op">,</span> round<span class="op">,</span> <span class="dv">3</span>)</span>
+<span id="cb23-430"><a href="#cb23-430" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-431"><a href="#cb23-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-432"><a href="#cb23-432" aria-hidden="true" tabindex="-1"></a><span class="vs">### Mortality model summary</span></span>
+<span id="cb23-433"><a href="#cb23-433" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span>{r<span class="op">,</span> prompt<span class="op">=</span>FALSE<span class="op">,</span> comment <span class="op">=</span> <span class="st">""</span>}</span>
+<span id="cb23-434"><a href="#cb23-434" aria-hidden="true" tabindex="-1"></a>#<span class="op">|</span> echo<span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb23-435"><a href="#cb23-435" aria-hidden="true" tabindex="-1"></a>broom<span class="op">::</span><span class="fu">tidy</span>(mdl_mor<span class="op">,</span> conf<span class="op">.</span><span class="at">int</span> <span class="op">=</span> TRUE<span class="op">,</span> exponentiate <span class="op">=</span> TRUE) <span class="op">%&gt;%</span> </span>
+<span id="cb23-436"><a href="#cb23-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">modify_at</span>(<span class="fu">c</span>(<span class="dv">2</span><span class="op">:</span><span class="dv">4</span><span class="op">,</span> <span class="dv">6</span><span class="op">:</span><span class="dv">7</span>)<span class="op">,</span> round<span class="op">,</span> <span class="dv">3</span>)</span>
+<span id="cb23-437"><a href="#cb23-437" aria-hidden="true" tabindex="-1"></a><span class="vs">```</span></span>
+<span id="cb23-438"><a href="#cb23-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-439"><a href="#cb23-439" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-440"><a href="#cb23-440" aria-hidden="true" tabindex="-1"></a><span class="vs">## Summary </span></span>
+<span id="cb23-441"><a href="#cb23-441" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-442"><a href="#cb23-442" aria-hidden="true" tabindex="-1"></a><span class="vs">- Melanoma incidence and moratlity is increasing in all countries</span></span>
+<span id="cb23-443"><a href="#cb23-443" aria-hidden="true" tabindex="-1"></a><span class="vs">- Norway has highest mortality rate through out the period and has highest increase in both incidence and mortality.</span></span>
+<span id="cb23-444"><a href="#cb23-444" aria-hidden="true" tabindex="-1"></a><span class="vs">- Melanoma incidence increased rapidly in Denmark between 2002 and 2011 in women and 2004-2009 in men surpassing Norway.</span></span>
+<span id="cb23-445"><a href="#cb23-445" aria-hidden="true" tabindex="-1"></a><span class="vs">- Mortality is decreasing in all countries in recent period.</span></span>
+<span id="cb23-446"><a href="#cb23-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-447"><a href="#cb23-447" aria-hidden="true" tabindex="-1"></a><span class="vs">## References</span></span>
+<span id="cb23-448"><a href="#cb23-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-449"><a href="#cb23-449" aria-hidden="true" tabindex="-1"></a><span class="vs">::: {#refs}</span></span>
+<span id="cb23-450"><a href="#cb23-450" aria-hidden="true" tabindex="-1"></a><span class="vs">:::</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+</body></html>
