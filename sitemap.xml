@@ -2,66 +2,66 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mathatistics.com/resume/index.html</loc>
-    <lastmod>2023-09-19T09:57:17.704Z</lastmod>
+    <lastmod>2024-10-06T18:49:41.845Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/index.html</loc>
-    <lastmod>2023-09-19T09:57:19.732Z</lastmod>
+    <lastmod>2024-10-06T18:49:43.933Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog.html</loc>
-    <lastmod>2023-09-19T09:57:21.964Z</lastmod>
+    <lastmod>2024-10-06T18:49:46.253Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/photography/index.html</loc>
-    <lastmod>2023-09-19T09:57:26.652Z</lastmod>
+    <lastmod>2024-10-06T18:49:51.108Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/portfolio/index.html</loc>
-    <lastmod>2023-09-19T09:57:30.480Z</lastmod>
+    <lastmod>2024-10-06T18:49:55.075Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2016-02-25-latex-autocompletion-in-rstudio/index.html</loc>
-    <lastmod>2023-09-19T09:57:31.616Z</lastmod>
+    <lastmod>2024-10-06T18:49:56.244Z</lastmod>
   </url>
   <url>
-    <loc>https://mathatistics.com/blog/posts/nordic-melanoma/index.html</loc>
-    <lastmod>2023-09-19T09:57:35.400Z</lastmod>
+    <loc>https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/index.html</loc>
+    <lastmod>2024-10-06T18:50:00.097Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2017-03-01-generate-latex-or-html-table-with-r/index.html</loc>
-    <lastmod>2023-09-19T09:57:36.756Z</lastmod>
+    <lastmod>2024-10-06T18:50:01.432Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2017-03-05-model-assessment-and-variable-selection-prodecure/index.html</loc>
-    <lastmod>2023-09-19T09:57:37.936Z</lastmod>
+    <lastmod>2024-10-06T18:50:02.686Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2022-03-18-convert-list-to-array/index.html</loc>
-    <lastmod>2023-09-19T09:57:38.960Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mathatistics.com/blog/posts/age-adjusted-rates/index.html</loc>
-    <lastmod>2023-09-19T09:57:40.164Z</lastmod>
+    <lastmod>2024-10-06T18:50:03.734Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2017-03-01-using-data-from-different-packages/index.html</loc>
-    <lastmod>2023-09-19T09:57:41.172Z</lastmod>
+    <lastmod>2024-10-06T18:50:04.719Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/index.html</loc>
-    <lastmod>2023-09-19T09:57:42.120Z</lastmod>
+    <lastmod>2024-10-06T18:50:05.998Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2017-03-01-basic-scatter-plot-and-linear-fitted-line/index.html</loc>
-    <lastmod>2023-09-19T09:57:43.144Z</lastmod>
+    <lastmod>2024-10-06T18:50:07.090Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2016-01-12-scatter-with-multiple-group/index.html</loc>
-    <lastmod>2023-09-19T09:57:44.216Z</lastmod>
+    <lastmod>2024-10-06T18:50:08.206Z</lastmod>
   </url>
   <url>
     <loc>https://mathatistics.com/blog/posts/2021-03-29-how-anova-analyze-variance/index.html</loc>
-    <lastmod>2023-09-19T09:57:44.936Z</lastmod>
+    <lastmod>2024-10-06T18:50:08.952Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mathatistics.com/blog/posts/2022-12-02-age-adjusted-rates/index.html</loc>
+    <lastmod>2024-10-06T18:50:10.255Z</lastmod>
   </url>
 </urlset>

@@ -2,8 +2,8 @@
   {
     "listing": "/blog.html",
     "items": [
-      "/blog/posts/nordic-melanoma/index.html",
-      "/blog/posts/age-adjusted-rates/index.html",
+      "/blog/posts/2023-06-20-nordic-melanoma/index.html",
+      "/blog/posts/2022-12-02-age-adjusted-rates/index.html",
       "/blog/posts/2022-03-18-convert-list-to-array/index.html",
       "/blog/posts/2021-03-29-how-anova-analyze-variance/index.html",
       "/blog/posts/2017-03-18-interpreting-biplot/index.html",

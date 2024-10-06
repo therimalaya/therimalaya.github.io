@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Raju Rimal">
+<meta name="dcterms.date" content="2022-12-02">
+
+<title>Mathatistics - Age Adjusted Rates in Epidemiology</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/mathatistics.svg" rel="icon" type="image/svg+xml">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/mathatistics.svg" alt="Mathatistics" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Mathatistics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../photography">
+ <span class="menu-text">Photo Gallery</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../portfolio">
+ <span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../resume">
+ <span class="menu-text">Resume</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog.html">
+ <span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../blog.xml"><i class="bi bi-rss" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/therimalaya"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#age-specific-rate" id="toc-age-specific-rate" class="nav-link active" data-scroll-target="#age-specific-rate">Age-specific rate</a></li>
+  <li><a href="#age-adjusted-rate" id="toc-age-adjusted-rate" class="nav-link" data-scroll-target="#age-adjusted-rate">Age-adjusted rate</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
+  <ul class="collapse">
+  <li><a href="#compare-the-age-specific-rates-and-age-adjusted-rates" id="toc-compare-the-age-specific-rates-and-age-adjusted-rates" class="nav-link" data-scroll-target="#compare-the-age-specific-rates-and-age-adjusted-rates">Compare the age-specific rates and age-adjusted rates</a></li>
+  <li><a href="#compare-the-age-adjusted-rates-by-sex" id="toc-compare-the-age-adjusted-rates-by-sex" class="nav-link" data-scroll-target="#compare-the-age-adjusted-rates-by-sex">Compare the age-adjusted rates by sex</a></li>
+  </ul></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Age Adjusted Rates in Epidemiology</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Raju Rimal </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 2, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In general, rates means how fast something is changing usually over time. In epidemiology uses it to describe how quickly a disese occurs in a population. For example, 35 cases of melanoma cases in 100,000 person per year convey a the sense of speed of spread of disease in that population. Incidence rate and mortality rate are two examples that we will discuss further below.</p>
+<blockquote class="blockquote">
+<p>In epidemiology, rate measures the frequency of occurance of an event in a given population over certain period of time<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+</blockquote>
+<p>Let us use melanoma as a outcome in the following discussion. Here, we can calculate a crude incidence rate as,</p>
+<p><span class="math display">\[\mathcal{R} = \frac{\textsf{no. of melanoma cases}}{\textsf{no. of person-year}} \times \textsf{some multiplier}\]</span></p>
+<p>In the case of mortality rate, we can replace the numerator of above expression by the number of melanoma deaths.</p>
+<section id="age-specific-rate" class="level2">
+<h2 class="anchored" data-anchor-id="age-specific-rate">Age-specific rate</h2>
+<p>Weather to understand a broder prespecitve or to compare across population, these rates are often analyzed stratified by sex and age. This also helps to remove the confounding effection of these factors. The incidence/mortality rate per age-group is usually referred to as <em>Age-specific rates</em> where rates are computed for each age-groups. This is often desirable since factor <code>age</code> has a strong effect on mortality and incidence of most disease especially the cronic one.</p>
+</section>
+<section id="age-adjusted-rate" class="level2">
+<h2 class="anchored" data-anchor-id="age-adjusted-rate">Age-adjusted rate</h2>
+<p>Many research articles, however presents the age-adjusted rates. Age-adjusted rates are standardized (weighted) using some standard population age-structure. For example, many european studies on melanoma uses european standard age distribution. While any reasonal studies have also used world standard population. Cancer registry in their reports sometimes uses age-structure of that country in some given year. For instance, Norway<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and Finland<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have used the their population in 2014 as standard population in their recent cancer report while Australia have used 2001 Australian population<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>Standardized (adjusted) rates makes comparison between the population possible. Figure @ref(fig:age-std) shows the difference in the age distribution between world population and European population. Following table are some of the standard population often used in the study. Further on standard popuation see <a href="https://seer.cancer.gov/stdpopulations/stdpop.19ages.html"><code>seer.cancer.gov</code></a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<div class="columns">
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>European and World standard population</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Age Group </th>
+   <th style="text-align:right;"> World </th>
+   <th style="text-align:right;"> Europe </th>
+   <th style="text-align:right;"> Nordic </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 0-4 </td>
+   <td style="text-align:right;padding: 2px;"> 12000 </td>
+   <td style="text-align:right;padding: 2px;"> 8000 </td>
+   <td style="text-align:right;padding: 2px;"> 5900 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 5-9 </td>
+   <td style="text-align:right;padding: 2px;"> 10000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 6600 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 10-14 </td>
+   <td style="text-align:right;padding: 2px;"> 9000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 6200 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 15-19 </td>
+   <td style="text-align:right;padding: 2px;"> 9000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 5800 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 20-24 </td>
+   <td style="text-align:right;padding: 2px;"> 8000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 6100 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 25-29 </td>
+   <td style="text-align:right;padding: 2px;"> 8000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 6800 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 30-34 </td>
+   <td style="text-align:right;padding: 2px;"> 6000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 7300 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 35-39 </td>
+   <td style="text-align:right;padding: 2px;"> 6000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 7300 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 40-44 </td>
+   <td style="text-align:right;padding: 2px;"> 6000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 45-49 </td>
+   <td style="text-align:right;padding: 2px;"> 6000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 6900 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 50-54 </td>
+   <td style="text-align:right;padding: 2px;"> 5000 </td>
+   <td style="text-align:right;padding: 2px;"> 7000 </td>
+   <td style="text-align:right;padding: 2px;"> 7400 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 55-59 </td>
+   <td style="text-align:right;padding: 2px;"> 4000 </td>
+   <td style="text-align:right;padding: 2px;"> 6000 </td>
+   <td style="text-align:right;padding: 2px;"> 6100 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 60-64 </td>
+   <td style="text-align:right;padding: 2px;"> 4000 </td>
+   <td style="text-align:right;padding: 2px;"> 5000 </td>
+   <td style="text-align:right;padding: 2px;"> 4800 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 65-69 </td>
+   <td style="text-align:right;padding: 2px;"> 3000 </td>
+   <td style="text-align:right;padding: 2px;"> 4000 </td>
+   <td style="text-align:right;padding: 2px;"> 4100 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 70-74 </td>
+   <td style="text-align:right;padding: 2px;"> 2000 </td>
+   <td style="text-align:right;padding: 2px;"> 3000 </td>
+   <td style="text-align:right;padding: 2px;"> 3900 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 75-79 </td>
+   <td style="text-align:right;padding: 2px;"> 1000 </td>
+   <td style="text-align:right;padding: 2px;"> 2000 </td>
+   <td style="text-align:right;padding: 2px;"> 3500 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 80-84 </td>
+   <td style="text-align:right;padding: 2px;"> 500 </td>
+   <td style="text-align:right;padding: 2px;"> 1000 </td>
+   <td style="text-align:right;padding: 2px;"> 2400 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 2px;"> 85+ </td>
+   <td style="text-align:right;padding: 2px;"> 500 </td>
+   <td style="text-align:right;padding: 2px;"> 1000 </td>
+   <td style="text-align:right;padding: 2px;"> 1900 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>US 2000 standard population</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Age Group </th>
+   <th style="text-align:right;"> Std.Population </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 00 </td>
+   <td style="text-align:right;padding: 1px;"> 13818 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 01-04 </td>
+   <td style="text-align:right;padding: 1px;"> 55317 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 05-09 </td>
+   <td style="text-align:right;padding: 1px;"> 72533 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 10-14 </td>
+   <td style="text-align:right;padding: 1px;"> 73032 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 15-19 </td>
+   <td style="text-align:right;padding: 1px;"> 72169 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 20-24 </td>
+   <td style="text-align:right;padding: 1px;"> 66478 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 25-29 </td>
+   <td style="text-align:right;padding: 1px;"> 64529 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 30-34 </td>
+   <td style="text-align:right;padding: 1px;"> 71044 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 35-39 </td>
+   <td style="text-align:right;padding: 1px;"> 80762 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 40-44 </td>
+   <td style="text-align:right;padding: 1px;"> 81851 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 45-49 </td>
+   <td style="text-align:right;padding: 1px;"> 72118 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 50-54 </td>
+   <td style="text-align:right;padding: 1px;"> 62716 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 55-59 </td>
+   <td style="text-align:right;padding: 1px;"> 48454 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 60-64 </td>
+   <td style="text-align:right;padding: 1px;"> 38793 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 65-69 </td>
+   <td style="text-align:right;padding: 1px;"> 34264 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 70-74 </td>
+   <td style="text-align:right;padding: 1px;"> 31773 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 75-79 </td>
+   <td style="text-align:right;padding: 1px;"> 26999 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 80-84 </td>
+   <td style="text-align:right;padding: 1px;"> 17842 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding: 1px;"> 85+ </td>
+   <td style="text-align:right;padding: 1px;"> 15508 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="columns">
+<div class="column">
+<section id="calculating-age-standardized-rate" class="level2">
+<h2 class="anchored" data-anchor-id="calculating-age-standardized-rate">Calculating age-standardized rate</h2>
+<p>The age-standardized rate (ASR) is calculated as,</p>
+<p><span class="math display">\[\text{Age.Std. Rate} = \frac{\sum_i\mathcal{R}_i\mathcal{w}_i}{\sum_i\mathcal{w}_i}\]</span></p>
+<p>where, <span class="math inline">\(\mathcal{w}_i\)</span> is the weight corresponding to <span class="math inline">\(i^\text{th}\)</span> age-group in the reference population.</p>
+<p>Let’s explore further with an example from melanoma cases from Australia.</p>
+</section>
+</div><div class="column">
+<div class="cell" data-fig.asp="0.8">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/age-std-1.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">World and European standard population</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="example" class="level2">
+<h2 class="anchored" data-anchor-id="example">Example</h2>
+<p>The following example have used the Austrailian cancer data with 5-year age-group<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> after filtering melanoma cases from 1982 to 2018. The dataset has yearly count and age-specific incidence rate of melanoma for men and women.</p>
+<p>Let us use the above European standard population to find the yearly age-standardized incidence by sex.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"melanoma.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>std_pop <span class="ot">&lt;-</span> popEpi<span class="sc">::</span>stdpop18</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data[AgeGroup <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"85-89"</span>, <span class="st">"90+"</span>), AgeGroup <span class="sc">:</span><span class="er">=</span> <span class="st">"85+"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(std_pop, <span class="fu">c</span>(<span class="st">"AgeGroup"</span>, <span class="st">"World"</span>, <span class="st">"Europe"</span>, <span class="st">"Nordic"</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>std_pop[AgeGroup <span class="sc">==</span> <span class="st">"85"</span>, AgeGroup <span class="sc">:</span><span class="er">=</span> <span class="st">"85+"</span>]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>std_pop[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, prop.table), .SDcols <span class="ot">=</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>asp_data <span class="ot">&lt;-</span> <span class="fu">merge.data.table</span>(data, std_pop[, .(AgeGroup, World)], <span class="at">by =</span> <span class="st">"AgeGroup"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>asp <span class="ot">&lt;-</span> asp_data[, .(<span class="at">AgeAdjRate =</span> <span class="fu">sum</span>(ASR <span class="sc">*</span> World)), by <span class="ot">=</span> .(Year, Sex)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>asp[, <span class="fu">tail</span>(.SD, <span class="dv">8</span>), by <span class="ot">=</span> Sex] <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dcast.data.table</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">formula =</span> Sex <span class="sc">~</span> Year,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.var =</span> <span class="st">"AgeAdjRate"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        kableExtra<span class="sc">::</span><span class="fu">kbl</span>(<span class="at">caption =</span> <span class="fu">paste</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Age-standardized incidence rate of melanoma"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Australia from 2011 to 2018"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Age-standardized incidence rate of melanoma Australia from 2011 to 2018</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Sex </th>
+   <th style="text-align:right;"> 2011 </th>
+   <th style="text-align:right;"> 2012 </th>
+   <th style="text-align:right;"> 2013 </th>
+   <th style="text-align:right;"> 2014 </th>
+   <th style="text-align:right;"> 2015 </th>
+   <th style="text-align:right;"> 2016 </th>
+   <th style="text-align:right;"> 2017 </th>
+   <th style="text-align:right;"> 2018 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Females </td>
+   <td style="text-align:right;"> 28.915 </td>
+   <td style="text-align:right;"> 29.6905 </td>
+   <td style="text-align:right;"> 30.3050 </td>
+   <td style="text-align:right;"> 30.5225 </td>
+   <td style="text-align:right;"> 30.8590 </td>
+   <td style="text-align:right;"> 32.161 </td>
+   <td style="text-align:right;"> 31.5110 </td>
+   <td style="text-align:right;"> 32.404 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Males </td>
+   <td style="text-align:right;"> 41.433 </td>
+   <td style="text-align:right;"> 42.3845 </td>
+   <td style="text-align:right;"> 43.1275 </td>
+   <td style="text-align:right;"> 42.8415 </td>
+   <td style="text-align:right;"> 43.7275 </td>
+   <td style="text-align:right;"> 45.309 </td>
+   <td style="text-align:right;"> 45.2745 </td>
+   <td style="text-align:right;"> 45.040 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Now, let us compare the age-specific rates (crude rates) and age-standardized rates with a plot,</p>
+<section id="compare-the-age-specific-rates-and-age-adjusted-rates" class="level3 accordions">
+<h3 class="accordions anchored" data-anchor-id="compare-the-age-specific-rates-and-age-adjusted-rates">Compare the age-specific rates and age-adjusted rates</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="accordion tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-fig.asp="0.5">
+<div class="cell-output-display">
+<div id="fig-rate-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Age-standardized melanoma rate in Australia</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="accordion tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="compare-the-age-adjusted-rates-by-sex" class="level3 accordions">
+<h3 class="accordions anchored" data-anchor-id="compare-the-age-adjusted-rates-by-sex">Compare the age-adjusted rates by sex</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Code</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="accordion tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="cell" data-fig.asp="0.5">
+<div class="cell-output-display">
+<div id="fig-adj-rate-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-adj-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Age-standardized melanoma rate in Australia</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="accordion tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> data, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> Year, </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> ASR, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> AgeGroup,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"Crude"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> asp,</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> Year, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> AgeAdjRate, </span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> <span class="dv">1</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"Age-adjusted"</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> data[Year <span class="sc">==</span> <span class="fu">max</span>(Year)],</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">check_overlap =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">2</span>),</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"#0f0f0f"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> Year <span class="sc">+</span> <span class="dv">2</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> ASR,</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> AgeGroup</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="cn">NULL</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"firebrick"</span>, <span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Sex)) <span class="sc">+</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>),</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Diagnosis year"</span>,</span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">paste</span>(</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Age-adjusted incidence rate"</span>,</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>            <span class="st">"per 100,000 person year"</span>,</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>Figure <a href="#fig-rate-plot">Figure&nbsp;1</a> shows that the incidence of melanoma has larger difference in men between the age-groups than in women and men also have a sharp increase in older age group. In addition, the Figure <a href="#fig-adj-rate-plot">Figure&nbsp;2</a> shows that males have higher age-adjusted incidence of melanoma than women in Australia and this trend is increasing over time with rapid increase before 1983 before a drop.</p>
+<p>Age-adjusted rates are useful for comparing rates between population but it cannot give the interpretation required for comparing within a population or over a time period in that population. This is one of the reason, cancer registry uses the internal (population structure of their own population) to compute the age-adjusted rates.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>https://www.cdc.gov/csels/dsepd/ss1978/lesson3/section1.html<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://www.kreftregisteret.no/globalassets/cancer-in-norway/2021/cin_report.pdf<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>https://cancerregistry.fi/reports-and-publications/annual-report-on-cancer-in-finland/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://www.aihw.gov.au/reports/cancer/cancer-in-australia-2021/summary<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://seer.cancer.gov/stdpopulations/stdpop.19ages.html<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>https://www.aihw.gov.au/reports/cancer/cancer-data-in-australia/data<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -14,7 +14,7 @@
 <item>
   <title>Melanoma Incidence in Nordic Countries</title>
   <dc:creator>Raju Rimal</dc:creator>
-  <link>https://mathatistics.com/blog/posts/nordic-melanoma/index.html</link>
+  <link>https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/index.html</link>
   <description><![CDATA[ 
 
 
@@ -328,23 +328,23 @@ Segmented regression model
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true">Crude rate</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false">Poisson fit</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false">Segmented fit</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false">All countries</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
-<p><img src="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/Line-Nor-Fin.svg" class="img-fluid"></p>
+<p><img src="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/Line-Nor-Fin.svg" class="img-fluid"></p>
 </div>
 <div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
-<p><img src="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/GLM-Nor-Fin.svg" class="img-fluid"></p>
+<p><img src="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/GLM-Nor-Fin.svg" class="img-fluid"></p>
 </div>
 <div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
-<p><img src="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/Sgmt-Nor-Fin.svg" class="img-fluid"></p>
+<p><img src="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/Sgmt-Nor-Fin.svg" class="img-fluid"></p>
 </div>
 <div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
 <div class="panel-tabset">
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">Poisson fit</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">Segmented fit</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
-<p><img src="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/GLM-all.svg" class="img-fluid"></p>
+<p><img src="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/GLM-all.svg" class="img-fluid"></p>
 </div>
 <div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
-<p><img src="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/Sgmt-all.svg" class="img-fluid"></p>
+<p><img src="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/Sgmt-all.svg" class="img-fluid"></p>
 </div>
 </div>
 </div>
@@ -365,7 +365,7 @@ Segmented regression model
 <h2 class="smaller anchored" data-anchor-id="model">Model</h2>
 <section id="annual-percentge-change-apc" class="level3">
 <h3 class="anchored" data-anchor-id="annual-percentge-change-apc">Annual percentge change (APC)</h3>
-<p><img src="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/model-summary-plot.svg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/model-summary-plot.svg" class="img-fluid" style="width:100.0%"></p>
 </section>
 <section id="apc-within-segments" class="level3">
 <h3 class="anchored" data-anchor-id="apc-within-segments">APC within segments</h3>
@@ -1059,14 +1059,14 @@ Whiteman, David C., Adele C. Green, and Catherine M. Olsen. 2016. <span>“The <
 <li id="fn1"><p><code>https://gco.iarc.fr/gateway_prod/api/nordcan/v2/92/data/population/{type}/{sex}/({country})/({cancer})/?ages_group=5_17&amp;year_start=1980&amp;year_end=2020&amp;year_grouped=0</code>↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <guid>https://mathatistics.com/blog/posts/nordic-melanoma/index.html</guid>
+  <guid>https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/index.html</guid>
   <pubDate>Mon, 19 Jun 2023 22:00:00 GMT</pubDate>
-  <media:content url="https://mathatistics.com/blog/posts/nordic-melanoma/Plots/Line-Nor-Fin.svg" medium="image" type="image/svg+xml"/>
+  <media:content url="https://mathatistics.com/blog/posts/2023-06-20-nordic-melanoma/Plots/Line-Nor-Fin.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
   <title>Age Adjusted Rates in Epidemiology</title>
   <dc:creator>Raju Rimal</dc:creator>
-  <link>https://mathatistics.com/blog/posts/age-adjusted-rates/index.html</link>
+  <link>https://mathatistics.com/blog/posts/2022-12-02-age-adjusted-rates/index.html</link>
   <description><![CDATA[ 
 
 
@@ -1326,7 +1326,7 @@ Whiteman, David C., Adele C. Green, and Catherine M. Olsen. 2016. <span>“The <
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://mathatistics.com/blog/posts/age-adjusted-rates/index_files/figure-html/age-std-1.svg" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://mathatistics.com/blog/posts/2022-12-02-age-adjusted-rates/index_files/figure-html/age-std-1.svg" class="img-fluid figure-img" style="width:100.0%"></p>
 <p></p><figcaption class="figure-caption">World and European standard population</figcaption><p></p>
 </figure>
 </div>
@@ -1416,7 +1416,7 @@ Whiteman, David C., Adele C. Green, and Catherine M. Olsen. 2016. <span>“The <
 <div class="cell-output-display">
 <div id="fig-rate-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="https://mathatistics.com/blog/posts/age-adjusted-rates/index_files/figure-html/fig-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://mathatistics.com/blog/posts/2022-12-02-age-adjusted-rates/index_files/figure-html/fig-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Age-standardized melanoma rate in Australia</figcaption><p></p>
 </figure>
 </div>
@@ -1441,7 +1441,7 @@ Whiteman, David C., Adele C. Green, and Catherine M. Olsen. 2016. <span>“The <
 <div class="cell-output-display">
 <div id="fig-adj-rate-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="https://mathatistics.com/blog/posts/age-adjusted-rates/index_files/figure-html/fig-adj-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://mathatistics.com/blog/posts/2022-12-02-age-adjusted-rates/index_files/figure-html/fig-adj-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: Age-standardized melanoma rate in Australia</figcaption><p></p>
 </figure>
 </div>
@@ -1524,8 +1524,8 @@ Whiteman, David C., Adele C. Green, and Catherine M. Olsen. 2016. <span>“The <
 <li id="fn6"><p>https://www.aihw.gov.au/reports/cancer/cancer-data-in-australia/data↩︎</p></li>
 </ol>
 </section></div> ]]></description>
-  <guid>https://mathatistics.com/blog/posts/age-adjusted-rates/index.html</guid>
-  <pubDate>Fri, 02 Dec 2022 20:00:57 GMT</pubDate>
+  <guid>https://mathatistics.com/blog/posts/2022-12-02-age-adjusted-rates/index.html</guid>
+  <pubDate>Thu, 01 Dec 2022 23:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Convert list of array/matrix into an array in R</title>
@@ -1726,45 +1726,358 @@ Distant group means with low variation within the groups
 
 
 
-<p>Obviously, the name suggests itself that there are two aspect of data plotted in latent scale. Biplot in case of principal component analysis (PCA) plot both variable and observation in latent scale (scores and loadings). Throughout this article, I will use <a href="https://www.rdocumentation.org/packages/datasets/versions/3.3.2/topics/USArrests"><code>USArrests</code></a> data from <code>datasets</code> package. Lets fit a PCA model using <code>princomp</code> function. However, this can also be done using <code>prcomp</code>. The later one uses singular value decomposition while the former one uses eigenvalue decomposition. Here I have used correlation rather than covariance to compute principal components because there are large values in case of <code>Murder</code> and <code>UrbanPop</code></p>
+<p>A biplot is a powerful graphical tool that represents data in two dimensions, where both the observations and variables are represented. Biplots are particularly useful for multivariate data, allowing users to examine relationships between variables and identify patterns.</p>
+<p>Consider a data matrix <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D_%7Bn%5Ctimes%20p%7D"> with <img src="https://latex.codecogs.com/png.latex?p"> variables and <img src="https://latex.codecogs.com/png.latex?n"> observations. To explore the data further with biplot, principal component analysis (PCA) is used here.</p>
+<div class="columns">
+<div class="column">
+<p><img src="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/images/Img-1.jpg" class="img-fluid" style="width:90.0%"></p>
+</div><div class="column">
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0A%5Cmathbf%7Bx%7D_1%20%5C%5C%20%5Cmathbf%7Bx%7D_2%20%5C%5C%20%5Cvdots%20%5C%5C%20%5Cmathbf%7Bx%7D_p%0A%5Cend%7Bpmatrix%7D%5ET%20=%0A%5Cbegin%7Bpmatrix%7D%0Ax_%7B11%7D%20&amp;%20x_%7B12%7D%20&amp;%20%5Cldots%20&amp;%20x_%7B1p%7D%20%5C%5C%0Ax_%7B21%7D%20&amp;%20x_%7B22%7D%20&amp;%20%5Cldots%20&amp;%20x_%7B2p%7D%20%5C%5C%0A%5Cvdots%20&amp;%20%5Cvdots%20&amp;%20%5Cddots%20&amp;%20%5Cvdots%20%5C%5C%0Ax_%7Bn1%7D%20&amp;%20x_%7Bn2%7D%20&amp;%20%5Cldots%20&amp;%20x_%7Bnp%7D%0A%5Cend%7Bpmatrix%7D%0A"> where <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bx%7D_%7Bi%7D%20=%20%5Cbegin%7Bpmatrix%7Dx_%7B1i%7D%20&amp;%20%5Cldots%20&amp;%20x_%7Bni%7D%5Cend%7Bpmatrix%7D"> is the i<sup>th</sup> variable.</p>
+</div>
+</div>
+<p>Principal component analysis (PCA) compresses the variance of the data matrix to create a new set of orthogonal (linearly independent) variables <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BZ%7D%20=%20%5Cbegin%7Bpmatrix%7D%5Cmathbf%7Bz%7D_1%20&amp;%20%5Cmathbf%7Bz%7D_2%20&amp;%20%5Cldots%20&amp;%20%5Cmathbf%7Bz%7D_q%5Cend%7Bpmatrix%7D">, where <img src="https://latex.codecogs.com/png.latex?q%20=%20%5Cmin(n,%20p)">, often termed as principal components (PC) or scores. In PCA, the most variation is captured by the first component and rest in the subsequent components in decreasing order. In other words, the first principal component (<img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bz%7D_1">) captures the highest variation and second principal component (<img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bz%7D_2">) captures the maximum of remaing variation and so on.</p>
+<div class="columns">
+<div class="column">
+<p><img src="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/images/Img-2.jpg" class="img-fluid" style="width:95.0%"></p>
+</div><div class="column">
+<p><span id="eq-pca"><img src="https://latex.codecogs.com/png.latex?%5Cbegin%7Baligned%7D%0A%5Cmathbf%7Bz%7D_%7B1%7D%20&amp;=%20w_%7B11%7D%5Cmathbf%7Bx%7D_%7B1%7D%20+%20%5Cldots%20+%20w_%7B1p%7D%5Cmathbf%7Bx%7D_%7Bp%7D%20%5C%5C%0A%5Cmathbf%7Bz%7D_%7B2%7D%20&amp;=%20w_%7B21%7D%5Cmathbf%7Bx%7D_%7B1%7D%20+%20%5Cldots%20+%20w_%7B2p%7D%5Cmathbf%7Bx%7D_%7Bp%7D%20%5C%5C%0A%5Cvdots%20%5C%5C%0A%5Cmathbf%7Bz%7D_%7Bq%7D%20&amp;=%20w_%7Bq1%7D%5Cmathbf%7Bx%7D_%7B1%7D%20+%20%5Cldots%20+%20w_%7Bqp%7D%5Cmathbf%7Bx%7D_%7Bp%7D%20%5C%5C%0A%5Cend%7Baligned%7D%0A%5Ctag%7B1%7D"></span></p>
+</div>
+</div>
+<p>We can use eigenvalue decomposition or singular value decompostion for this purpose.</p>
+<p>These principle components are created using linear combination of the original variables. For example, <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bz%7D_1%20=%20w_%7B11%7D%5Cmathbf%7Bx%7D_1%20+%20%5Cldots%20+%20w_%7B1p%7D%5Cmathbf%7Bx%7D_p"> and similarly for <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7Bz%7D_2,%20%5Cldots,%20%5Cmathbf%7Bz%7D_q">. Here we can estimate weights <img src="https://latex.codecogs.com/png.latex?w_%7Bij%7D">, where <img src="https://latex.codecogs.com/png.latex?i%20=%201%20%5Cldots%20q"> and <img src="https://latex.codecogs.com/png.latex?j%20=%201%20%5Cldots%20p"> using <a href="https://en.wikipedia.org/wiki/Eigendecomposition_of_a_matrix">eigenvalue decomposition</a> or <a href="https://en.wikipedia.org/wiki/Singular_value_decomposition">singular value (SVD)</a>. These weights are also refered as loading or the matrix of these weights as rotation matrix.</p>
+<p>Biplot plots the scores from two principal components together with loadings (weight) for each variables in the same plot. The following example uses <a href="https://www.rdocumentation.org/packages/datasets/versions/3.3.2/topics/USArrests"><code>USArrests</code></a> data from <code>datasets</code> package in R. The dataset contains the number of arrests per 100,000 residents for assault, murder, and rape in each of the 50 US states in 1973.</p>
+<p>Two functions <code>prcomp</code> and <code>princomp</code> in R performs the principal component analysis. The function <code>prcomp</code> uses SVD on data matrix <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> while <code>princomp</code> uses eigenvalue decomposition on covariance or correlation matrix of the data matrix. We will use <code>prcomp</code> for our example.</p>
+<section id="dataset-usarrest" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-usarrest">Dataset: USArrest</h3>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">pc.a <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">princomp</span>(USArrests, <span class="at" style="color: #657422;">cor =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">plot</span>(pc.a, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"lines"</span>, <span class="at" style="color: #657422;">pch =</span> <span class="dv" style="color: #AD0000;">22</span>, <span class="at" style="color: #657422;">bg =</span> <span class="st" style="color: #20794D;">"grey"</span>,</span>
-<span id="cb1-3">     <span class="at" style="color: #657422;">main =</span> <span class="st" style="color: #20794D;">"Variance explained by each componets in PCA"</span>)</span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;">text</span>(<span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">4</span>, pc.a<span class="sc" style="color: #5E5E5E;">$</span>sdev<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span>, <span class="at" style="color: #657422;">pos =</span> <span class="dv" style="color: #AD0000;">4</span>,</span>
-<span id="cb1-5">     <span class="at" style="color: #657422;">labels =</span> <span class="fu" style="color: #4758AB;">round</span>(<span class="fu" style="color: #4758AB;">cumsum</span>(pls<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">explvar</span>(pc.a)), <span class="dv" style="color: #AD0000;">1</span>))</span>
-<span id="cb1-6"><span class="fu" style="color: #4758AB;">box</span>()</span></code></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">USArrests <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as_tidytable</span>(USArrests, <span class="at" style="color: #657422;">.keep_rownames =</span> <span class="st" style="color: #20794D;">"State"</span>)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">head</span>(USArrests)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 6 × 5
+  State      Murder Assault UrbanPop  Rape
+  &lt;chr&gt;       &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 Alabama      13.2     236       58  21.2
+2 Alaska       10       263       48  44.5
+3 Arizona       8.1     294       80  31  
+4 Arkansas      8.8     190       50  19.5
+5 California    9       276       91  40.6
+6 Colorado      7.9     204       78  38.7</code></pre>
+</div>
+</div>
+</section>
+<section id="principal-component-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="principal-component-analysis">Principal component analysis</h3>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">pca <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">prcomp</span>(USArrests[, <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>], <span class="at" style="color: #657422;">scale. =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;">str</span>(pca)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 5
+ $ sdev    : num [1:4] 1.575 0.995 0.597 0.416
+ $ rotation: num [1:4, 1:4] -0.536 -0.583 -0.278 -0.543 -0.418 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:4] "Murder" "Assault" "UrbanPop" "Rape"
+  .. ..$ : chr [1:4] "PC1" "PC2" "PC3" "PC4"
+ $ center  : Named num [1:4] 7.79 170.76 65.54 21.23
+  ..- attr(*, "names")= chr [1:4] "Murder" "Assault" "UrbanPop" "Rape"
+ $ scale   : Named num [1:4] 4.36 83.34 14.47 9.37
+  ..- attr(*, "names")= chr [1:4] "Murder" "Assault" "UrbanPop" "Rape"
+ $ x       : num [1:50, 1:4] -0.976 -1.931 -1.745 0.14 -2.499 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : NULL
+  .. ..$ : chr [1:4] "PC1" "PC2" "PC3" "PC4"
+ - attr(*, "class")= chr "prcomp"</code></pre>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Biplot</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Variance explained</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">score_df <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as_tidytable</span>(pca<span class="sc" style="color: #5E5E5E;">$</span>x) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">State =</span> USArrests[, State])</span>
+<span id="cb5-3"></span>
+<span id="cb5-4">loading_df <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as_tidytable</span>(</span>
+<span id="cb5-5">  pca<span class="sc" style="color: #5E5E5E;">$</span>rotation, </span>
+<span id="cb5-6">  <span class="at" style="color: #657422;">.keep_rownames =</span> <span class="st" style="color: #20794D;">"Variable"</span></span>
+<span id="cb5-7">)</span>
+<span id="cb5-8"></span>
+<span id="cb5-9"><span class="fu" style="color: #4758AB;">ggplot</span>(score_df, <span class="fu" style="color: #4758AB;">aes</span>(PC1, PC2)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-10">  <span class="fu" style="color: #4758AB;">geom_hline</span>(</span>
+<span id="cb5-11">    <span class="at" style="color: #657422;">yintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, </span>
+<span id="cb5-12">    <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"royalblue"</span>, </span>
+<span id="cb5-13">    <span class="at" style="color: #657422;">linetype =</span> <span class="st" style="color: #20794D;">"dashed"</span></span>
+<span id="cb5-14">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-15">  <span class="fu" style="color: #4758AB;">geom_vline</span>(</span>
+<span id="cb5-16">    <span class="at" style="color: #657422;">xintercept =</span> <span class="dv" style="color: #AD0000;">0</span>, </span>
+<span id="cb5-17">    <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"royalblue"</span>, </span>
+<span id="cb5-18">    <span class="at" style="color: #657422;">linetype =</span> <span class="st" style="color: #20794D;">"dashed"</span></span>
+<span id="cb5-19">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-20">  <span class="fu" style="color: #4758AB;">geom_segment</span>(</span>
+<span id="cb5-21">    <span class="at" style="color: #657422;">data =</span> loading_df,</span>
+<span id="cb5-22">    <span class="fu" style="color: #4758AB;">aes</span>(</span>
+<span id="cb5-23">      <span class="at" style="color: #657422;">x =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">xend =</span> PC1 <span class="sc" style="color: #5E5E5E;">*</span> <span class="dv" style="color: #AD0000;">2</span>,</span>
+<span id="cb5-24">      <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">0</span>, <span class="at" style="color: #657422;">yend =</span> PC2 <span class="sc" style="color: #5E5E5E;">*</span> <span class="dv" style="color: #AD0000;">2</span></span>
+<span id="cb5-25">    ),</span>
+<span id="cb5-26">    <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"firebrick"</span>,</span>
+<span id="cb5-27">    <span class="at" style="color: #657422;">arrow =</span> <span class="fu" style="color: #4758AB;">arrow</span>(<span class="at" style="color: #657422;">length =</span> <span class="fu" style="color: #4758AB;">unit</span>(<span class="dv" style="color: #AD0000;">2</span>, <span class="st" style="color: #20794D;">"mm"</span>))</span>
+<span id="cb5-28">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-29">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
+<span id="cb5-30">    <span class="at" style="color: #657422;">data =</span> loading_df,</span>
+<span id="cb5-31">    <span class="fu" style="color: #4758AB;">aes</span>(</span>
+<span id="cb5-32">      <span class="at" style="color: #657422;">x =</span> PC1 <span class="sc" style="color: #5E5E5E;">*</span> <span class="fl" style="color: #AD0000;">2.6</span>, </span>
+<span id="cb5-33">      <span class="at" style="color: #657422;">y =</span> PC2 <span class="sc" style="color: #5E5E5E;">*</span> <span class="fl" style="color: #AD0000;">2.6</span>, </span>
+<span id="cb5-34">      <span class="at" style="color: #657422;">label =</span> Variable</span>
+<span id="cb5-35">    ),</span>
+<span id="cb5-36">    <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"firebrick"</span>,</span>
+<span id="cb5-37">    <span class="at" style="color: #657422;">size =</span> <span class="fu" style="color: #4758AB;">rel</span>(<span class="dv" style="color: #AD0000;">5</span>)</span>
+<span id="cb5-38">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-39">  <span class="fu" style="color: #4758AB;">geom_text</span>(</span>
+<span id="cb5-40">    <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> State), </span>
+<span id="cb5-41">    <span class="at" style="color: #657422;">check_overlap =</span> <span class="cn" style="color: #8f5902;">TRUE</span>,</span>
+<span id="cb5-42">    <span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"gray50"</span></span>
+<span id="cb5-43">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-44">  <span class="fu" style="color: #4758AB;">theme_minimal</span>(<span class="at" style="color: #657422;">base_size =</span> <span class="dv" style="color: #AD0000;">18</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-45">  <span class="fu" style="color: #4758AB;">theme</span>(</span>
+<span id="cb5-46">    <span class="at" style="color: #657422;">panel.background =</span> <span class="fu" style="color: #4758AB;">element_rect</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"gray50"</span>)</span>
+<span id="cb5-47">  )</span></code></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/index_files/figure-html/get-records-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">Variance of each components and the proportaion of the total variance explained for each additional components is displayed as label</figcaption><p></p>
+<p><img src="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Here, with three components, we have captured 95.7 percent of total variation present in <code>USArrests</code> dataset. Lets get the biplot and try to understand it.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">library</span>(ggfortify)</span>
-<span id="cb2-2"><span class="fu" style="color: #4758AB;">autoplot</span>(</span>
-<span id="cb2-3">  pc.a, <span class="at" style="color: #657422;">label =</span> T, <span class="at" style="color: #657422;">shape =</span> <span class="cn" style="color: #8f5902;">FALSE</span>,</span>
-<span id="cb2-4">  <span class="at" style="color: #657422;">loadings =</span> <span class="cn" style="color: #8f5902;">TRUE</span>, <span class="at" style="color: #657422;">loadings.label =</span> <span class="cn" style="color: #8f5902;">TRUE</span>,</span>
-<span id="cb2-5">  <span class="at" style="color: #657422;">label.size =</span> <span class="fl" style="color: #AD0000;">3.5</span>, <span class="at" style="color: #657422;">label.repel =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span></code></pre></div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;">summary</span>(pca)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Importance of components:
+                          PC1    PC2     PC3     PC4
+Standard deviation     1.5749 0.9949 0.59713 0.41645
+Proportion of Variance 0.6201 0.2474 0.08914 0.04336
+Cumulative Proportion  0.6201 0.8675 0.95664 1.00000</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">var_df <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tidytable</span>(</span>
+<span id="cb8-2">  <span class="at" style="color: #657422;">PC =</span> <span class="fu" style="color: #4758AB;">paste0</span>(<span class="st" style="color: #20794D;">"PC"</span>, <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="fu" style="color: #4758AB;">length</span>(pca<span class="sc" style="color: #5E5E5E;">$</span>sdev)),</span>
+<span id="cb8-3">  <span class="at" style="color: #657422;">Variance =</span> pca<span class="sc" style="color: #5E5E5E;">$</span>sdev<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span></span>
+<span id="cb8-4">)</span>
+<span id="cb8-5"><span class="fu" style="color: #4758AB;">ggplot</span>(var_df, <span class="fu" style="color: #4758AB;">aes</span>(PC, Variance)) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="at" style="color: #657422;">group =</span> <span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-7">  <span class="fu" style="color: #4758AB;">geom_point</span>(</span>
+<span id="cb8-8">    <span class="at" style="color: #657422;">stroke =</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">3</span>, </span>
+<span id="cb8-9">    <span class="at" style="color: #657422;">shape =</span> <span class="dv" style="color: #AD0000;">21</span>, <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"whitesmoke"</span></span>
+<span id="cb8-10">  ) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-11">  <span class="fu" style="color: #4758AB;">theme_minimal</span>(<span class="at" style="color: #657422;">base_size =</span> <span class="dv" style="color: #AD0000;">18</span>) <span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-12">  <span class="fu" style="color: #4758AB;">theme</span>(</span>
+<span id="cb8-13">    <span class="at" style="color: #657422;">panel.background =</span> <span class="fu" style="color: #4758AB;">element_rect</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"gray20"</span>)</span>
+<span id="cb8-14">  )</span></code></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/index_files/figure-html/biplot-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Here we see that more than 87% of variation in <img src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BX%7D"> was captured by first two principal components (65% by the first and 25% by the second component).</p>
+</div>
+</div>
+</div>
+<p>Now lets compare the scores from the first two components, observations and variables in the data matrix. From the <code>USArrests</code> data, lets look at the top five states with highest and lowest arrest for each of these crimes.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true">States with highest arrests</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false">States with lowest arrests</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">Murder</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">Assault</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" aria-controls="tabset-2-3" aria-selected="false">UrbanPop</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" aria-controls="tabset-2-4" aria-selected="false">Rape</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(<span class="sc" style="color: #5E5E5E;">-</span>Murder) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State          Murder Assault UrbanPop  Rape
+  &lt;chr&gt;           &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 Georgia          17.4     211       60  25.8
+2 Mississippi      16.1     259       44  17.1
+3 Florida          15.4     335       80  31.9
+4 Louisiana        15.4     249       66  22.2
+5 South Carolina   14.4     279       48  22.5</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(<span class="sc" style="color: #5E5E5E;">-</span>Assault) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State          Murder Assault UrbanPop  Rape
+  &lt;chr&gt;           &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 North Carolina   13       337       45  16.1
+2 Florida          15.4     335       80  31.9
+3 Maryland         11.3     300       67  27.8
+4 Arizona           8.1     294       80  31  
+5 New Mexico       11.4     285       70  32.1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-3" class="tab-pane" aria-labelledby="tabset-2-3-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(<span class="sc" style="color: #5E5E5E;">-</span>UrbanPop) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State         Murder Assault UrbanPop  Rape
+  &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 California       9       276       91  40.6
+2 New Jersey       7.4     159       89  18.8
+3 Rhode Island     3.4     174       87   8.3
+4 New York        11.1     254       86  26.1
+5 Massachusetts    4.4     149       85  16.3</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" aria-labelledby="tabset-2-4-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(<span class="sc" style="color: #5E5E5E;">-</span>Rape) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State      Murder Assault UrbanPop  Rape
+  &lt;chr&gt;       &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 Nevada       12.2     252       81  46  
+2 Alaska       10       263       48  44.5
+3 California    9       276       91  40.6
+4 Colorado      7.9     204       78  38.7
+5 Michigan     12.1     255       74  35.1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true">Murder</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false">Assault</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" aria-controls="tabset-3-3" aria-selected="false">UrbanPop</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" aria-controls="tabset-3-4" aria-selected="false">Rape</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(Murder) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State         Murder Assault UrbanPop  Rape
+  &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 North Dakota     0.8      45       44   7.3
+2 Maine            2.1      83       51   7.8
+3 New Hampshire    2.1      57       56   9.5
+4 Iowa             2.2      56       57  11.3
+5 Vermont          2.2      48       32  11.2</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(Assault) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State        Murder Assault UrbanPop  Rape
+  &lt;chr&gt;         &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 North Dakota    0.8      45       44   7.3
+2 Hawaii          5.3      46       83  20.2
+3 Vermont         2.2      48       32  11.2
+4 Wisconsin       2.6      53       66  10.8
+5 Iowa            2.2      56       57  11.3</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" aria-labelledby="tabset-3-3-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(UrbanPop) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State          Murder Assault UrbanPop  Rape
+  &lt;chr&gt;           &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 Vermont           2.2      48       32  11.2
+2 West Virginia     5.7      81       39   9.3
+3 Mississippi      16.1     259       44  17.1
+4 North Dakota      0.8      45       44   7.3
+5 North Carolina   13       337       45  16.1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" aria-labelledby="tabset-3-4-tab">
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">USArrests <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">arrange</span>(Rape) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">top_n</span>()</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 5 × 5
+  State         Murder Assault UrbanPop  Rape
+  &lt;chr&gt;          &lt;dbl&gt;   &lt;int&gt;    &lt;int&gt; &lt;dbl&gt;
+1 North Dakota     0.8      45       44   7.3
+2 Maine            2.1      83       51   7.8
+3 Rhode Island     3.4     174       87   8.3
+4 West Virginia    5.7      81       39   9.3
+5 New Hampshire    2.1      57       56   9.5</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Comparing these highest and lowest arrests with the biplot, we can see a pattern. The weights corresponding to PC1 for all the variables are negative and are directed towards states like Florida, Nevada, and California. These states have the highest number of arrests for all of these crimes where as states that are in the oppositve direction like Iowa, North Dakota, and Vermont have the lowest arrest.</p>
+<p>Similarly, UrbanPop have the highest weights corresponding to PC2 so the states in that direction such as California, Hawaii, and New Jersey have highest arrest related to UrbanPop. The states in the opposite direction, i.e.&nbsp;with negative PC2 scores such as Mississippi, North Carolina, Vermont, and South Carolina have the lowest arrest related to UrbanPop.</p>
+<p>The weights for all variables are negative and towards states like . So in our data these states must have the highest arrests in all these crimes where as states like New Dakota, Vermont, and Iowa have the lowest arrests.</p>
 
 
+</section>
 
  ]]></description>
   <category>statistics</category>
+  <category>machine learning</category>
+  <category>mathematics</category>
   <guid>https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/index.html</guid>
   <pubDate>Fri, 17 Mar 2017 23:00:00 GMT</pubDate>
+  <media:content url="https://mathatistics.com/blog/posts/2017-03-18-interpreting-biplot/images/Img-1.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Model assessment and variable selection</title>
