@@ -4,15 +4,11 @@
     "items": [
       "/blog/posts/2023-06-20-nordic-melanoma/index.html",
       "/blog/posts/2022-12-02-age-adjusted-rates/index.html",
-      "/blog/posts/2022-03-18-convert-list-to-array/index.html",
+      "/blog/posts/2023-02-04-simulation-anova-and-analysis/index.html",
       "/blog/posts/2021-03-29-how-anova-analyze-variance/index.html",
       "/blog/posts/2017-03-18-interpreting-biplot/index.html",
       "/blog/posts/2017-03-05-model-assessment-and-variable-selection-prodecure/index.html",
-      "/blog/posts/2017-03-01-generate-latex-or-html-table-with-r/index.html",
-      "/blog/posts/2017-03-01-using-data-from-different-packages/index.html",
-      "/blog/posts/2017-03-01-basic-scatter-plot-and-linear-fitted-line/index.html",
-      "/blog/posts/2016-02-25-latex-autocompletion-in-rstudio/index.html",
-      "/blog/posts/2016-01-12-scatter-with-multiple-group/index.html"
+      "/blog/posts/2017-03-01-importing-and-exporting-data-in-R/index.html"
     ]
   }
 ]

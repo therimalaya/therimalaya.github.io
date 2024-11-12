@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Raju Rimal">
-<meta name="dcterms.date" content="2022-12-02">
+<meta name="author" content="TheRimalaya">
+<meta name="dcterms.date" content="2023-06-20">
 
 <title>Mathatistics - Age Adjusted Rates in Epidemiology</title>
 <style>
@@ -127,9 +127,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
-<script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
-
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -202,7 +199,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#age-specific-rate" id="toc-age-specific-rate" class="nav-link active" data-scroll-target="#age-specific-rate">Age-specific rate</a></li>
-  <li><a href="#age-adjusted-rate" id="toc-age-adjusted-rate" class="nav-link" data-scroll-target="#age-adjusted-rate">Age-adjusted rate</a></li>
+  <li><a href="#age-adjusted-rate" id="toc-age-adjusted-rate" class="nav-link" data-scroll-target="#age-adjusted-rate">Age-adjusted rate</a>
+  <ul class="collapse">
+  <li><a href="#standard-population-by-age" id="toc-standard-population-by-age" class="nav-link" data-scroll-target="#standard-population-by-age">Standard Population by Age</a></li>
+  </ul></li>
+  <li><a href="#calculating-age-standardized-rate" id="toc-calculating-age-standardized-rate" class="nav-link" data-scroll-target="#calculating-age-standardized-rate">Calculating age-standardized rate</a></li>
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a>
   <ul class="collapse">
   <li><a href="#compare-the-age-specific-rates-and-age-adjusted-rates" id="toc-compare-the-age-specific-rates-and-age-adjusted-rates" class="nav-link" data-scroll-target="#compare-the-age-specific-rates-and-age-adjusted-rates">Compare the age-specific rates and age-adjusted rates</a></li>
@@ -217,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Age Adjusted Rates in Epidemiology</h1>
+<div class="quarto-title-block"><div><h1 class="title">Age Adjusted Rates in Epidemiology</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -227,17 +228,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Raju Rimal </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 2, 2022</p>
+      <p class="date">June 20, 2023</p>
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">November 11, 2024</p>
+    </div>
+  </div>
     
   </div>
   
@@ -258,235 +265,698 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="age-adjusted-rate" class="level2">
 <h2 class="anchored" data-anchor-id="age-adjusted-rate">Age-adjusted rate</h2>
 <p>Many research articles, however presents the age-adjusted rates. Age-adjusted rates are standardized (weighted) using some standard population age-structure. For example, many european studies on melanoma uses european standard age distribution. While any reasonal studies have also used world standard population. Cancer registry in their reports sometimes uses age-structure of that country in some given year. For instance, Norway<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and Finland<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> have used the their population in 2014 as standard population in their recent cancer report while Australia have used 2001 Australian population<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
-<p>Standardized (adjusted) rates makes comparison between the population possible. Figure @ref(fig:age-std) shows the difference in the age distribution between world population and European population. Following table are some of the standard population often used in the study. Further on standard popuation see <a href="https://seer.cancer.gov/stdpopulations/stdpop.19ages.html"><code>seer.cancer.gov</code></a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
-<div class="columns">
-<div class="column">
+<p>Standardized (adjusted) rates makes comparison between the population possible. Figure <a href="#fig-age-std">Figure&nbsp;1</a> shows the difference in the age distribution between world population and European population. Following table are some of the standard population often used in the study. Further on standard popuation see <a href="https://seer.cancer.gov/stdpopulations/stdpop.19ages.html"><code>seer.cancer.gov</code></a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</p>
+<section id="standard-population-by-age" class="level3">
+<h3 class="anchored" data-anchor-id="standard-population-by-age">Standard Population by Age</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Table</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
+<details>
+<summary>Standard Population</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>us2000 <span class="ot">&lt;-</span> <span class="fu">tidytable</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">AgeGroup</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"0"</span>, <span class="st">"1-4"</span>, <span class="st">"5-9"</span>, <span class="st">"10-14"</span>, <span class="st">"15-19"</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"20-24"</span>, <span class="st">"25-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-39"</span>, <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"55-59"</span>, <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>, <span class="st">"75-79"</span>, <span class="st">"80-84"</span>, <span class="st">"85+"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">US2000 =</span> <span class="fu">c</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13818</span>, <span class="dv">55317</span>, <span class="dv">72533</span>, <span class="dv">73032</span>, <span class="dv">72169</span>, <span class="dv">66478</span>, <span class="dv">64529</span>, <span class="dv">71044</span>, <span class="dv">80762</span>, <span class="dv">81851</span>, </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">72118</span>, <span class="dv">62716</span>, <span class="dv">48454</span>, <span class="dv">38793</span>, <span class="dv">34264</span>, <span class="dv">31773</span>, <span class="dv">26999</span>, <span class="dv">17842</span>, <span class="dv">15508</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>std_pop <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(popEpi<span class="sc">::</span>stdpop18) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agegroup =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    agegroup <span class="sc">==</span> <span class="st">"85"</span> <span class="sc">~</span> <span class="st">"85+"</span>, </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> agegroup</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      agegroup <span class="sc">==</span> <span class="st">"0-4"</span> <span class="sc">~</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1-4"</span>)),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.list</span>(agegroup)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(age) <span class="sc">%&gt;%</span> <span class="fu">rename_with</span>(</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span><span class="fu">c</span>(<span class="st">"Age Group"</span>, <span class="st">"World"</span>, <span class="st">"Europe"</span>, <span class="st">"Nordic"</span>, <span class="st">"AgeGroup"</span>)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(us2000) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  tidytable<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="cf">function</span>(x) {</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x[<span class="dv">1</span>] <span class="sc">==</span> x[<span class="dv">2</span>]) x[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  })) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeGroup =</span> <span class="fu">c</span>(AgeGroup[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(AgeGroup) <span class="sc">-</span> <span class="dv">2</span>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(std_pop) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">sub_missing</span>(<span class="at">missing_text =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(<span class="at">AgeGroup =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_vertical_padding</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> gt<span class="sc">::</span><span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"top"</span>, <span class="at">weight =</span> <span class="st">"0"</span>),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> gt<span class="sc">::</span><span class="fu">cells_body</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">rows =</span> <span class="dv">2</span>)</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="st">"Standard Population by Age Group"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>European and World standard population</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Age Group </th>
-   <th style="text-align:right;"> World </th>
-   <th style="text-align:right;"> Europe </th>
-   <th style="text-align:right;"> Nordic </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 0-4 </td>
-   <td style="text-align:right;padding: 2px;"> 12000 </td>
-   <td style="text-align:right;padding: 2px;"> 8000 </td>
-   <td style="text-align:right;padding: 2px;"> 5900 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 5-9 </td>
-   <td style="text-align:right;padding: 2px;"> 10000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 6600 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 10-14 </td>
-   <td style="text-align:right;padding: 2px;"> 9000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 6200 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 15-19 </td>
-   <td style="text-align:right;padding: 2px;"> 9000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 5800 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 20-24 </td>
-   <td style="text-align:right;padding: 2px;"> 8000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 6100 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 25-29 </td>
-   <td style="text-align:right;padding: 2px;"> 8000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 6800 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 30-34 </td>
-   <td style="text-align:right;padding: 2px;"> 6000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 7300 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 35-39 </td>
-   <td style="text-align:right;padding: 2px;"> 6000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 7300 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 40-44 </td>
-   <td style="text-align:right;padding: 2px;"> 6000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 45-49 </td>
-   <td style="text-align:right;padding: 2px;"> 6000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 6900 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 50-54 </td>
-   <td style="text-align:right;padding: 2px;"> 5000 </td>
-   <td style="text-align:right;padding: 2px;"> 7000 </td>
-   <td style="text-align:right;padding: 2px;"> 7400 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 55-59 </td>
-   <td style="text-align:right;padding: 2px;"> 4000 </td>
-   <td style="text-align:right;padding: 2px;"> 6000 </td>
-   <td style="text-align:right;padding: 2px;"> 6100 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 60-64 </td>
-   <td style="text-align:right;padding: 2px;"> 4000 </td>
-   <td style="text-align:right;padding: 2px;"> 5000 </td>
-   <td style="text-align:right;padding: 2px;"> 4800 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 65-69 </td>
-   <td style="text-align:right;padding: 2px;"> 3000 </td>
-   <td style="text-align:right;padding: 2px;"> 4000 </td>
-   <td style="text-align:right;padding: 2px;"> 4100 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 70-74 </td>
-   <td style="text-align:right;padding: 2px;"> 2000 </td>
-   <td style="text-align:right;padding: 2px;"> 3000 </td>
-   <td style="text-align:right;padding: 2px;"> 3900 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 75-79 </td>
-   <td style="text-align:right;padding: 2px;"> 1000 </td>
-   <td style="text-align:right;padding: 2px;"> 2000 </td>
-   <td style="text-align:right;padding: 2px;"> 3500 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 80-84 </td>
-   <td style="text-align:right;padding: 2px;"> 500 </td>
-   <td style="text-align:right;padding: 2px;"> 1000 </td>
-   <td style="text-align:right;padding: 2px;"> 2400 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 2px;"> 85+ </td>
-   <td style="text-align:right;padding: 2px;"> 500 </td>
-   <td style="text-align:right;padding: 2px;"> 1000 </td>
-   <td style="text-align:right;padding: 2px;"> 1900 </td>
-  </tr>
-</tbody>
-</table>
+<div id="gizhvaeihp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gizhvaeihp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+#gizhvaeihp thead, #gizhvaeihp tbody, #gizhvaeihp tfoot, #gizhvaeihp tr, #gizhvaeihp td, #gizhvaeihp th {
+  border-style: none;
+}
+
+#gizhvaeihp p {
+  margin: 0;
+  padding: 0;
+}
+
+#gizhvaeihp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gizhvaeihp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gizhvaeihp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gizhvaeihp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gizhvaeihp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gizhvaeihp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gizhvaeihp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gizhvaeihp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gizhvaeihp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gizhvaeihp .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gizhvaeihp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gizhvaeihp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gizhvaeihp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gizhvaeihp .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gizhvaeihp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gizhvaeihp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gizhvaeihp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gizhvaeihp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gizhvaeihp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gizhvaeihp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gizhvaeihp .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gizhvaeihp .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gizhvaeihp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gizhvaeihp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gizhvaeihp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gizhvaeihp .gt_left {
+  text-align: left;
+}
+
+#gizhvaeihp .gt_center {
+  text-align: center;
+}
+
+#gizhvaeihp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gizhvaeihp .gt_font_normal {
+  font-weight: normal;
+}
+
+#gizhvaeihp .gt_font_bold {
+  font-weight: bold;
+}
+
+#gizhvaeihp .gt_font_italic {
+  font-style: italic;
+}
+
+#gizhvaeihp .gt_super {
+  font-size: 65%;
+}
+
+#gizhvaeihp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gizhvaeihp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gizhvaeihp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gizhvaeihp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gizhvaeihp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gizhvaeihp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gizhvaeihp .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gizhvaeihp .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gizhvaeihp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_heading">
+      <td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style="">Standard Population by Age Group</td>
+    </tr>
+    
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Age-Group">Age Group</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="World">World</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Europe">Europe</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Nordic">Nordic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="AgeGroup"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="US2000">US2000</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Age Group" class="gt_row gt_right">0-4</td>
+<td headers="World" class="gt_row gt_right">12000</td>
+<td headers="Europe" class="gt_row gt_right">8000</td>
+<td headers="Nordic" class="gt_row gt_right">5900</td>
+<td headers="AgeGroup" class="gt_row gt_right">0</td>
+<td headers="US2000" class="gt_row gt_right">13818</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right" style="border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><br></td>
+<td headers="World" class="gt_row gt_right" style="border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><br></td>
+<td headers="Europe" class="gt_row gt_right" style="border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><br></td>
+<td headers="Nordic" class="gt_row gt_right" style="border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><br></td>
+<td headers="AgeGroup" class="gt_row gt_right">1-4</td>
+<td headers="US2000" class="gt_row gt_right">55317</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">5-9</td>
+<td headers="World" class="gt_row gt_right">10000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">6600</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">72533</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">10-14</td>
+<td headers="World" class="gt_row gt_right">9000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">6200</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">73032</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">15-19</td>
+<td headers="World" class="gt_row gt_right">9000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">5800</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">72169</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">20-24</td>
+<td headers="World" class="gt_row gt_right">8000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">6100</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">66478</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">25-29</td>
+<td headers="World" class="gt_row gt_right">8000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">6800</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">64529</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">30-34</td>
+<td headers="World" class="gt_row gt_right">6000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">7300</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">71044</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">35-39</td>
+<td headers="World" class="gt_row gt_right">6000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">7300</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">80762</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">40-44</td>
+<td headers="World" class="gt_row gt_right">6000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">7000</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">81851</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">45-49</td>
+<td headers="World" class="gt_row gt_right">6000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">6900</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">72118</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">50-54</td>
+<td headers="World" class="gt_row gt_right">5000</td>
+<td headers="Europe" class="gt_row gt_right">7000</td>
+<td headers="Nordic" class="gt_row gt_right">7400</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">62716</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">55-59</td>
+<td headers="World" class="gt_row gt_right">4000</td>
+<td headers="Europe" class="gt_row gt_right">6000</td>
+<td headers="Nordic" class="gt_row gt_right">6100</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">48454</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">60-64</td>
+<td headers="World" class="gt_row gt_right">4000</td>
+<td headers="Europe" class="gt_row gt_right">5000</td>
+<td headers="Nordic" class="gt_row gt_right">4800</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">38793</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">65-69</td>
+<td headers="World" class="gt_row gt_right">3000</td>
+<td headers="Europe" class="gt_row gt_right">4000</td>
+<td headers="Nordic" class="gt_row gt_right">4100</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">34264</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">70-74</td>
+<td headers="World" class="gt_row gt_right">2000</td>
+<td headers="Europe" class="gt_row gt_right">3000</td>
+<td headers="Nordic" class="gt_row gt_right">3900</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">31773</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">75-79</td>
+<td headers="World" class="gt_row gt_right">1000</td>
+<td headers="Europe" class="gt_row gt_right">2000</td>
+<td headers="Nordic" class="gt_row gt_right">3500</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">26999</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">80-84</td>
+<td headers="World" class="gt_row gt_right">500</td>
+<td headers="Europe" class="gt_row gt_right">1000</td>
+<td headers="Nordic" class="gt_row gt_right">2400</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">17842</td></tr>
+    <tr><td headers="Age Group" class="gt_row gt_right">85+</td>
+<td headers="World" class="gt_row gt_right">500</td>
+<td headers="Europe" class="gt_row gt_right">1000</td>
+<td headers="Nordic" class="gt_row gt_right">1900</td>
+<td headers="AgeGroup" class="gt_row gt_right"><br></td>
+<td headers="US2000" class="gt_row gt_right">15508</td></tr>
+  </tbody>
+  
+  
+</table>
 </div>
 </div>
-</div><div class="column">
-<div class="cell">
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-layout-align="center" data-fig-cap-location="bottom">
+<details>
+<summary>Standard population plot</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pop_data <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(popEpi<span class="sc">::</span>stdpop18) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nordic =</span> <span class="cn">NULL</span>, <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>pop_data <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">world =</span> world <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(world, europe)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value, <span class="fu">reorder</span>(agegroup, id), <span class="at">fill =</span> name)) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"#f0f0f0"</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">scale_fill_economist</span>(<span class="at">labels =</span> stringr<span class="sc">::</span>str_to_title) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> abs, <span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of person"</span>,</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Population"</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">y =</span> <span class="cn">Inf</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"World"</span>,</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">1.5</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">Inf</span>, <span class="at">y =</span> <span class="cn">Inf</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Europe"</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="fl">1.5</span>, <span class="at">vjust =</span> <span class="fl">1.5</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>US 2000 standard population</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Age Group </th>
-   <th style="text-align:right;"> Std.Population </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 00 </td>
-   <td style="text-align:right;padding: 1px;"> 13818 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 01-04 </td>
-   <td style="text-align:right;padding: 1px;"> 55317 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 05-09 </td>
-   <td style="text-align:right;padding: 1px;"> 72533 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 10-14 </td>
-   <td style="text-align:right;padding: 1px;"> 73032 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 15-19 </td>
-   <td style="text-align:right;padding: 1px;"> 72169 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 20-24 </td>
-   <td style="text-align:right;padding: 1px;"> 66478 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 25-29 </td>
-   <td style="text-align:right;padding: 1px;"> 64529 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 30-34 </td>
-   <td style="text-align:right;padding: 1px;"> 71044 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 35-39 </td>
-   <td style="text-align:right;padding: 1px;"> 80762 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 40-44 </td>
-   <td style="text-align:right;padding: 1px;"> 81851 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 45-49 </td>
-   <td style="text-align:right;padding: 1px;"> 72118 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 50-54 </td>
-   <td style="text-align:right;padding: 1px;"> 62716 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 55-59 </td>
-   <td style="text-align:right;padding: 1px;"> 48454 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 60-64 </td>
-   <td style="text-align:right;padding: 1px;"> 38793 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 65-69 </td>
-   <td style="text-align:right;padding: 1px;"> 34264 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 70-74 </td>
-   <td style="text-align:right;padding: 1px;"> 31773 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 75-79 </td>
-   <td style="text-align:right;padding: 1px;"> 26999 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 80-84 </td>
-   <td style="text-align:right;padding: 1px;"> 17842 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;padding: 1px;"> 85+ </td>
-   <td style="text-align:right;padding: 1px;"> 15508 </td>
-  </tr>
-</tbody>
-</table>
-
+<div id="fig-age-std" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="index_files/figure-html/fig-age-std-1.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: World and European Standard Population</figcaption><p></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<div class="columns">
-<div class="column">
+</section>
 <section id="calculating-age-standardized-rate" class="level2">
 <h2 class="anchored" data-anchor-id="calculating-age-standardized-rate">Calculating age-standardized rate</h2>
 <p>The age-standardized rate (ASR) is calculated as,</p>
@@ -494,184 +964,658 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>where, <span class="math inline">\(\mathcal{w}_i\)</span> is the weight corresponding to <span class="math inline">\(i^\text{th}\)</span> age-group in the reference population.</p>
 <p>Let’s explore further with an example from melanoma cases from Australia.</p>
 </section>
-</div><div class="column">
-<div class="cell" data-fig.asp="0.8">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="index_files/figure-html/age-std-1.svg" class="img-fluid figure-img" style="width:100.0%"></p>
-<p></p><figcaption class="figure-caption">World and European standard population</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</div>
 <section id="example" class="level2">
 <h2 class="anchored" data-anchor-id="example">Example</h2>
 <p>The following example have used the Austrailian cancer data with 5-year age-group<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> after filtering melanoma cases from 1982 to 2018. The dataset has yearly count and age-specific incidence rate of melanoma for men and women.</p>
 <p>Let us use the above European standard population to find the yearly age-standardized incidence by sex.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">"melanoma.csv"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>std_pop <span class="ot">&lt;-</span> popEpi<span class="sc">::</span>stdpop18</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Age-specific Data</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>std_pop <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(popEpi<span class="sc">::</span>stdpop18) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">c</span>(<span class="st">"AgeGroup"</span>, <span class="st">"World"</span>, <span class="st">"Europe"</span>, <span class="st">"Nordic"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgeGroup =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    AgeGroup <span class="sc">==</span> <span class="st">"85"</span> <span class="sc">~</span> <span class="st">"85+"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> AgeGroup</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(World<span class="sc">:</span>Nordic, prop.table)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytable<span class="sc">::</span><span class="fu">fread</span>(<span class="st">"melanoma.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgeGroup =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    AgeGroup <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"85-89"</span>, <span class="st">"90+"</span>) <span class="sc">~</span> <span class="st">"85+"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> AgeGroup</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>asp_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    std_pop <span class="sc">%&gt;%</span> <span class="fu">select</span>(AgeGroup, World), </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"AgeGroup"</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(asp_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 6 × 6
+   Year Sex   AgeGroup Count   ASR World
+  &lt;int&gt; &lt;chr&gt; &lt;chr&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  1982 Males 0-4          0   0    0.12
+2  1982 Males 5-9          0   0    0.1 
+3  1982 Males 10-14        6   0.9  0.09
+4  1982 Males 15-19       30   4.6  0.09
+5  1982 Males 20-24       52   7.7  0.08
+6  1982 Males 25-29       83  13.1  0.08</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data[AgeGroup <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"85-89"</span>, <span class="st">"90+"</span>), AgeGroup <span class="sc">:</span><span class="er">=</span> <span class="st">"85+"</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(std_pop, <span class="fu">c</span>(<span class="st">"AgeGroup"</span>, <span class="st">"World"</span>, <span class="st">"Europe"</span>, <span class="st">"Nordic"</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>std_pop[AgeGroup <span class="sc">==</span> <span class="st">"85"</span>, AgeGroup <span class="sc">:</span><span class="er">=</span> <span class="st">"85+"</span>]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>std_pop[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">:</span><span class="er">=</span> <span class="fu">lapply</span>(.SD, prop.table), .SDcols <span class="ot">=</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>asp_data <span class="ot">&lt;-</span> <span class="fu">merge.data.table</span>(data, std_pop[, .(AgeGroup, World)], <span class="at">by =</span> <span class="st">"AgeGroup"</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>asp <span class="ot">&lt;-</span> asp_data[, .(<span class="at">AgeAdjRate =</span> <span class="fu">sum</span>(ASR <span class="sc">*</span> World)), by <span class="ot">=</span> .(Year, Sex)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>asp[, <span class="fu">tail</span>(.SD, <span class="dv">8</span>), by <span class="ot">=</span> Sex] <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">dcast.data.table</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">formula =</span> Sex <span class="sc">~</span> Year,</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">value.var =</span> <span class="st">"AgeAdjRate"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        kableExtra<span class="sc">::</span><span class="fu">kbl</span>(<span class="at">caption =</span> <span class="fu">paste</span>(</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Age-standardized incidence rate of melanoma"</span>,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Australia from 2011 to 2018"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    )) <span class="sc">%&gt;%</span> </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Age-standardized Rate</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>asp <span class="ot">&lt;-</span> asp_data <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AgeAdjRate =</span> <span class="fu">sum</span>(ASR <span class="sc">*</span> World))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>asp <span class="sc">%&gt;%</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="dv">8</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  tidytable<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">"AgeAdjRate"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_vertical_padding</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.width =</span> <span class="st">"100%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
-<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>Age-standardized incidence rate of melanoma Australia from 2011 to 2018</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Sex </th>
-   <th style="text-align:right;"> 2011 </th>
-   <th style="text-align:right;"> 2012 </th>
-   <th style="text-align:right;"> 2013 </th>
-   <th style="text-align:right;"> 2014 </th>
-   <th style="text-align:right;"> 2015 </th>
-   <th style="text-align:right;"> 2016 </th>
-   <th style="text-align:right;"> 2017 </th>
-   <th style="text-align:right;"> 2018 </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> Females </td>
-   <td style="text-align:right;"> 28.915 </td>
-   <td style="text-align:right;"> 29.6905 </td>
-   <td style="text-align:right;"> 30.3050 </td>
-   <td style="text-align:right;"> 30.5225 </td>
-   <td style="text-align:right;"> 30.8590 </td>
-   <td style="text-align:right;"> 32.161 </td>
-   <td style="text-align:right;"> 31.5110 </td>
-   <td style="text-align:right;"> 32.404 </td>
-  </tr>
-  <tr>
-   <td style="text-align:left;"> Males </td>
-   <td style="text-align:right;"> 41.433 </td>
-   <td style="text-align:right;"> 42.3845 </td>
-   <td style="text-align:right;"> 43.1275 </td>
-   <td style="text-align:right;"> 42.8415 </td>
-   <td style="text-align:right;"> 43.7275 </td>
-   <td style="text-align:right;"> 45.309 </td>
-   <td style="text-align:right;"> 45.2745 </td>
-   <td style="text-align:right;"> 45.040 </td>
-  </tr>
-</tbody>
-</table>
+<div id="haopbzlxlf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#haopbzlxlf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+#haopbzlxlf thead, #haopbzlxlf tbody, #haopbzlxlf tfoot, #haopbzlxlf tr, #haopbzlxlf td, #haopbzlxlf th {
+  border-style: none;
+}
+
+#haopbzlxlf p {
+  margin: 0;
+  padding: 0;
+}
+
+#haopbzlxlf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#haopbzlxlf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#haopbzlxlf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#haopbzlxlf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#haopbzlxlf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#haopbzlxlf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#haopbzlxlf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#haopbzlxlf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#haopbzlxlf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#haopbzlxlf .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#haopbzlxlf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#haopbzlxlf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#haopbzlxlf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#haopbzlxlf .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#haopbzlxlf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#haopbzlxlf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#haopbzlxlf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#haopbzlxlf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#haopbzlxlf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#haopbzlxlf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#haopbzlxlf .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#haopbzlxlf .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#haopbzlxlf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#haopbzlxlf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#haopbzlxlf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#haopbzlxlf .gt_left {
+  text-align: left;
+}
+
+#haopbzlxlf .gt_center {
+  text-align: center;
+}
+
+#haopbzlxlf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#haopbzlxlf .gt_font_normal {
+  font-weight: normal;
+}
+
+#haopbzlxlf .gt_font_bold {
+  font-weight: bold;
+}
+
+#haopbzlxlf .gt_font_italic {
+  font-style: italic;
+}
+
+#haopbzlxlf .gt_super {
+  font-size: 65%;
+}
+
+#haopbzlxlf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#haopbzlxlf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#haopbzlxlf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#haopbzlxlf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#haopbzlxlf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#haopbzlxlf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#haopbzlxlf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#haopbzlxlf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#haopbzlxlf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Sex">Sex</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2011">2011</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2012">2012</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2013">2013</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2014">2014</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2015">2015</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2016">2016</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2017">2017</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="a2018">2018</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Sex" class="gt_row gt_left">Females</td>
+<td headers="2011" class="gt_row gt_right">28.91</td>
+<td headers="2012" class="gt_row gt_right">29.69</td>
+<td headers="2013" class="gt_row gt_right">30.30</td>
+<td headers="2014" class="gt_row gt_right">30.52</td>
+<td headers="2015" class="gt_row gt_right">30.86</td>
+<td headers="2016" class="gt_row gt_right">32.16</td>
+<td headers="2017" class="gt_row gt_right">31.51</td>
+<td headers="2018" class="gt_row gt_right">32.40</td></tr>
+    <tr><td headers="Sex" class="gt_row gt_left">Males</td>
+<td headers="2011" class="gt_row gt_right">41.43</td>
+<td headers="2012" class="gt_row gt_right">42.38</td>
+<td headers="2013" class="gt_row gt_right">43.13</td>
+<td headers="2014" class="gt_row gt_right">42.84</td>
+<td headers="2015" class="gt_row gt_right">43.73</td>
+<td headers="2016" class="gt_row gt_right">45.31</td>
+<td headers="2017" class="gt_row gt_right">45.27</td>
+<td headers="2018" class="gt_row gt_right">45.04</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
 </div>
 </div>
 <p>Now, let us compare the age-specific rates (crude rates) and age-standardized rates with a plot,</p>
-<section id="compare-the-age-specific-rates-and-age-adjusted-rates" class="level3 accordions">
-<h3 class="accordions anchored" data-anchor-id="compare-the-age-specific-rates-and-age-adjusted-rates">Compare the age-specific rates and age-adjusted rates</h3>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="accordion tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="cell" data-fig.asp="0.5">
+<section id="compare-the-age-specific-rates-and-age-adjusted-rates" class="level3">
+<h3 class="anchored" data-anchor-id="compare-the-age-specific-rates-and-age-adjusted-rates">Compare the age-specific rates and age-adjusted rates</h3>
+<div class="cell">
+<details>
+<summary>Age-specific rates vs Age-adjusted rates</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> Year,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> ASR,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> AgeGroup,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Crude"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> asp,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> Year,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> AgeAdjRate,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> <span class="dv">1</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Age-adjusted"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data[Year <span class="sc">==</span> <span class="fu">max</span>(Year)],</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">check_overlap =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">2</span>),</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#0f0f0f"</span>,</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> Year <span class="sc">+</span> <span class="dv">2</span>,</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> ASR,</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> AgeGroup</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="cn">NULL</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"firebrick"</span>, <span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Sex)) <span class="sc">+</span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>),</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Diagnosis year"</span>,</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste</span>(</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Age-adjusted incidence rate"</span>,</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>      <span class="st">"per 100,000 person year"</span>,</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div id="fig-rate-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="index_files/figure-html/fig-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: Age-standardized melanoma rate in Australia</figcaption><p></p>
+<p><img src="index_files/figure-html/fig-rate-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Age-specific and Age-adjusted rate showing why age-adjustement is necessary</figcaption><p></p>
 </figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-1-2" class="accordion tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="cell">
-
-</div>
 </div>
 </div>
 </div>
 </section>
-<section id="compare-the-age-adjusted-rates-by-sex" class="level3 accordions">
-<h3 class="accordions anchored" data-anchor-id="compare-the-age-adjusted-rates-by-sex">Compare the age-adjusted rates by sex</h3>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Code</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="accordion tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="cell" data-fig.asp="0.5">
+<section id="compare-the-age-adjusted-rates-by-sex" class="level3">
+<h3 class="anchored" data-anchor-id="compare-the-age-adjusted-rates-by-sex">Compare the age-adjusted rates by sex</h3>
+<div class="cell">
+<details>
+<summary>Age-adjusted rates by sex</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(asp, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> AgeAdjRate, <span class="at">color =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">fill =</span> <span class="st">"whitesmoke"</span>, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Diagnosis year"</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste</span>(</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Age-adjusted incidence rate"</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="st">"per 100,000 person year"</span>,</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div id="fig-adj-rate-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="index_files/figure-html/fig-adj-rate-plot-1.svg" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: Age-standardized melanoma rate in Australia</figcaption><p></p>
+<p><img src="index_files/figure-html/fig-adj-rate-plot-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Age-adjusted rates by sex for melanoma patients</figcaption><p></p>
 </figure>
-</div>
-</div>
-</div>
-</div>
-<div id="tabset-2-2" class="accordion tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> data, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> Year, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> ASR, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> AgeGroup,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"Crude"</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> asp,</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> Year, </span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> AgeAdjRate, </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">group =</span> <span class="dv">1</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"Age-adjusted"</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(</span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> data[Year <span class="sc">==</span> <span class="fu">max</span>(Year)],</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">check_overlap =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">2</span>),</span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"#0f0f0f"</span>,</span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> Year <span class="sc">+</span> <span class="dv">2</span>,</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> ASR,</span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> AgeGroup</span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="cn">NULL</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"firebrick"</span>, <span class="st">"grey"</span>)) <span class="sc">+</span></span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Sex)) <span class="sc">+</span></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>),</span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
-<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Diagnosis year"</span>,</span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="fu">paste</span>(</span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Age-adjusted incidence rate"</span>,</span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>            <span class="st">"per 100,000 person year"</span>,</span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>            <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div>
 </div>
 </div>
@@ -679,9 +1623,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<p>Figure <a href="#fig-rate-plot">Figure&nbsp;1</a> shows that the incidence of melanoma has larger difference in men between the age-groups than in women and men also have a sharp increase in older age group. In addition, the Figure <a href="#fig-adj-rate-plot">Figure&nbsp;2</a> shows that males have higher age-adjusted incidence of melanoma than women in Australia and this trend is increasing over time with rapid increase before 1983 before a drop.</p>
+<p>Figure <a href="#fig-rate-plot">Figure&nbsp;2</a> shows that the incidence of melanoma has larger difference in men between the age-groups than in women and men also have a sharp increase in older age group. In addition, the Figure <a href="#fig-adj-rate-plot">Figure&nbsp;3</a> shows that males have higher age-adjusted incidence of melanoma than women in Australia and this trend is increasing over time with rapid increase before 1983 before a drop.</p>
 <p>Age-adjusted rates are useful for comparing rates between population but it cannot give the interpretation required for comparing within a population or over a time period in that population. This is one of the reason, cancer registry uses the internal (population structure of their own population) to compute the age-adjusted rates.</p>
 
+
+<!-- -->
 
 </section>
 
@@ -877,6 +1823,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
@@ -944,7 +1941,316 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
 });
-</script>
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Age Adjusted Rates in Epidemiology"</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> TheRimalaya</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2023-06-20</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="an">date-modified:</span><span class="co"> 2024-11-11</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="an">code-overflow:</span><span class="co"> scroll</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="an">citations-hover:</span><span class="co"> true</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="an">preview-links:</span><span class="co"> true</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="an">code-fold:</span><span class="co"> true</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="an">code-tools:</span><span class="co"> </span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">  toggle: true</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span><span class="co"> </span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="an">tags:</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co">  - Statistics</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - Epidemiology</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, include=FALSE}</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="fu">autoload</span>(<span class="st">"%&gt;%"</span>, <span class="st">"magrittr"</span>)</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytable)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>In general, rates means how fast something is changing usually over time. In epidemiology uses it to describe how quickly a disese occurs in a population.  For example, 35 cases of melanoma cases in 100,000 person per year convey a the sense of speed of spread of disease in that population. Incidence rate and mortality rate are two examples that we will discuss further below.</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; In epidemiology, rate measures the frequency of occurance of an event in a </span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; given population over certain period of time</span><span class="ot">[^1]</span><span class="at">.</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>Let us use melanoma as a outcome in the following discussion. Here, we can calculate a crude incidence rate as,</span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>$$\mathcal{R} = \frac{\textsf{no. of melanoma cases}}{\textsf{no. of person-year}} \times \textsf{some multiplier}$$</span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>In the case of mortality rate, we can replace the numerator of above expression by the number of melanoma deaths.</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="fu">## Age-specific rate</span></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>Weather to understand a broder prespecitve or to compare across population, these rates are often analyzed stratified by sex and age. This also helps to remove the confounding effection of these factors. The incidence/mortality rate per age-group is usually referred to as _Age-specific rates_ where rates are computed for each age-groups. This is often desirable since factor <span class="in">`age`</span> has a strong effect on mortality and incidence of most disease especially the cronic one.</span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## Age-adjusted rate</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>Many research articles, however presents the age-adjusted rates. Age-adjusted rates are standardized (weighted) using some standard population age-structure.  For example, many european studies on melanoma uses european standard age distribution. While any reasonal studies have also used world standard population.  Cancer registry in their reports sometimes uses age-structure of that country in some given year. For instance, Norway<span class="ot">[^3]</span> and Finland<span class="ot">[^4]</span> have used the their population in 2014 as standard population in their recent cancer report while Australia have used 2001 Australian population<span class="ot">[^5]</span>.</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>Standardized (adjusted) rates makes comparison between the population possible.  Figure @fig-age-std shows the difference in the age distribution between world population and European population. Following table are some of the standard population often used in the study. Further on standard popuation see <span class="co">[</span><span class="ot">`seer.cancer.gov`</span><span class="co">](https://seer.cancer.gov/stdpopulations/stdpop.19ages.html)</span><span class="ot">[^6]</span>.</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard Population by Age</span></span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>::: panel-tabset</span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Table</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Standard Population</span></span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>us2000 <span class="ot">&lt;-</span> <span class="fu">tidytable</span>(</span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">AgeGroup</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">c</span>(</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>    <span class="st">"0"</span>, <span class="st">"1-4"</span>, <span class="st">"5-9"</span>, <span class="st">"10-14"</span>, <span class="st">"15-19"</span>, </span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    <span class="st">"20-24"</span>, <span class="st">"25-29"</span>, <span class="st">"30-34"</span>, <span class="st">"35-39"</span>, <span class="st">"40-44"</span>, <span class="st">"45-49"</span>, <span class="st">"50-54"</span>,</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">"55-59"</span>, <span class="st">"60-64"</span>, <span class="st">"65-69"</span>, <span class="st">"70-74"</span>, <span class="st">"75-79"</span>, <span class="st">"80-84"</span>, <span class="st">"85+"</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>  <span class="at">US2000 =</span> <span class="fu">c</span>(</span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    <span class="dv">13818</span>, <span class="dv">55317</span>, <span class="dv">72533</span>, <span class="dv">73032</span>, <span class="dv">72169</span>, <span class="dv">66478</span>, <span class="dv">64529</span>, <span class="dv">71044</span>, <span class="dv">80762</span>, <span class="dv">81851</span>, </span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>    <span class="dv">72118</span>, <span class="dv">62716</span>, <span class="dv">48454</span>, <span class="dv">38793</span>, <span class="dv">34264</span>, <span class="dv">31773</span>, <span class="dv">26999</span>, <span class="dv">17842</span>, <span class="dv">15508</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>std_pop <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(popEpi<span class="sc">::</span>stdpop18) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agegroup =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    agegroup <span class="sc">==</span> <span class="st">"85"</span> <span class="sc">~</span> <span class="st">"85+"</span>, </span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> agegroup</span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">age =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>      agegroup <span class="sc">==</span> <span class="st">"0-4"</span> <span class="sc">~</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"0"</span>, <span class="st">"1-4"</span>)),</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="fu">as.list</span>(agegroup)</span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>(age) <span class="sc">%&gt;%</span> <span class="fu">rename_with</span>(</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span><span class="fu">c</span>(<span class="st">"Age Group"</span>, <span class="st">"World"</span>, <span class="st">"Europe"</span>, <span class="st">"Nordic"</span>, <span class="st">"AgeGroup"</span>)</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(us2000) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-80"><a href="#cb8-80" aria-hidden="true" tabindex="-1"></a>  tidytable<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="cf">function</span>(x) {</span>
+<span id="cb8-81"><a href="#cb8-81" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (x[<span class="dv">1</span>] <span class="sc">==</span> x[<span class="dv">2</span>]) x[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb8-82"><a href="#cb8-82" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
+<span id="cb8-83"><a href="#cb8-83" aria-hidden="true" tabindex="-1"></a>  })) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb8-84"><a href="#cb8-84" aria-hidden="true" tabindex="-1"></a>    <span class="at">AgeGroup =</span> <span class="fu">c</span>(AgeGroup[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(AgeGroup) <span class="sc">-</span> <span class="dv">2</span>))</span>
+<span id="cb8-85"><a href="#cb8-85" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-86"><a href="#cb8-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-87"><a href="#cb8-87" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(std_pop) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-88"><a href="#cb8-88" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">sub_missing</span>(<span class="at">missing_text =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-89"><a href="#cb8-89" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">cols_label</span>(<span class="at">AgeGroup =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-90"><a href="#cb8-90" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_vertical_padding</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb8-91"><a href="#cb8-91" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_style</span>(</span>
+<span id="cb8-92"><a href="#cb8-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> gt<span class="sc">::</span><span class="fu">cell_borders</span>(<span class="at">sides =</span> <span class="st">"top"</span>, <span class="at">weight =</span> <span class="st">"0"</span>),</span>
+<span id="cb8-93"><a href="#cb8-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> gt<span class="sc">::</span><span class="fu">cells_body</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">rows =</span> <span class="dv">2</span>)</span>
+<span id="cb8-94"><a href="#cb8-94" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-95"><a href="#cb8-95" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-96"><a href="#cb8-96" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_header</span>(<span class="st">"Standard Population by Age Group"</span>)</span>
+<span id="cb8-97"><a href="#cb8-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-98"><a href="#cb8-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-99"><a href="#cb8-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-100"><a href="#cb8-100" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plot</span></span>
+<span id="cb8-101"><a href="#cb8-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-104"><a href="#cb8-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-105"><a href="#cb8-105" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Standard population plot</span></span>
+<span id="cb8-106"><a href="#cb8-106" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: World and European Standard Population</span></span>
+<span id="cb8-107"><a href="#cb8-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap-location: bottom</span></span>
+<span id="cb8-108"><a href="#cb8-108" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-align: center</span></span>
+<span id="cb8-109"><a href="#cb8-109" aria-hidden="true" tabindex="-1"></a><span class="co">#| out-width: 75%</span></span>
+<span id="cb8-110"><a href="#cb8-110" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-age-std</span></span>
+<span id="cb8-111"><a href="#cb8-111" aria-hidden="true" tabindex="-1"></a>pop_data <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(popEpi<span class="sc">::</span>stdpop18) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-112"><a href="#cb8-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">nordic =</span> <span class="cn">NULL</span>, <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">n</span>())</span>
+<span id="cb8-113"><a href="#cb8-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-114"><a href="#cb8-114" aria-hidden="true" tabindex="-1"></a>pop_data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-115"><a href="#cb8-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">world =</span> world <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-116"><a href="#cb8-116" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(world, europe)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-117"><a href="#cb8-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(id) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-118"><a href="#cb8-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(value, <span class="fu">reorder</span>(agegroup, id), <span class="at">fill =</span> name)) <span class="sc">+</span></span>
+<span id="cb8-119"><a href="#cb8-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"#f0f0f0"</span>, <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb8-120"><a href="#cb8-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-121"><a href="#cb8-121" aria-hidden="true" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">scale_fill_economist</span>(<span class="at">labels =</span> stringr<span class="sc">::</span>str_to_title) <span class="sc">+</span></span>
+<span id="cb8-122"><a href="#cb8-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-123"><a href="#cb8-123" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span>,</span>
+<span id="cb8-124"><a href="#cb8-124" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb8-125"><a href="#cb8-125" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.minor.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>)</span>
+<span id="cb8-126"><a href="#cb8-126" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-127"><a href="#cb8-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> abs, <span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb8-128"><a href="#cb8-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">expand =</span> <span class="fu">expansion</span>()) <span class="sc">+</span></span>
+<span id="cb8-129"><a href="#cb8-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-130"><a href="#cb8-130" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of person"</span>,</span>
+<span id="cb8-131"><a href="#cb8-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb8-132"><a href="#cb8-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Population"</span></span>
+<span id="cb8-133"><a href="#cb8-133" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-134"><a href="#cb8-134" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb8-135"><a href="#cb8-135" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">y =</span> <span class="cn">Inf</span>,</span>
+<span id="cb8-136"><a href="#cb8-136" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"World"</span>,</span>
+<span id="cb8-137"><a href="#cb8-137" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">vjust =</span> <span class="fl">1.5</span></span>
+<span id="cb8-138"><a href="#cb8-138" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-139"><a href="#cb8-139" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb8-140"><a href="#cb8-140" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">Inf</span>, <span class="at">y =</span> <span class="cn">Inf</span>,</span>
+<span id="cb8-141"><a href="#cb8-141" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="st">"text"</span>, <span class="at">label =</span> <span class="st">"Europe"</span>,</span>
+<span id="cb8-142"><a href="#cb8-142" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="fl">1.5</span>, <span class="at">vjust =</span> <span class="fl">1.5</span></span>
+<span id="cb8-143"><a href="#cb8-143" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-144"><a href="#cb8-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-145"><a href="#cb8-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-146"><a href="#cb8-146" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb8-147"><a href="#cb8-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-148"><a href="#cb8-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## Calculating age-standardized rate</span></span>
+<span id="cb8-149"><a href="#cb8-149" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-150"><a href="#cb8-150" aria-hidden="true" tabindex="-1"></a>The age-standardized rate (ASR) is calculated as,</span>
+<span id="cb8-151"><a href="#cb8-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-152"><a href="#cb8-152" aria-hidden="true" tabindex="-1"></a>$$\text{Age.Std. Rate} = \frac{\sum_i\mathcal{R}_i\mathcal{w}_i}{\sum_i\mathcal{w}_i}$$</span>
+<span id="cb8-153"><a href="#cb8-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-154"><a href="#cb8-154" aria-hidden="true" tabindex="-1"></a>where, $\mathcal{w}_i$ is the weight corresponding to $i^\text{th}$ age-group in the </span>
+<span id="cb8-155"><a href="#cb8-155" aria-hidden="true" tabindex="-1"></a>reference population.</span>
+<span id="cb8-156"><a href="#cb8-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-157"><a href="#cb8-157" aria-hidden="true" tabindex="-1"></a>Let's explore further with an example from melanoma cases from Australia.</span>
+<span id="cb8-158"><a href="#cb8-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-159"><a href="#cb8-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Example</span></span>
+<span id="cb8-160"><a href="#cb8-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-161"><a href="#cb8-161" aria-hidden="true" tabindex="-1"></a>The following example have used the Austrailian cancer data with 5-year age-group<span class="ot">[^2]</span> after filtering melanoma cases from 1982 to 2018. The dataset has yearly count and age-specific incidence rate of melanoma for men and women.</span>
+<span id="cb8-162"><a href="#cb8-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-163"><a href="#cb8-163" aria-hidden="true" tabindex="-1"></a>Let us use the above European standard population to find the yearly age-standardized incidence by sex.</span>
+<span id="cb8-164"><a href="#cb8-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-167"><a href="#cb8-167" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-168"><a href="#cb8-168" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Age-specific Data</span></span>
+<span id="cb8-169"><a href="#cb8-169" aria-hidden="true" tabindex="-1"></a>std_pop <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(popEpi<span class="sc">::</span>stdpop18) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-170"><a href="#cb8-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span><span class="fu">c</span>(<span class="st">"AgeGroup"</span>, <span class="st">"World"</span>, <span class="st">"Europe"</span>, <span class="st">"Nordic"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-171"><a href="#cb8-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgeGroup =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-172"><a href="#cb8-172" aria-hidden="true" tabindex="-1"></a>    AgeGroup <span class="sc">==</span> <span class="st">"85"</span> <span class="sc">~</span> <span class="st">"85+"</span>, </span>
+<span id="cb8-173"><a href="#cb8-173" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> AgeGroup</span>
+<span id="cb8-174"><a href="#cb8-174" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(</span>
+<span id="cb8-175"><a href="#cb8-175" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(World<span class="sc">:</span>Nordic, prop.table)</span>
+<span id="cb8-176"><a href="#cb8-176" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-177"><a href="#cb8-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-178"><a href="#cb8-178" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidytable<span class="sc">::</span><span class="fu">fread</span>(<span class="st">"melanoma.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-179"><a href="#cb8-179" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">AgeGroup =</span> <span class="fu">case_when</span>(</span>
+<span id="cb8-180"><a href="#cb8-180" aria-hidden="true" tabindex="-1"></a>    AgeGroup <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"85-89"</span>, <span class="st">"90+"</span>) <span class="sc">~</span> <span class="st">"85+"</span>,</span>
+<span id="cb8-181"><a href="#cb8-181" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> AgeGroup</span>
+<span id="cb8-182"><a href="#cb8-182" aria-hidden="true" tabindex="-1"></a>  ))</span>
+<span id="cb8-183"><a href="#cb8-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-184"><a href="#cb8-184" aria-hidden="true" tabindex="-1"></a>asp_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-185"><a href="#cb8-185" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(</span>
+<span id="cb8-186"><a href="#cb8-186" aria-hidden="true" tabindex="-1"></a>    std_pop <span class="sc">%&gt;%</span> <span class="fu">select</span>(AgeGroup, World), </span>
+<span id="cb8-187"><a href="#cb8-187" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"AgeGroup"</span></span>
+<span id="cb8-188"><a href="#cb8-188" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-189"><a href="#cb8-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-190"><a href="#cb8-190" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(asp_data)</span>
+<span id="cb8-191"><a href="#cb8-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-194"><a href="#cb8-194" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-195"><a href="#cb8-195" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Age-standardized Rate</span></span>
+<span id="cb8-196"><a href="#cb8-196" aria-hidden="true" tabindex="-1"></a>asp <span class="ot">&lt;-</span> asp_data <span class="sc">%&gt;%</span> </span>
+<span id="cb8-197"><a href="#cb8-197" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-198"><a href="#cb8-198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">AgeAdjRate =</span> <span class="fu">sum</span>(ASR <span class="sc">*</span> World))</span>
+<span id="cb8-199"><a href="#cb8-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-200"><a href="#cb8-200" aria-hidden="true" tabindex="-1"></a>asp <span class="sc">%&gt;%</span> </span>
+<span id="cb8-201"><a href="#cb8-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-202"><a href="#cb8-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_tail</span>(<span class="dv">8</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-203"><a href="#cb8-203" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-204"><a href="#cb8-204" aria-hidden="true" tabindex="-1"></a>  tidytable<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb8-205"><a href="#cb8-205" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> <span class="st">"Year"</span>,</span>
+<span id="cb8-206"><a href="#cb8-206" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> <span class="st">"AgeAdjRate"</span></span>
+<span id="cb8-207"><a href="#cb8-207" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-208"><a href="#cb8-208" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-209"><a href="#cb8-209" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_vertical_padding</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-210"><a href="#cb8-210" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-211"><a href="#cb8-211" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(<span class="at">table.width =</span> <span class="st">"100%"</span>)</span>
+<span id="cb8-212"><a href="#cb8-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-213"><a href="#cb8-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-214"><a href="#cb8-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-215"><a href="#cb8-215" aria-hidden="true" tabindex="-1"></a>Now, let us compare the age-specific rates (crude rates) and  age-standardized rates with a plot,</span>
+<span id="cb8-216"><a href="#cb8-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-217"><a href="#cb8-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compare the age-specific rates and age-adjusted rates</span></span>
+<span id="cb8-218"><a href="#cb8-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-221"><a href="#cb8-221" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-222"><a href="#cb8-222" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Age-specific rates vs Age-adjusted rates</span></span>
+<span id="cb8-223"><a href="#cb8-223" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-rate-plot</span></span>
+<span id="cb8-224"><a href="#cb8-224" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Age-specific and Age-adjusted rate showing why age-adjustement is necessary</span></span>
+<span id="cb8-225"><a href="#cb8-225" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-226"><a href="#cb8-226" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb8-227"><a href="#cb8-227" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data,</span>
+<span id="cb8-228"><a href="#cb8-228" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-229"><a href="#cb8-229" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> Year,</span>
+<span id="cb8-230"><a href="#cb8-230" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> ASR,</span>
+<span id="cb8-231"><a href="#cb8-231" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> AgeGroup,</span>
+<span id="cb8-232"><a href="#cb8-232" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Crude"</span></span>
+<span id="cb8-233"><a href="#cb8-233" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-234"><a href="#cb8-234" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-235"><a href="#cb8-235" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb8-236"><a href="#cb8-236" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> asp,</span>
+<span id="cb8-237"><a href="#cb8-237" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-238"><a href="#cb8-238" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> Year,</span>
+<span id="cb8-239"><a href="#cb8-239" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> AgeAdjRate,</span>
+<span id="cb8-240"><a href="#cb8-240" aria-hidden="true" tabindex="-1"></a>      <span class="at">group =</span> <span class="dv">1</span>,</span>
+<span id="cb8-241"><a href="#cb8-241" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"Age-adjusted"</span></span>
+<span id="cb8-242"><a href="#cb8-242" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-243"><a href="#cb8-243" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-244"><a href="#cb8-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb8-245"><a href="#cb8-245" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> data[Year <span class="sc">==</span> <span class="fu">max</span>(Year)],</span>
+<span id="cb8-246"><a href="#cb8-246" aria-hidden="true" tabindex="-1"></a>    <span class="at">check_overlap =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-247"><a href="#cb8-247" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="fu">rel</span>(<span class="dv">2</span>),</span>
+<span id="cb8-248"><a href="#cb8-248" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#0f0f0f"</span>,</span>
+<span id="cb8-249"><a href="#cb8-249" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb8-250"><a href="#cb8-250" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> Year <span class="sc">+</span> <span class="dv">2</span>,</span>
+<span id="cb8-251"><a href="#cb8-251" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> ASR,</span>
+<span id="cb8-252"><a href="#cb8-252" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> AgeGroup</span>
+<span id="cb8-253"><a href="#cb8-253" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-254"><a href="#cb8-254" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-255"><a href="#cb8-255" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb8-256"><a href="#cb8-256" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb8-257"><a href="#cb8-257" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="cn">NULL</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"firebrick"</span>, <span class="st">"grey"</span>)) <span class="sc">+</span></span>
+<span id="cb8-258"><a href="#cb8-258" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Sex)) <span class="sc">+</span></span>
+<span id="cb8-259"><a href="#cb8-259" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-260"><a href="#cb8-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-261"><a href="#cb8-261" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>),</span>
+<span id="cb8-262"><a href="#cb8-262" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"inside"</span>,</span>
+<span id="cb8-263"><a href="#cb8-263" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position.inside =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb8-264"><a href="#cb8-264" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb8-265"><a href="#cb8-265" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-266"><a href="#cb8-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-267"><a href="#cb8-267" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Diagnosis year"</span>,</span>
+<span id="cb8-268"><a href="#cb8-268" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste</span>(</span>
+<span id="cb8-269"><a href="#cb8-269" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Age-adjusted incidence rate"</span>,</span>
+<span id="cb8-270"><a href="#cb8-270" aria-hidden="true" tabindex="-1"></a>      <span class="st">"per 100,000 person year"</span>,</span>
+<span id="cb8-271"><a href="#cb8-271" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb8-272"><a href="#cb8-272" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-273"><a href="#cb8-273" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-274"><a href="#cb8-274" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-275"><a href="#cb8-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-276"><a href="#cb8-276" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compare the age-adjusted rates by sex</span></span>
+<span id="cb8-277"><a href="#cb8-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-280"><a href="#cb8-280" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-281"><a href="#cb8-281" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: Age-adjusted rates by sex</span></span>
+<span id="cb8-282"><a href="#cb8-282" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-adj-rate-plot</span></span>
+<span id="cb8-283"><a href="#cb8-283" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Age-adjusted rates by sex for melanoma patients</span></span>
+<span id="cb8-284"><a href="#cb8-284" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(asp, <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> AgeAdjRate, <span class="at">color =</span> Sex)) <span class="sc">+</span></span>
+<span id="cb8-285"><a href="#cb8-285" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-286"><a href="#cb8-286" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">fill =</span> <span class="st">"whitesmoke"</span>, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb8-287"><a href="#cb8-287" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb8-288"><a href="#cb8-288" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> scales<span class="sc">::</span><span class="fu">breaks_extended</span>(<span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb8-289"><a href="#cb8-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb8-290"><a href="#cb8-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-291"><a href="#cb8-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb8-292"><a href="#cb8-292" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"darkgrey"</span>),</span>
+<span id="cb8-293"><a href="#cb8-293" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb8-294"><a href="#cb8-294" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb8-295"><a href="#cb8-295" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-296"><a href="#cb8-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-297"><a href="#cb8-297" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Diagnosis year"</span>,</span>
+<span id="cb8-298"><a href="#cb8-298" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">paste</span>(</span>
+<span id="cb8-299"><a href="#cb8-299" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Age-adjusted incidence rate"</span>,</span>
+<span id="cb8-300"><a href="#cb8-300" aria-hidden="true" tabindex="-1"></a>      <span class="st">"per 100,000 person year"</span>,</span>
+<span id="cb8-301"><a href="#cb8-301" aria-hidden="true" tabindex="-1"></a>      <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span></span>
+<span id="cb8-302"><a href="#cb8-302" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb8-303"><a href="#cb8-303" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-304"><a href="#cb8-304" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">0</span>)</span>
+<span id="cb8-305"><a href="#cb8-305" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb8-306"><a href="#cb8-306" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-307"><a href="#cb8-307" aria-hidden="true" tabindex="-1"></a><span class="fu">## Discussion</span></span>
+<span id="cb8-308"><a href="#cb8-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-309"><a href="#cb8-309" aria-hidden="true" tabindex="-1"></a>Figure @fig-rate-plot shows that the incidence of melanoma has larger difference in men between the age-groups than in women and men also have a sharp increase in older age group. In addition, the Figure @fig-adj-rate-plot shows that males have higher age-adjusted incidence of melanoma than women in Australia and this trend is increasing over time with rapid increase before 1983 before a drop.</span>
+<span id="cb8-310"><a href="#cb8-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-311"><a href="#cb8-311" aria-hidden="true" tabindex="-1"></a>Age-adjusted rates are useful for comparing rates between population but it cannot give the interpretation required for comparing within a population or over a time period in that population. This is one of the reason, cancer registry uses the internal (population structure of their own population) to compute the age-adjusted rates.</span>
+<span id="cb8-312"><a href="#cb8-312" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-313"><a href="#cb8-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-314"><a href="#cb8-314" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: https://www.cdc.gov/csels/dsepd/ss1978/lesson3/section1.html</span></span>
+<span id="cb8-315"><a href="#cb8-315" aria-hidden="true" tabindex="-1"></a><span class="ot">[^2]: https://www.aihw.gov.au/reports/cancer/cancer-data-in-australia/data</span></span>
+<span id="cb8-316"><a href="#cb8-316" aria-hidden="true" tabindex="-1"></a><span class="ot">[^3]: https://www.kreftregisteret.no/globalassets/cancer-in-norway/2021/cin_report.pdf</span></span>
+<span id="cb8-317"><a href="#cb8-317" aria-hidden="true" tabindex="-1"></a><span class="ot">[^4]: https://cancerregistry.fi/reports-and-publications/annual-report-on-cancer-in-finland/</span></span>
+<span id="cb8-318"><a href="#cb8-318" aria-hidden="true" tabindex="-1"></a><span class="ot">[^5]: https://www.aihw.gov.au/reports/cancer/cancer-in-australia-2021/summary</span></span>
+<span id="cb8-319"><a href="#cb8-319" aria-hidden="true" tabindex="-1"></a><span class="ot">[^6]: https://seer.cancer.gov/stdpopulations/stdpop.19ages.html</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
 </div> <!-- /content -->
 
 

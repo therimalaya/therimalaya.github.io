@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="therimalaya">
+<meta name="author" content="TheRimalaya">
 <meta name="dcterms.date" content="2017-03-01">
 
 <title>Mathatistics - Basic Scatter Plot and linear fitted line</title>
@@ -194,18 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#plots" id="toc-plots" class="nav-link active" data-scroll-target="#plots">Plots</a>
-  <ul class="collapse">
-  <li><a href="#base-graphics" id="toc-base-graphics" class="nav-link" data-scroll-target="#base-graphics">Base Graphics</a></li>
-  <li><a href="#lattice-plot" id="toc-lattice-plot" class="nav-link" data-scroll-target="#lattice-plot">Lattice Plot</a></li>
-  <li><a href="#ggplot" id="toc-ggplot" class="nav-link" data-scroll-target="#ggplot">ggplot</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -222,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>therimalaya </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
@@ -244,6 +233,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In R, there are three popular packages for obtaining plots <em>Base Graphics</em>, <em>Lattice Plot</em> and <em>ggplot2</em>. Here we will create a scatter plot between two variables <code>mpg</code> (mile per gallon) and <code>disp</code>(displacement) along with the fitted regession line with equation and <span class="math inline">\(R²\)</span> value in it using all there graphics packages.</p>
 <p>Lets first fit a linear model,</p>
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> disp, <span class="at">data =</span> mtcars)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sumry <span class="ot">&lt;-</span> <span class="fu">summary</span>(mdl)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>cf <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(mdl), <span class="dv">2</span>)</span>
@@ -253,12 +244,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                    cf[<span class="dv">2</span>], <span class="st">" "</span>, <span class="fu">terms</span>(mdl)[[<span class="dv">3</span>]]), <span class="at">sep =</span> <span class="st">" = "</span>)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>sumry.lbl <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"R^2: "</span>, <span class="fu">round</span>(sumry<span class="sc">$</span>r.squared, <span class="dv">2</span>),</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                    <span class="st">", adj R^2: "</span>, <span class="fu">round</span>(sumry<span class="sc">$</span>adj.r.squared, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<section id="plots" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="plots">Plots</h2>
-<section id="base-graphics" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="base-graphics">Base Graphics</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Base Graphics</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Lattice Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">ggplot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(mtcars, {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(disp, mpg, <span class="at">pch =</span> <span class="dv">22</span>, <span class="at">bg =</span> <span class="st">"gray"</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Displacement"</span>, <span class="at">ylab =</span> <span class="st">"Mile per Gallon"</span>,</span>
@@ -267,6 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="fu">max</span>(disp), <span class="fu">max</span>(mpg), <span class="at">adj =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>), <span class="at">family =</span> <span class="st">"monospace"</span>,</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">label =</span> <span class="fu">paste</span>(eqn, sumry.lbl, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -275,10 +270,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section>
-<section id="lattice-plot" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="lattice-plot">Lattice Plot</h3>
+</div>
+<div id="tabset-1-2" class="tab tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>lm.panel <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, ...) {</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">panel.xyplot</span>(x, y, <span class="at">pch =</span> <span class="dv">22</span>, <span class="at">fill =</span> <span class="st">"gray"</span>,</span>
@@ -292,6 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> lm.panel,</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Displacement vs Mile per Gallon"</span>,</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Displacement"</span>, <span class="at">ylab =</span> <span class="st">"Mile per Gallon"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -300,10 +297,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-</section>
-<section id="ggplot" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="ggplot">ggplot</h3>
+</div>
+<div id="tabset-1-3" class="tab tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">qplot</span>(disp, mpg, <span class="at">data =</span> mtcars, <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"point"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">xlab =</span> <span class="st">"Displacement"</span>,</span>
@@ -316,6 +314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">hjust =</span> <span class="fl">1.2</span>, <span class="at">vjust =</span> <span class="fl">1.2</span>,</span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> <span class="st">"monospace"</span>,</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(eqn, sumry.lbl, <span class="at">sep =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -348,10 +347,11 @@ F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</code></pre>
 </div>
 </div>
 <p>This means, the effect of displacement on mile per gallon of the cars in the model is negative and its magnitude is 0.04. In other words, on one unit change of displacement, the car will travel 0.04 less per gallon.</p>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

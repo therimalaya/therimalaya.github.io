@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Raju Rimal">
+<meta name="author" content="TheRimalaya">
 <meta name="dcterms.date" content="2016-01-12">
 
 <title>Mathatistics - Scatter plot with multiple group</title>
@@ -216,7 +216,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Raju Rimal </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
@@ -237,10 +237,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Lets scatter the some points using data from <code>mtcars</code>, available default in R. Continuing the discussing from this post, where we had plotted mile per gallon (<code>mpg</code>) vs displacement (<code>disp</code>). Here we will create a separate regression line and colour the points accordingly based on number of cylinder (<code>cyl</code>) in the cars. In this article also, I will use there plotting system – base graphics, lattice plot and ggplot2.</p>
 <p>First, lets fit our linear model with number of cylinder as a categorical variable.</p>
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> <span class="fu">within</span>(mtcars, cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(cyl))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>mdl    <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> disp <span class="sc">*</span> cyl, <span class="at">data =</span> mtcars)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sumry  <span class="ot">&lt;-</span> <span class="fu">summary</span>(mdl)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sumry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -268,6 +271,8 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 </div>
 <p>Lets create a (intercept, slope) pair for each level of <code>cyl</code> and create separate equation for them.</p>
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cf  <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(mdl), <span class="dv">3</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>eq1 <span class="ot">&lt;-</span> <span class="fu">c</span>(cf[<span class="dv">1</span>], cf[<span class="dv">2</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>eq2 <span class="ot">&lt;-</span> <span class="fu">c</span>(cf[<span class="dv">1</span>] <span class="sc">+</span> cf[<span class="dv">3</span>], cf[<span class="dv">2</span>] <span class="sc">+</span> cf[<span class="dv">5</span>])</span>
@@ -280,6 +285,7 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>eqn <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="fu">list</span>(eq1, eq2, eq3), eq.fn)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>rsq.info <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">paste0</span>(<span class="st">"R^2: "</span>, <span class="fu">round</span>(sumry[[<span class="st">"r.squared"</span>]], <span class="dv">2</span>)),</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>              <span class="fu">paste0</span>(<span class="st">"adj. R^2: "</span>, <span class="fu">round</span>(sumry[[<span class="st">"adj.r.squared"</span>]], <span class="dv">2</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <section id="plots" class="level2 tabset">
 <h2 class="tabset anchored" data-anchor-id="plots">Plots</h2>
@@ -288,6 +294,8 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">with</span>(mtcars, {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  car<span class="sc">::</span><span class="fu">scatterplot</span>(disp, mpg, <span class="at">groups =</span> cyl, <span class="at">smooth =</span> F,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">xlab =</span> <span class="st">"Displacement"</span>,</span>
@@ -298,6 +306,7 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">text.col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">box.lty =</span> <span class="dv">0</span>,</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">legend =</span> eqn)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"bottomleft"</span>, <span class="at">legend =</span> rsq.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -305,11 +314,16 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 </figure>
 </div>
 </div>
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(op)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 </div>
 <div id="tabset-1-2" class="tab tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>lm.panel <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, ...) {</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">panel.xyplot</span>(x, y, ...)</span>
@@ -329,6 +343,7 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">xlab =</span> <span class="st">"Displacement"</span>,</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Mile per gallon"</span>,</span>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">panel =</span> lm.panel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -340,6 +355,8 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 </div>
 <div id="tabset-1-3" class="tab tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Equation table for displaying them on the plot</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>eqn.df <span class="ot">&lt;-</span> <span class="fu">with</span>(mtcars, {</span>
@@ -359,6 +376,7 @@ F-statistic: 34.84 on 5 and 26 DF,  p-value: 9.968e-11</code></pre>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>disp), <span class="at">y =</span> <span class="fu">min</span>(mtcars<span class="sc">$</span>mpg),</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">family =</span> <span class="st">"mono"</span>, <span class="at">hjust =</span> <span class="dv">0</span>,</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste0</span>(rsq.info, <span class="at">collapse =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

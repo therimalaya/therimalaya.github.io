@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-author','listing-date','listing-reading-time','listing-title','listing-subtitle',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] }],
       
-      searchColumns: ["listing-freeze","listing-title-block-banner","listing-toc","listing-title","listing-descripion","listing-slug","listing-author","listing-type","listing-date","listing-categories","listing-tags","listing-path","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-subtitle","listing-code-overflow","listing-date-format","listing-bibliography","listing-citations-hover","listing-preview-links","listing-code-fold","listing-code-tools","listing-execute","listing-format","listing-editor_options","listing-nocite","listing-image"],
+      searchColumns: ["listing-freeze","listing-title-block-banner","listing-toc","listing-title","listing-author","listing-date","listing-date-modified","listing-code-fold","listing-categories","listing-tags","listing-path","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-code-overflow","listing-bibliography","listing-citations-hover","listing-preview-links","listing-code-tools","listing-execute","listing-format","listing-editor_options","listing-nocite","listing-image","listing-subtitle","listing-slug"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="Knitr">Knitr <span class="quarto-category-count">(1)</span></div><div class="category" data-category="LaTeX">LaTeX <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R IDE">R IDE <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RStudio">RStudio <span class="quarto-category-count">(1)</span></div><div class="category" data-category="machine learning">machine learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="mathematics">mathematics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="statistics">statistics <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="ANOVA">ANOVA <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Data Science Tutorials">Data Science Tutorials <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R Programming">R Programming <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Simulation">Simulation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="data science">data science <span class="quarto-category-count">(1)</span></div><div class="category" data-category="machine learning">machine learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="statistics">statistics <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -195,9 +195,6 @@ ul.task-list li input[type="checkbox"] {
 <p class="h4 lst-title">
 Melanoma Incidence in Nordic Countries
 </p>
-<div class="h5 lead lst-subtitle">
-<p>With special focus on Norway</p>
-</div>
 </div>
 <div class="lst-meta">
 <div class="lst-date">
@@ -207,7 +204,7 @@ June 20, 2023
 Raju Rimal
 </div>
 <div class="lst-reading-time">
-7 min
+17 min
 </div>
 </div>
 </a><p><a href="./blog/posts/2023-06-20-nordic-melanoma/index.html"></a></p>
@@ -221,10 +218,10 @@ Age Adjusted Rates in Epidemiology
 </div>
 <div class="lst-meta">
 <div class="lst-date">
-December 2, 2022
+June 20, 2023
 </div>
 <div class="lst-author">
-Raju Rimal
+TheRimalaya
 </div>
 <div class="lst-reading-time">
 8 min
@@ -233,24 +230,24 @@ Raju Rimal
 </a><p><a href="./blog/posts/2022-12-02-age-adjusted-rates/index.html"></a></p>
 </div>
 <div class="lst-row">
-<a href="./blog/posts/2022-03-18-convert-list-to-array/index.html">
+<a href="./blog/posts/2023-02-04-simulation-anova-and-analysis/index.html">
 <div class="lst-body">
 <p class="h4 lst-title">
-Convert list of array/matrix into an array in R
+Simulating data for ANOVA similar to existing dataset for analysis
 </p>
 </div>
 <div class="lst-meta">
 <div class="lst-date">
-March 18, 2022
+February 4, 2023
 </div>
 <div class="lst-author">
-therimalaya
+TheRimalaya
 </div>
 <div class="lst-reading-time">
-0 min
+13 min
 </div>
 </div>
-</a><p><a href="./blog/posts/2022-03-18-convert-list-to-array/index.html"></a></p>
+</a><p><a href="./blog/posts/2023-02-04-simulation-anova-and-analysis/index.html"></a></p>
 </div>
 <div class="lst-row">
 <a href="./blog/posts/2021-03-29-how-anova-analyze-variance/index.html">
@@ -264,7 +261,7 @@ How ANOVA analyze the variance
 March 29, 2021
 </div>
 <div class="lst-author">
-therimalaya
+TheRimalaya
 </div>
 <div class="lst-reading-time">
 5 min
@@ -276,15 +273,18 @@ therimalaya
 <a href="./blog/posts/2017-03-18-interpreting-biplot/index.html">
 <div class="lst-body">
 <p class="h4 lst-title">
-Interpreting Biplot
+Interpretating Biplot
 </p>
+<div class="h5 lead lst-subtitle">
+<p>A tool for exploring multivariate data</p>
+</div>
 </div>
 <div class="lst-meta">
 <div class="lst-date">
 March 18, 2017
 </div>
 <div class="lst-author">
-therimalaya
+TheRimalaya
 </div>
 <div class="lst-reading-time">
 5 min
@@ -298,25 +298,28 @@ therimalaya
 <p class="h4 lst-title">
 Model assessment and variable selection
 </p>
+<div class="h5 lead lst-subtitle">
+<p>Making simpler model for complex analysis</p>
+</div>
 </div>
 <div class="lst-meta">
 <div class="lst-date">
 March 5, 2017
 </div>
 <div class="lst-author">
-therimalaya
+TheRimalaya
 </div>
 <div class="lst-reading-time">
-5 min
+7 min
 </div>
 </div>
 </a><p><a href="./blog/posts/2017-03-05-model-assessment-and-variable-selection-prodecure/index.html"></a></p>
 </div>
 <div class="lst-row">
-<a href="./blog/posts/2017-03-01-generate-latex-or-html-table-with-r/index.html">
+<a href="./blog/posts/2017-03-01-importing-and-exporting-data-in-R/index.html">
 <div class="lst-body">
 <p class="h4 lst-title">
-Create LaTeX, HTML and Markdown tables in R
+Importing and Exporting data in R
 </p>
 </div>
 <div class="lst-meta">
@@ -324,93 +327,13 @@ Create LaTeX, HTML and Markdown tables in R
 March 1, 2017
 </div>
 <div class="lst-author">
-Raju Rimal
+TheRimalaya
 </div>
 <div class="lst-reading-time">
-0 min
+2 min
 </div>
 </div>
-</a><p><a href="./blog/posts/2017-03-01-generate-latex-or-html-table-with-r/index.html"></a></p>
-</div>
-<div class="lst-row">
-<a href="./blog/posts/2017-03-01-using-data-from-different-packages/index.html">
-<div class="lst-body">
-<p class="h4 lst-title">
-Using Data from different Packages
-</p>
-</div>
-<div class="lst-meta">
-<div class="lst-date">
-March 1, 2017
-</div>
-<div class="lst-author">
-Junali Chhetri
-</div>
-<div class="lst-reading-time">
-0 min
-</div>
-</div>
-</a><p><a href="./blog/posts/2017-03-01-using-data-from-different-packages/index.html"></a></p>
-</div>
-<div class="lst-row">
-<a href="./blog/posts/2017-03-01-basic-scatter-plot-and-linear-fitted-line/index.html">
-<div class="lst-body">
-<p class="h4 lst-title">
-Basic Scatter Plot and linear fitted line
-</p>
-</div>
-<div class="lst-meta">
-<div class="lst-date">
-March 1, 2017
-</div>
-<div class="lst-author">
-therimalaya
-</div>
-<div class="lst-reading-time">
-3 min
-</div>
-</div>
-</a><p><a href="./blog/posts/2017-03-01-basic-scatter-plot-and-linear-fitted-line/index.html"></a></p>
-</div>
-<div class="lst-row">
-<a href="./blog/posts/2016-02-25-latex-autocompletion-in-rstudio/index.html">
-<div class="lst-body">
-<p class="h4 lst-title">
-LaTeX autocompletion in RStudio
-</p>
-</div>
-<div class="lst-meta">
-<div class="lst-date">
-February 25, 2016
-</div>
-<div class="lst-author">
-therimalaya
-</div>
-<div class="lst-reading-time">
-1 min
-</div>
-</div>
-</a><p><a href="./blog/posts/2016-02-25-latex-autocompletion-in-rstudio/index.html"></a></p>
-</div>
-<div class="lst-row">
-<a href="./blog/posts/2016-01-12-scatter-with-multiple-group/index.html">
-<div class="lst-body">
-<p class="h4 lst-title">
-Scatter plot with multiple group
-</p>
-</div>
-<div class="lst-meta">
-<div class="lst-date">
-January 12, 2016
-</div>
-<div class="lst-author">
-Raju Rimal
-</div>
-<div class="lst-reading-time">
-3 min
-</div>
-</div>
-</a><p><a href="./blog/posts/2016-01-12-scatter-with-multiple-group/index.html"></a></p>
+</a><p><a href="./blog/posts/2017-03-01-importing-and-exporting-data-in-R/index.html"></a></p>
 </div>
 </main>
 <div class="listing-no-matching d-none">

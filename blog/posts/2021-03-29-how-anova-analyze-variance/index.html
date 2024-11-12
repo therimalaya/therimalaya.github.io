@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="therimalaya">
+<meta name="author" content="TheRimalaya">
 <meta name="dcterms.date" content="2021-03-29">
 
 <title>Mathatistics - How ANOVA analyze the variance</title>
@@ -22,6 +22,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -135,10 +198,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simulating-data-resembling-these-cases" id="toc-simulating-data-resembling-these-cases" class="nav-link active" data-scroll-target="#simulating-data-resembling-these-cases">Simulating data resembling these cases</a></li>
-  <li><a href="#fitting-anova-model-for-each-cases" id="toc-fitting-anova-model-for-each-cases" class="nav-link" data-scroll-target="#fitting-anova-model-for-each-cases">Fitting ANOVA model for each cases</a></li>
-  <li><a href="#prepare-data-for-plotting" id="toc-prepare-data-for-plotting" class="nav-link" data-scroll-target="#prepare-data-for-plotting">Prepare data for plotting</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#fitting-anova-model-for-each-cases" id="toc-fitting-anova-model-for-each-cases" class="nav-link active" data-scroll-target="#fitting-anova-model-for-each-cases">Fitting ANOVA model for each cases</a></li>
+  <li><a href="#distribution-of-data" id="toc-distribution-of-data" class="nav-link" data-scroll-target="#distribution-of-data">Distribution of data</a></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">Model comparison</a>
+  <ul class="collapse">
+  <li><a href="#interpretetion" id="toc-interpretetion" class="nav-link" data-scroll-target="#interpretetion">Interpretetion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -148,7 +213,11 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">How ANOVA analyze the variance</h1>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Statistics</div>
+    <div class="quarto-category">ANOVA</div>
+  </div>
+  </div>
 
 
 
@@ -157,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>therimalaya </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
@@ -168,113 +237,1233 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 8, 2024</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
-<p>Often we Analysis of Variance (ANOVA) to analyze the variances to find if different cases results in similar outcome and if the difference is significant. Following are some simple examples,</p>
+<p>Analysis of Variance (ANOVA) is a powerful statistical tool used to analyze the variance among group means and determine whether these differences are statistically significant. It’s commonly used in various fields such as agriculture, biology, psychology, and more to test hypotheses about different groups. Below are some practical examples:</p>
 <ul>
-<li>The effect of different diets on growth of fishes</li>
+<li>The effect of different diets on the growth of fishes</li>
 <li>Comparing the height of three different species of a plant</li>
-<li>Type of flour used for baking a bread</li>
+<li>The type of flour used for baking bread</li>
 </ul>
-<p>These are some common examples where in some cases data are collected by setting up an experiment and in other cases they are collected through sampling. This article tries to explain how the ANOVA analyze the variance and in what situation are they significant throught both simulated and real data.</p>
+<p>Data for ANOVA could be collected through designed experiments or by sampling from populations. This article helps explain how ANOVA analyzes variance and identifies situations when these differences are significant, using both simulated and real data.</p>
+<p>Often we Analysis of Variance (ANOVA) to analyze the variances to find if different cases results in similar outcome and if the difference is significant. Following are some simple examples,</p>
 <p>Consider the following model with <span class="math inline">\(i=3\)</span> groups and <span class="math inline">\(j=n\)</span> observations,</p>
-<p><span class="math display">\[y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \; i = 1, 2, 3
-\texttt{ and } j = 1, 2, \ldots n\]</span></p>
-<p>here, <span class="math inline">\(\tau_i\)</span> is the effect corresponding to group <span class="math inline">\(i\)</span> and <span class="math inline">\(\varepsilon_{ij} \sim \mathrm{N}(0, \sigma^2)\)</span>, the usual assumption of linear model. In order to understand how ANOVA finds the differences between groups and how the group mean and their standard deviation influence the results from ANOVA, let us consider following four cases:</p>
-<dl>
-<dt>Case 1</dt>
-<dd>
-Similar group means with high variation within the groups
-</dd>
-<dt>Case 2</dt>
-<dd>
-Similar group means with low variation within the groups
-</dd>
-<dt>Case 3</dt>
-<dd>
-Distant group means with high variation within the groups
-</dd>
-<dt>Case 4</dt>
-<dd>
-Distant group means with low variation within the groups
-</dd>
-</dl>
-<section id="simulating-data-resembling-these-cases" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-data-resembling-these-cases">Simulating data resembling these cases</h2>
+<p><span class="math display">\[
+y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \; i = 1, 2, 3 \texttt{ and } j = 1, 2, \ldots n
+\]</span></p>
+<p>where, <span class="math inline">\(\tau_i\)</span> represetns the effect corresponding to group <span class="math inline">\(i\)</span> and <span class="math inline">\(\varepsilon_{ij} \sim \mathrm{N}(0, \sigma^2)\)</span>, the usual assumption of linear model. In order to better understand how ANOVA finds the differences between groups and how the group mean and their standard deviation influence the results from ANOVA, we will explore the following four cases:</p>
 <div class="cell">
-
+<details>
+<summary>Simultion design</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Design <span class="ot">&lt;-</span> tidytable<span class="sc">::</span><span class="fu">bind_rows</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">Case1 =</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">Group =</span> <span class="fu">paste</span>(<span class="st">"Group"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Mean =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Case2 =</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">Group =</span> <span class="fu">paste</span>(<span class="st">"Group"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">Mean =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Case3 =</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">Group =</span> <span class="fu">paste</span>(<span class="st">"Group"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">Mean =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">Case4 =</span> <span class="fu">data.table</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">Group =</span> <span class="fu">paste</span>(<span class="st">"Group"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">sep =</span> <span class="st">""</span>),</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">Mean =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">15</span>),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">SD =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">.id =</span> <span class="st">"Cases"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-</section>
+<div class="columns">
+<div class="column">
+<ul>
+<li><strong>Case 1:</strong> Similar group means with high variation within the groups</li>
+<li><strong>Case 2:</strong> Similar group means with low variation within the groups</li>
+<li><strong>Case 3:</strong> Distant group means with high variation within the groups</li>
+<li><strong>Case 4:</strong> Distant group means with low variation within the groups</li>
+</ul>
+</div><div class="column">
+<div class="cell">
+<div class="cell-output-display">
+
+<div id="agjexfmjao" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#agjexfmjao table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#agjexfmjao thead, #agjexfmjao tbody, #agjexfmjao tfoot, #agjexfmjao tr, #agjexfmjao td, #agjexfmjao th {
+  border-style: none;
+}
+
+#agjexfmjao p {
+  margin: 0;
+  padding: 0;
+}
+
+#agjexfmjao .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#agjexfmjao .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#agjexfmjao .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#agjexfmjao .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#agjexfmjao .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#agjexfmjao .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#agjexfmjao .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#agjexfmjao .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#agjexfmjao .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#agjexfmjao .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#agjexfmjao .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#agjexfmjao .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#agjexfmjao .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#agjexfmjao .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#agjexfmjao .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agjexfmjao .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#agjexfmjao .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#agjexfmjao .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#agjexfmjao .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agjexfmjao .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#agjexfmjao .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agjexfmjao .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#agjexfmjao .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agjexfmjao .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#agjexfmjao .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#agjexfmjao .gt_left {
+  text-align: left;
+}
+
+#agjexfmjao .gt_center {
+  text-align: center;
+}
+
+#agjexfmjao .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#agjexfmjao .gt_font_normal {
+  font-weight: normal;
+}
+
+#agjexfmjao .gt_font_bold {
+  font-weight: bold;
+}
+
+#agjexfmjao .gt_font_italic {
+  font-style: italic;
+}
+
+#agjexfmjao .gt_super {
+  font-size: 65%;
+}
+
+#agjexfmjao .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#agjexfmjao .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#agjexfmjao .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#agjexfmjao .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#agjexfmjao .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#agjexfmjao .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#agjexfmjao .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#agjexfmjao .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#agjexfmjao div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings gt_spanner_row">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Cases">Cases</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="spanner-Group1_Mean">
+        <div class="gt_column_spanner">Group1</div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="spanner-Group2_Mean">
+        <div class="gt_column_spanner">Group2</div>
+      </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="spanner-Group3_Mean">
+        <div class="gt_column_spanner">Group3</div>
+      </th>
+    </tr>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Group1_Mean">Mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Group1_SD">SD</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Group2_Mean">Mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Group2_SD">SD</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Group3_Mean">Mean</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Group3_SD">SD</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Cases" class="gt_row gt_left">Case1</td>
+<td headers="Group1_Mean" class="gt_row gt_right">10</td>
+<td headers="Group1_SD" class="gt_row gt_right">5</td>
+<td headers="Group2_Mean" class="gt_row gt_right">10</td>
+<td headers="Group2_SD" class="gt_row gt_right">5</td>
+<td headers="Group3_Mean" class="gt_row gt_right">10</td>
+<td headers="Group3_SD" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="Cases" class="gt_row gt_left">Case2</td>
+<td headers="Group1_Mean" class="gt_row gt_right">10</td>
+<td headers="Group1_SD" class="gt_row gt_right">1</td>
+<td headers="Group2_Mean" class="gt_row gt_right">10</td>
+<td headers="Group2_SD" class="gt_row gt_right">1</td>
+<td headers="Group3_Mean" class="gt_row gt_right">10</td>
+<td headers="Group3_SD" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="Cases" class="gt_row gt_left">Case3</td>
+<td headers="Group1_Mean" class="gt_row gt_right">5</td>
+<td headers="Group1_SD" class="gt_row gt_right">5</td>
+<td headers="Group2_Mean" class="gt_row gt_right">10</td>
+<td headers="Group2_SD" class="gt_row gt_right">5</td>
+<td headers="Group3_Mean" class="gt_row gt_right">15</td>
+<td headers="Group3_SD" class="gt_row gt_right">5</td></tr>
+    <tr><td headers="Cases" class="gt_row gt_left">Case4</td>
+<td headers="Group1_Mean" class="gt_row gt_right">5</td>
+<td headers="Group1_SD" class="gt_row gt_right">1</td>
+<td headers="Group2_Mean" class="gt_row gt_right">10</td>
+<td headers="Group2_SD" class="gt_row gt_right">1</td>
+<td headers="Group3_Mean" class="gt_row gt_right">15</td>
+<td headers="Group3_SD" class="gt_row gt_right">1</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
 <section id="fitting-anova-model-for-each-cases" class="level2">
 <h2 class="anchored" data-anchor-id="fitting-anova-model-for-each-cases">Fitting ANOVA model for each cases</h2>
 <div class="cell">
-
+<details>
+<summary>Simulate and fit ANOVA</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>generate_data <span class="ot">&lt;-</span> <span class="cf">function</span>(mean, sd, <span class="at">nobs =</span> <span class="dv">50</span>) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Response <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(nobs, <span class="at">mean =</span> mean, sd)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tidytable</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span>nobs, <span class="at">Response =</span> Response)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>Model <span class="ot">&lt;-</span> Design <span class="sc">%&gt;%</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Data =</span> <span class="fu">map2</span>(Mean, SD, generate_data)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">nest</span>(<span class="at">.by =</span> <span class="st">"Cases"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">fit =</span> <span class="fu">map</span>(data, <span class="cf">function</span>(dta) {</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">lm</span>(Response <span class="sc">~</span> Group, <span class="at">data =</span> dta)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    }))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>Model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 4 × 3
+  Cases data                  fit   
+  &lt;chr&gt; &lt;list&gt;                &lt;list&gt;
+1 Case1 &lt;tidytable [150 × 5]&gt; &lt;lm&gt;  
+2 Case2 &lt;tidytable [150 × 5]&gt; &lt;lm&gt;  
+3 Case3 &lt;tidytable [150 × 5]&gt; &lt;lm&gt;  
+4 Case4 &lt;tidytable [150 × 5]&gt; &lt;lm&gt;  </code></pre>
+</div>
 </div>
 </section>
-<section id="prepare-data-for-plotting" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-data-for-plotting">Prepare data for plotting</h2>
-<div class="cell">
-
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-ℹ Please use `linewidth` instead.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 2.21</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 1.48</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 6.18</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 2.66</code></pre>
-</div>
+<section id="distribution-of-data" class="level2">
+<h2 class="anchored" data-anchor-id="distribution-of-data">Distribution of data</h2>
+<div class="cell" data-fig.asp="1">
+<details>
+<summary>Data distribution</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Model[, <span class="fu">map_df</span>(fit, broom<span class="sc">::</span>augment), by <span class="ot">=</span> Cases] <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Response, Group)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">fill =</span> Group, <span class="at">color =</span> Group), </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">width =</span> <span class="fl">0.25</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Group),</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>),</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">stroke =</span> <span class="fl">0.25</span>, <span class="at">alpha =</span> <span class="fl">0.25</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="fu">aes</span>(<span class="at">color =</span> Group),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"whitesmoke"</span>, <span class="at">stroke =</span> <span class="fl">0.75</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="fu">vars</span>(Cases), <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  ggridges<span class="sc">::</span><span class="fu">geom_density_ridges</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> Group),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel_scaling =</span> <span class="cn">FALSE</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"none"</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.svg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 2.21</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 1.48</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 6.18</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 2.66</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 3.12</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 3.47</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 6.01</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Picking joint bandwidth of 6.22</code></pre>
-</div>
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-6-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
 </section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="model-comparison" class="level2">
+<h2 class="anchored" data-anchor-id="model-comparison">Model comparison</h2>
+<div class="cell">
+<details>
+<summary>ANOVA for the four cases</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> Model[, <span class="fu">map_df</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">.x =</span> fit,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> <span class="sc">~</span> broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">anova</span>(.x))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>), by <span class="ot">=</span> Cases] <span class="sc">%&gt;%</span> <span class="fu">rename</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">DF =</span> df,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">SSE =</span> sumsq,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">MSE =</span> meansq,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Statistic =</span> statistic,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">p value</span><span class="st">`</span> <span class="ot">=</span> p.value</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>anova_result <span class="sc">%&gt;%</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cases =</span> <span class="fu">case_when</span>(</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>        Cases <span class="sc">==</span> <span class="st">"Case1"</span> <span class="sc">~</span> <span class="st">"Case 1: Similar group means with high variation within the groups"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>        Cases <span class="sc">==</span> <span class="st">"Case2"</span> <span class="sc">~</span> <span class="st">"Case 2: Similar group means with low variation within the groups"</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        Cases <span class="sc">==</span> <span class="st">"Case3"</span> <span class="sc">~</span> <span class="st">"Case 3: Distant group means with high variation within the groups"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Case 4: Distant group means with low variation within the groups"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">"Cases"</span>, <span class="at">rowname_col =</span> <span class="st">"term"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="dv">7</span>, <span class="at">decimals =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">sub_missing</span>(<span class="at">missing_text =</span> <span class="st">""</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.width =</span> <span class="st">"100%"</span>,</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">row_group.font.weight =</span> <span class="st">"600"</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="gfpmfekkqh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gfpmfekkqh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gfpmfekkqh thead, #gfpmfekkqh tbody, #gfpmfekkqh tfoot, #gfpmfekkqh tr, #gfpmfekkqh td, #gfpmfekkqh th {
+  border-style: none;
+}
+
+#gfpmfekkqh p {
+  margin: 0;
+  padding: 0;
+}
+
+#gfpmfekkqh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: 100%;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gfpmfekkqh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gfpmfekkqh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gfpmfekkqh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gfpmfekkqh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gfpmfekkqh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gfpmfekkqh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gfpmfekkqh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gfpmfekkqh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gfpmfekkqh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: 600;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gfpmfekkqh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: 600;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gfpmfekkqh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gfpmfekkqh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gfpmfekkqh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gfpmfekkqh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfpmfekkqh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gfpmfekkqh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gfpmfekkqh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gfpmfekkqh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfpmfekkqh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gfpmfekkqh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfpmfekkqh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gfpmfekkqh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfpmfekkqh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gfpmfekkqh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gfpmfekkqh .gt_left {
+  text-align: left;
+}
+
+#gfpmfekkqh .gt_center {
+  text-align: center;
+}
+
+#gfpmfekkqh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gfpmfekkqh .gt_font_normal {
+  font-weight: normal;
+}
+
+#gfpmfekkqh .gt_font_bold {
+  font-weight: bold;
+}
+
+#gfpmfekkqh .gt_font_italic {
+  font-style: italic;
+}
+
+#gfpmfekkqh .gt_super {
+  font-size: 65%;
+}
+
+#gfpmfekkqh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gfpmfekkqh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gfpmfekkqh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gfpmfekkqh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gfpmfekkqh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gfpmfekkqh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gfpmfekkqh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#gfpmfekkqh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#gfpmfekkqh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="DF">DF</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SSE">SSE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="MSE">MSE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Statistic">Statistic</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p-value">p value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Case 1: Similar group means with high variation within the groups">Case 1: Similar group means with high variation within the groups</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_1" scope="row" class="gt_row gt_left gt_stub">Group</th>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_1 DF" class="gt_row gt_right">2</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_1 SSE" class="gt_row gt_right">32.09</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_1 MSE" class="gt_row gt_right">16.05</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_1 Statistic" class="gt_row gt_right">0.64</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_1 p value" class="gt_row gt_right">0.5304</td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_left gt_stub">Residuals</th>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_2 DF" class="gt_row gt_right">147</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_2 SSE" class="gt_row gt_right">3,704.26</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_2 MSE" class="gt_row gt_right">25.20</td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_2 Statistic" class="gt_row gt_right"><br></td>
+<td headers="Case 1: Similar group means with high variation within the groups stub_1_2 p value" class="gt_row gt_right"><br></td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Case 2: Similar group means with low variation within the groups">Case 2: Similar group means with low variation within the groups</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_3" scope="row" class="gt_row gt_left gt_stub">Group</th>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_3 DF" class="gt_row gt_right">2</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_3 SSE" class="gt_row gt_right">1.98</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_3 MSE" class="gt_row gt_right">0.99</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_3 Statistic" class="gt_row gt_right">1.00</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_3 p value" class="gt_row gt_right">0.3714</td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_left gt_stub">Residuals</th>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_4 DF" class="gt_row gt_right">147</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_4 SSE" class="gt_row gt_right">146.03</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_4 MSE" class="gt_row gt_right">0.99</td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_4 Statistic" class="gt_row gt_right"><br></td>
+<td headers="Case 2: Similar group means with low variation within the groups stub_1_4 p value" class="gt_row gt_right"><br></td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Case 3: Distant group means with high variation within the groups">Case 3: Distant group means with high variation within the groups</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_5" scope="row" class="gt_row gt_left gt_stub">Group</th>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_5 DF" class="gt_row gt_right">2</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_5 SSE" class="gt_row gt_right">1,951.86</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_5 MSE" class="gt_row gt_right">975.93</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_5 Statistic" class="gt_row gt_right">50.15</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_5 p value" class="gt_row gt_right">0.0000</td></tr>
+    <tr><th id="stub_1_6" scope="row" class="gt_row gt_left gt_stub">Residuals</th>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_6 DF" class="gt_row gt_right">147</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_6 SSE" class="gt_row gt_right">2,860.66</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_6 MSE" class="gt_row gt_right">19.46</td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_6 Statistic" class="gt_row gt_right"><br></td>
+<td headers="Case 3: Distant group means with high variation within the groups stub_1_6 p value" class="gt_row gt_right"><br></td></tr>
+    <tr class="gt_group_heading_row">
+      <th colspan="6" class="gt_group_heading" scope="colgroup" id="Case 4: Distant group means with low variation within the groups">Case 4: Distant group means with low variation within the groups</th>
+    </tr>
+    <tr class="gt_row_group_first"><th id="stub_1_7" scope="row" class="gt_row gt_left gt_stub">Group</th>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_7 DF" class="gt_row gt_right">2</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_7 SSE" class="gt_row gt_right">2,516.51</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_7 MSE" class="gt_row gt_right">1,258.26</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_7 Statistic" class="gt_row gt_right">1,263.82</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_7 p value" class="gt_row gt_right">0.0000</td></tr>
+    <tr><th id="stub_1_8" scope="row" class="gt_row gt_left gt_stub">Residuals</th>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_8 DF" class="gt_row gt_right">147</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_8 SSE" class="gt_row gt_right">146.35</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_8 MSE" class="gt_row gt_right">1.00</td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_8 Statistic" class="gt_row gt_right"><br></td>
+<td headers="Case 4: Distant group means with low variation within the groups stub_1_8 p value" class="gt_row gt_right"><br></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<section id="interpretetion" class="level3">
+<h3 class="anchored" data-anchor-id="interpretetion">Interpretetion</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Case 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Case 2</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Case 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Case 4</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>The results show a high p-value, indicating no significant difference between the groups due to high within-group variability.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<p>Here, the p-value is still high, suggesting no significant difference, but the small variance within groups provides clearer insights compared to Case 1.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>Despite the high variation within groups, the distant group means lead to a low p-value, indicating statistically significant differences among the groups.</p>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
+<p>With low within-group variation and distant means, the p-value remains extremely low, strongly indicating significant group differences.</p>
+</div>
+</div>
+</div>
+<p>In conclusion, ANOVA helps determine if there are significant differences between multiple group means by comparing variances within groups to variances between groups. The power of ANOVA lies in its ability to detect even subtle differences when variations are minimal within groups.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Raju Rimal">
-<meta name="dcterms.date" content="2023-09-19">
+<meta name="author" content="TheRimalaya">
+<meta name="dcterms.date" content="2023-02-04">
 
 <title>Mathatistics - Simulating data for ANOVA similar to existing dataset for analysis</title>
 <style>
@@ -200,24 +200,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#simulation-example" id="toc-simulation-example" class="nav-link active" data-scroll-target="#simulation-example">Simulation Example</a>
   <ul class="collapse">
-  <li><a href="#r-codes" id="toc-r-codes" class="nav-link" data-scroll-target="#r-codes">R-codes</a>
+  <li><a href="#simulation-design" id="toc-simulation-design" class="nav-link" data-scroll-target="#simulation-design">Simulation Design</a>
   <ul class="collapse">
-  <li><a href="#model-and-plot-data" id="toc-model-and-plot-data" class="nav-link" data-scroll-target="#model-and-plot-data">Model and plot data</a></li>
-  <li><a href="#density-plot" id="toc-density-plot" class="nav-link" data-scroll-target="#density-plot">Density plot</a></li>
-  <li><a href="#box-plot" id="toc-box-plot" class="nav-link" data-scroll-target="#box-plot">Box plot</a></li>
-  <li><a href="#posthoc-plot" id="toc-posthoc-plot" class="nav-link" data-scroll-target="#posthoc-plot">Posthoc plot</a></li>
+  <li><a href="#code-for-simulation-analysis-and-plot" id="toc-code-for-simulation-analysis-and-plot" class="nav-link" data-scroll-target="#code-for-simulation-analysis-and-plot">Code for Simulation, Analysis, and Plot</a></li>
   </ul></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a>
-  <ul class="collapse">
-  <li><a href="#murder" id="toc-murder" class="nav-link" data-scroll-target="#murder">Murder</a></li>
-  <li><a href="#assault" id="toc-assault" class="nav-link" data-scroll-target="#assault">Assault</a></li>
-  <li><a href="#rape" id="toc-rape" class="nav-link" data-scroll-target="#rape">Rape</a></li>
-  </ul></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
   </ul></li>
   <li><a href="#real-data-example" id="toc-real-data-example" class="nav-link" data-scroll-target="#real-data-example">Real Data Example</a>
   <ul class="collapse">
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
+  <li><a href="#data-preparation-and-dataset" id="toc-data-preparation-and-dataset" class="nav-link" data-scroll-target="#data-preparation-and-dataset">Data preparation and Dataset</a></li>
+  <li><a href="#analysis-1" id="toc-analysis-1" class="nav-link" data-scroll-target="#analysis-1">Analysis</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -228,7 +220,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Simulating data for ANOVA similar to existing dataset for analysis</h1>
-</div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Simulation</div>
+    <div class="quarto-category">Statistics</div>
+  </div>
+  </div>
 
 
 
@@ -237,41 +233,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Raju Rimal </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 19, 2023</p>
+      <p class="date">February 4, 2023</p>
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 21, 2024</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
-<p>Simulating data is used in education and research and has been an helpful tool for testing, comparing and understanding concepts in practical and applied setting.</p>
-<p>Often we Analysis of Variance (ANOVA) to analyze the variances to find if different cases results in similar outcome and if the difference is significant. Following are some simple examples,</p>
+<p>Simulating data is an important tool in both education and research, and it has been extremely helpful for testing, comparing, and understanding concepts in practical and applied settings.</p>
+<p>Often, we use Analysis of Variance (ANOVA) to analyze variances to find out if different cases result in similar outcomes and if the differences are significant. Some simple examples include:</p>
 <ul>
-<li>The effect of different diets on growth of fishes</li>
-<li>Comparing the height of three different species of a plant</li>
-<li>Type of flour used for baking a bread</li>
+<li>The effect of different diets on the growth of fish</li>
+<li>Comparing the heights of three different plant species</li>
+<li>The type of flour used for baking bread</li>
 </ul>
-<p>These are some common examples where in some cases data are collected by setting up an experiment and in other cases they are collected through sampling. This article tries to explain how the ANOVA analyze the variance and in what situation are they significant throught both simulated and real data.</p>
+<p>These are common examples where, in some cases, data are collected by setting up an experiment, and in other cases, they are collected through sampling. This article explains how ANOVA analyzes the variance and in what situations are they significant through both simulated and real data.</p>
 <p>Consider the following model with <span class="math inline">\(i=3\)</span> groups and <span class="math inline">\(j=n\)</span> observations,</p>
-<p><span class="math display">\[y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \; i = 1, 2, 3
-\texttt{ and } j = 1, 2, \ldots n\]</span></p>
-<p>here, <span class="math inline">\(\tau_i\)</span> is the effect corresponding to group <span class="math inline">\(i\)</span> and <span class="math inline">\(\varepsilon_{ij} \sim \mathrm{N}(0, \sigma^2)\)</span>, the usual assumption of linear model. Simulation example below describe it in details.</p>
+<p><span class="math display">\[
+y_{ij} = \mu + \tau_i + \varepsilon_{ij}, \; i = 1, 2, 3
+\texttt{ and } j = 1, 2, \ldots n
+\]</span></p>
+<p>Here, <span class="math inline">\(\tau_i\)</span> is the effect corresponding to group <span class="math inline">\(i\)</span> and <span class="math inline">\(\varepsilon_{ij} \sim \mathrm{N}(0, \sigma^2)\)</span>, the usual assumption of linear model. The simulation example below describes it in detail.</p>
 <section id="simulation-example" class="level1">
 <h1>Simulation Example</h1>
-<p>This example simulates 3 datasets within each of them has 3 groups with with their respective mean and standard deviation. These datasets tries to replicate the <code>USArrest</code> dataset available in <code>dataset</code> package in R. The simulation design is as follows,</p>
+<p>In this simulation example, I aim to replicate specific elements of the <code>USArrests</code> dataset by simulating 50 cases for three types of crimes: Murder, Assault, and Rape. For each crime, I categorize individuals into three groups based on illiteracy levels and simulate their respective arrest rates. Here’s concise overview of the process and analysis steps:</p>
+<section id="simulation-design" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-design">Simulation Design</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sim_design <span class="ot">&lt;-</span> <span class="fu">data.table</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Illitracy =</span> <span class="fu">factor</span>(</span>
+<details>
+<summary>Simulation design</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sim_design <span class="ot">&lt;-</span> <span class="fu">tidytable</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Illiteracy =</span> <span class="fu">factor</span>(</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="dv">3</span>),</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"medium"</span>, <span class="st">"low"</span>)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
@@ -284,206 +292,340 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>sim_design</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>   Illitracy   Crime mean sd
-1:      high  Murder   11  3
-2:    medium  Murder    8  4
-3:       low  Murder    5  3
-4:      high Assault  214 79
-5:    medium Assault  190 82
-6:       low Assault  114 55
-7:      high    Rape   23  8
-8:    medium    Rape   21 10
-9:       low    Rape   19 10</code></pre>
+<pre><code># A tidytable: 9 × 4
+  Illiteracy Crime    mean    sd
+  &lt;fct&gt;      &lt;fct&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 high       Murder     11     3
+2 medium     Murder      8     4
+3 low        Murder      5     3
+4 high       Assault   214    79
+5 medium     Assault   190    82
+6 low        Assault   114    55
+7 high       Rape       23     8
+8 medium     Rape       21    10
+9 low        Rape       19    10</code></pre>
 </div>
 </div>
 <p>Since these data cannot contain negative values so instead of using <code>rnorm</code> available in <code>stats</code> package, I will use <code>truncnorm</code> available in GitHub. There are other options as well which can be used such as: …</p>
 <p>If not installed, install the package as <code>remotes::install_github("olafmersmann/truncnorm")</code> or <code>devtools::install_github("olafmersmann/truncnorm")</code>.</p>
-<p>In each group let’s simulate 50 observations.</p>
+<section id="code-for-simulation-analysis-and-plot" class="level3">
+<h3 class="anchored" data-anchor-id="code-for-simulation-analysis-and-plot">Code for Simulation, Analysis, and Plot</h3>
+<p>Let’s simulate 50 observation Arrest <code>Rate</code> in each levels of <code>Illiteracy</code>, and <code>Crime</code> in simulation design.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>nsim <span class="ot">&lt;-</span> <span class="dv">50</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Simulation Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Data from simulation</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> <span class="fu">copy</span>(sim_design)[, <span class="fu">map2_df</span>(mean, sd, <span class="sc">~</span> <span class="fu">data.table</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Rate =</span> truncnorm<span class="sc">::</span><span class="fu">rtruncnorm</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> nsim, <span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="cn">Inf</span>, <span class="at">mean =</span> .x, <span class="at">sd =</span> .y</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">round</span>()</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)), by <span class="ot">=</span> .(Illitracy, Crime)]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sim_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sim_data <span class="ot">&lt;-</span> sim_design <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Illiteracy, Crime) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rate =</span> <span class="fu">map2</span>(mean, sd, <span class="sc">~</span><span class="fu">tidytable</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Rate =</span> truncnorm<span class="sc">::</span><span class="fu">rtruncnorm</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">n =</span> nsim, <span class="at">a =</span> <span class="dv">0</span>, <span class="at">b =</span> <span class="cn">Inf</span>, <span class="at">mean =</span> .x, <span class="at">sd =</span> .y</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> <span class="fu">round</span>()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  ))) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>() <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">.by =</span> <span class="fu">c</span>(Crime))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here, Arrest rates were generated from a normal distribution using <code>truncnorm</code> from <code>truncnorm</code> package to get only positive value and also mirroring the mean and standard deviation in <code>USArrests</code>. Using normal distributions ensures the synthetic data mimics the actual data’s variation and mean, making the simulations realistic.</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<details>
+<summary>Simulated data by group</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>     Illitracy  Crime Rate
-  1:      high Murder    7
-  2:      high Murder   11
-  3:      high Murder    9
-  4:      high Murder   12
-  5:      high Murder   15
- ---                      
-446:       low   Rape   11
-447:       low   Rape   18
-448:       low   Rape   23
-449:       low   Rape   11
-450:       low   Rape    4</code></pre>
+<pre><code># A tidytable: 3 × 2
+  Crime   data                 
+  &lt;fct&gt;   &lt;list&gt;               
+1 Murder  &lt;tidytable [150 × 4]&gt;
+2 Assault &lt;tidytable [150 × 4]&gt;
+3 Rape    &lt;tidytable [150 × 4]&gt;</code></pre>
 </div>
 </div>
-<p>Lets use this simulated dataset for fitting Anova model with <code>Illitracy</code> as the factor (group) variable and <code>Rate</code> as the response variable separately for each crime. Also make a density plot for both simulated and fitted values of the <code>Rate</code> variable.</p>
-<section id="r-codes" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="r-codes">R-codes</h2>
-<section id="model-and-plot-data" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="model-and-plot-data">Model and plot data</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Murder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Assault</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Rape</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mdl_fit <span class="ot">&lt;-</span> sim_data[, .(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Fit =</span> <span class="fu">list</span>(<span class="fu">lm</span>(Rate <span class="sc">~</span> Illitracy, <span class="at">data =</span> .SD))</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>), by <span class="ot">=</span> .(Crime)][, Summary <span class="sc">:</span><span class="er">=</span> <span class="fu">map</span>(Fit, summary)]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>mdl_fit[, Anova <span class="sc">:</span><span class="er">=</span> <span class="fu">map</span>(Fit, anova)]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>mdl_fit[, Tukey <span class="sc">:</span><span class="er">=</span> <span class="fu">map</span>(Fit, aov) <span class="sc">%&gt;%</span> <span class="fu">map</span>(TukeyHSD)]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>mdl_est <span class="ot">&lt;-</span> mdl_fit[, <span class="fu">map_df</span>(</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">.x =</span> Summary,</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> broom<span class="sc">::</span>tidy,</span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">conf.int =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>), by <span class="ot">=</span> .(Crime)]</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>mdl_fit_df <span class="ot">&lt;-</span> mdl_fit[, <span class="fu">map_df</span>(</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">.x =</span> Fit,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">.f =</span> broom<span class="sc">::</span>augment</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>), by <span class="ot">=</span> .(Crime)]</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>eff_df <span class="ot">&lt;-</span> mdl_fit[, <span class="fu">map_df</span>(Fit, <span class="cf">function</span>(.fit) {</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  effects<span class="sc">::</span><span class="fu">Effect</span>(<span class="st">"Illitracy"</span>, .fit) <span class="sc">%&gt;%</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.data.table</span>()</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>}), by <span class="ot">=</span> <span class="st">"Crime"</span>]</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>tky_df <span class="ot">&lt;-</span> mdl_fit[, <span class="fu">modify_depth</span>(Tukey, <span class="dv">1</span>, <span class="st">"Illitracy"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.table</span>(<span class="at">keep.rownames =</span> <span class="st">"terms"</span>), by <span class="ot">=</span> <span class="st">"Crime"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Simulated data for Murder</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sim_data[Crime <span class="sc">==</span> <span class="st">"Murder"</span>, data][[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 6 × 4
+  Illiteracy  mean    sd  Rate
+  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 high          11     3     7
+2 high          11     3    11
+3 high          11     3     9
+4 high          11     3    12
+5 high          11     3    15
+6 high          11     3    13</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<details>
+<summary>Simulated data for Assault</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sim_data[Crime <span class="sc">==</span> <span class="st">"Assault"</span>, data][[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 6 × 4
+  Illiteracy  mean    sd  Rate
+  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 high         214    79   178
+2 high         214    79   163
+3 high         214    79   174
+4 high         214    79   234
+5 high         214    79   181
+6 high         214    79   139</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<details>
+<summary>Simulated data for Rape</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(sim_data[Crime <span class="sc">==</span> <span class="st">"Rape"</span>, data][[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 6 × 4
+  Illiteracy  mean    sd  Rate
+  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 high          23     8    25
+2 high          23     8    22
+3 high          23     8    16
+4 high          23     8    15
+5 high          23     8    35
+6 high          23     8    23</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Using the simulated data above, we now fit an Anova model with <code>Illiteracy</code> as a factor (group) variable that affects the Arrest <code>Rate</code> (response variable) separately for each <code>Crime</code>. I have also made a density plot for the <code>Rate</code> variable for both simulated data and plot it with normal curve with corresponding mean and standard deviation. Following are the codes for fitting the Anova model, and creating density plot and box plot. Also we will perform a Posthoc test using Tukey’s method to make a pairwise comparison of different <code>Illiteracy</code> levels.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Code for Model Fit and Plotting
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">Model and plot data</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Density plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false">Box plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false">Posthoc plot</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mdl_fit <span class="ot">&lt;-</span> sim_data <span class="sc">%&gt;%</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">Fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(Rate <span class="sc">~</span> Illiteracy, <span class="at">data =</span> .x)),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Summary =</span> <span class="fu">map</span>(Fit, summary),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Anova =</span> <span class="fu">map</span>(Fit, anova),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Tukey =</span> <span class="fu">map</span>(Fit, aov) <span class="sc">%&gt;%</span> <span class="fu">map</span>(TukeyHSD)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>mdl_est <span class="ot">&lt;-</span> mdl_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(Summary, map, broom<span class="sc">::</span>tidy), </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(Crime)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>()</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>mdl_fit_df <span class="ot">&lt;-</span> mdl_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(Fit, map, broom<span class="sc">::</span>augment),</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="fu">c</span>(Crime)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>eff_df <span class="ot">&lt;-</span> mdl_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(Fit, map, <span class="cf">function</span>(.fit) {</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>      effects<span class="sc">::</span><span class="fu">Effect</span>(<span class="st">"Illiteracy"</span>, .fit) <span class="sc">%&gt;%</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        <span class="fu">as_tidytable</span>()</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    }),</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="st">"Crime"</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in check_dep_version(): ABI version mismatch: 
+lme4 was built with Matrix ABI version 1
+Current Matrix ABI version is 2
+Please re-install lme4 from source or restore original 'Matrix' package</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tky_df <span class="ot">&lt;-</span> mdl_fit <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(Tukey, <span class="cf">function</span>(tky) {</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">map</span>(tky, purrr<span class="sc">::</span>pluck, <span class="st">"Illiteracy"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">map</span>(as_tidytable, <span class="at">.keep_rownames =</span> <span class="st">"terms"</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    }),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.by =</span> <span class="st">"Crime"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">unnest</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>density_plot <span class="ot">&lt;-</span> sim_data <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(data) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Rate, <span class="at">color =</span> Illiteracy)) <span class="sc">+</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_wrap</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">facets =</span> <span class="fu">vars</span>(Crime),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">ncol =</span> <span class="dv">3</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">scales =</span> <span class="st">"free"</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Simulated"</span>)) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_density</span>(</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Fitted"</span>, <span class="at">x =</span> .fitted),</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> mdl_fit_df</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_rug</span>(</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> eff_df,</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">x =</span> fit)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Simulated"</span>, <span class="st">"Fitted"</span>),</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>      <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"solid"</span>, <span class="st">"dashed"</span>)</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Arrest Rate"</span>,</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">linetype =</span> <span class="cn">NULL</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>effect_plot <span class="ot">&lt;-</span> mdl_fit_df <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(Rate, Illiteracy)) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">vars</span>(Crime),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">scales =</span> <span class="st">"free_x"</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">notch =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"grey"</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">outlier.colour =</span> <span class="st">"grey"</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">height =</span> <span class="fl">0.25</span>),</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"grey"</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">0.9</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_pointrange</span>(</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"Estimated"</span>,</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">xmin =</span> lower,</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">xmax =</span> upper,</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> fit</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> eff_df</span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"True Mean"</span>, <span class="at">x =</span> mean),</span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> sim_design</span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(</span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">"Set1"</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tukey_plot <span class="ot">&lt;-</span> tky_df <span class="sc">%&gt;%</span> </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(diff, terms)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">cols =</span> <span class="fu">vars</span>(Crime), </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">scales =</span> <span class="st">"free_x"</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_pointrange</span>(</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">xmin =</span> lwr, <span class="at">xmax =</span> upr, <span class="at">x =</span> diff),</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"whitesmoke"</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">"royalblue"</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_brewer</span>(</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">name =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">"Set1"</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">"Illiteracy"</span>,</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"Effect difference"</span>,</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Pairwise comparison of levels of illitracy"</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </section>
-<section id="density-plot" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="density-plot">Density plot</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>density_plts <span class="ot">&lt;-</span> <span class="fu">split</span>(sim_data, <span class="at">by =</span> <span class="st">"Crime"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imap</span>(<span class="cf">function</span>(dta, name) {</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(dta, <span class="fu">aes</span>(Rate, <span class="at">color =</span> Illitracy)) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Simulated"</span>)) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_density</span>(</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Fitted"</span>, <span class="at">x =</span> .fitted),</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> mdl_fit_df[Crime <span class="sc">==</span> name]</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_rug</span>(</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> eff_df[Crime <span class="sc">==</span> name],</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">x =</span> fit)</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_linetype_manual</span>(</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Simulated"</span>, <span class="st">"Fitted"</span>),</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"solid"</span>, <span class="st">"dashed"</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> name,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Density"</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">linetype =</span> <span class="cn">NULL</span></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
-<section id="box-plot" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="box-plot">Box plot</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>box_plts <span class="ot">&lt;-</span> <span class="fu">split</span>(mdl_fit_df, <span class="at">by =</span> <span class="st">"Crime"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imap</span>(<span class="cf">function</span>(dta, name) {</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(dta, <span class="fu">aes</span>(Rate, Illitracy)) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">notch =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"grey"</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">outlier.colour =</span> <span class="st">"grey"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">height =</span> <span class="fl">0.25</span>),</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"grey"</span>,</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_pointrange</span>(</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Estimated"</span>,</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">xmin =</span> lower,</span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">xmax =</span> upper,</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> fit</span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> eff_df[Crime <span class="sc">==</span> name]</span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(</span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"True"</span>, <span class="at">x =</span> mean),</span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>        <span class="at">data =</span> sim_design[Crime <span class="sc">==</span> name]</span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_brewer</span>(</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Mean"</span>,</span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"Set1"</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="posthoc-plot" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="posthoc-plot">Posthoc plot</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>tky_plts <span class="ot">&lt;-</span> <span class="fu">split</span>(tky_df, <span class="at">by =</span> <span class="st">"Crime"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">imap</span>(<span class="cf">function</span>(dta, name) {</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(dta, <span class="fu">aes</span>(diff, terms)) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_pointrange</span>(</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">aes</span>(<span class="at">xmin =</span> lwr, <span class="at">xmax =</span> upr, <span class="at">x =</span> diff),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">shape =</span> <span class="dv">21</span>,</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="st">"whitesmoke"</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_vline</span>(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">xintercept =</span> <span class="dv">0</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">color =</span> <span class="st">"royalblue"</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">scale_color_brewer</span>(</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">name =</span> <span class="st">"Mean"</span>,</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"Set1"</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">"Illitracy"</span>,</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">x =</span> <span class="st">"Effect difference"</span>,</span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Pairwise comparison of levels of illitracy"</span></span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>      ) <span class="sc">+</span></span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>      <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>)</span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="analysis" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="analysis">Analysis</h2>
-<section id="murder" class="level3 tab tabset">
-<h3 class="tab tabset anchored" data-anchor-id="murder">Murder</h3>
-<section id="distribution" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="distribution">Distribution</h4>
-<div class="cell">
+<section id="analysis" class="level2">
+<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">Distribution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Model Fit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false">Effect Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-4" role="tab" aria-controls="tabset-5-4" aria-selected="false">Post-hoc</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="cell" data-fig.asp="0.5">
+<details>
+<summary>Density of simulated data</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>density_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.svg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.svg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
-</section>
-<section id="fit" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="fit">Fit</h4>
+<p>Here, the kernel density plots for arrest rates were shown alongside the normal density curve. This visual assessment checked the goodness of fit between simulated data and the expected normal distribution. The close match between kernel density and normal density validates that the data follows a normal distribution, confirming the simulation’s accuracy.</p>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>A one-way ANOVA output below helps to find if there is any difference between arrest rate based on illiteracy level for each crime. Here we see that in all crimes high illiteracy level was considered as reference and compared to this both medium and low illiteracy levels have lower arrest rate. This suggest that the higher illiteracy rate corresponds to higher arrest rate. However, for crimes: assault and rape, the effect of medium illiteracy rate has high p-value and can not be considered to have significant effect on arrest rate.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">Murder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Assault</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false">Rape</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <div class="cell">
+<details>
+<summary>ANOVA output for crime: Murder</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mdl_fit[Crime <span class="sc">==</span> <span class="st">"Murder"</span>, Summary][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Rate ~ Illitracy, data = .SD)
+lm(formula = Rate ~ Illiteracy, data = .x)
 
 Residuals:
    Min     1Q Median     3Q    Max 
  -8.44  -2.31   0.08   1.95   7.56 
 
 Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)      10.9200     0.4247  25.713  &lt; 2e-16 ***
-Illitracymedium  -2.4800     0.6006  -4.129 6.08e-05 ***
-Illitracylow     -6.0000     0.6006  -9.990  &lt; 2e-16 ***
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       10.9200     0.4247  25.713  &lt; 2e-16 ***
+Illiteracymedium  -2.4800     0.6006  -4.129 6.08e-05 ***
+Illiteracylow     -6.0000     0.6006  -9.990  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -492,52 +634,27 @@ Multiple R-squared:  0.4068,    Adjusted R-squared:  0.3987
 F-statistic:  50.4 on 2 and 147 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
-</section>
-<section id="effects" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="effects">Effects</h4>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-<section id="post-hoc" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="post-hoc">Post-hoc</h4>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-12-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="assault" class="level3 tab tabset">
-<h3 class="tab tabset anchored" data-anchor-id="assault">Assault</h3>
-<section id="distribution-1" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="distribution-1">Distribution</h4>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-13-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-<p>The distribution of the high and medium illitracy is similar as contrast to low illitracy group in the case of assult.</p>
-</section>
-<section id="fit-1" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="fit-1">Fit</h4>
-<div class="cell">
+<details>
+<summary>ANOVA output for crime: Assault</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mdl_fit[Crime <span class="sc">==</span> <span class="st">"Assault"</span>, Summary][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Rate ~ Illitracy, data = .SD)
+lm(formula = Rate ~ Illiteracy, data = .x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
 -158.32  -42.22   -3.11   38.74  221.68 
 
 Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       208.32       9.64  21.609  &lt; 2e-16 ***
-Illitracymedium    -5.00      13.63  -0.367    0.714    
-Illitracylow      -95.42      13.63  -6.999 8.51e-11 ***
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        208.32       9.64  21.609  &lt; 2e-16 ***
+Illiteracymedium    -5.00      13.63  -0.367    0.714    
+Illiteracylow      -95.42      13.63  -6.999 8.51e-11 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -546,51 +663,27 @@ Multiple R-squared:  0.2969,    Adjusted R-squared:  0.2873
 F-statistic: 31.03 on 2 and 147 DF,  p-value: 5.709e-12</code></pre>
 </div>
 </div>
-</section>
-<section id="effects-1" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="effects-1">Effects</h4>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-15-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-<section id="post-hoc-1" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="post-hoc-1">Post-hoc</h4>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-16-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="rape" class="level3 tab tabset">
-<h3 class="tab tabset anchored" data-anchor-id="rape">Rape</h3>
-<section id="distribution-2" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="distribution-2">Distribution</h4>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-17-1.svg" class="img-fluid" style="width:100.0%"></p>
-</div>
-</div>
-</section>
-<section id="fit-2" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="fit-2">Fit</h4>
-<div class="cell">
+<details>
+<summary>ANOVA output for crime: Rape</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>mdl_fit[Crime <span class="sc">==</span> <span class="st">"Rape"</span>, Summary][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Rate ~ Illitracy, data = .SD)
+lm(formula = Rate ~ Illiteracy, data = .x)
 
 Residuals:
    Min     1Q Median     3Q    Max 
 -20.10  -6.10  -0.11   5.56  20.90 
 
 Coefficients:
-                Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)       22.440      1.219  18.403  &lt; 2e-16 ***
-Illitracymedium   -1.340      1.724  -0.777  0.43837    
-Illitracylow      -5.320      1.724  -3.085  0.00243 ** 
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        22.440      1.219  18.403  &lt; 2e-16 ***
+Illiteracymedium   -1.340      1.724  -0.777  0.43837    
+Illiteracylow      -5.320      1.724  -3.085  0.00243 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -599,88 +692,199 @@ Multiple R-squared:  0.06547,   Adjusted R-squared:  0.05276
 F-statistic:  5.15 on 2 and 147 DF,  p-value: 0.006894</code></pre>
 </div>
 </div>
-</section>
-<section id="effects-2" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="effects-2">Effects</h4>
-<div class="cell">
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="cell" data-fig.asp="0.5">
+<details>
+<summary>Boxplot with fitted and true mean</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>effect_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-19-1.svg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-17-1.svg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
-</section>
-<section id="post-hoc-2" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="post-hoc-2">Post-hoc</h4>
-<div class="cell">
+<p>Boxplots displayed arrest rate distributions within each illiteracy group stratified by crime. Points were scattered for detailed visualization, along with fitted means and confidence intervals. Here for all crimes, higher illiteracy corresponds to higher arrest rate and is more visible in murder.</p>
+</div>
+<div id="tabset-5-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-4-tab">
+<div class="cell" data-fig.asp="0.5">
+<details>
+<summary>Post-hoc plot comparing pairwise difference</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>tukey_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.svg" class="img-fluid" style="width:100.0%"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-18-1.svg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
-</section>
-</section>
+<p>The post-hoc plot has highlighted statistically significant differences between different levels of illiteracy. Here, all pairs of illiteracy levels differ significantly at 95% confidence level for Murder however there is not such significant difference between medium and high illiteracy level for assault and rape.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="real-data-example" class="level1">
 <h1>Real Data Example</h1>
+<section id="data-preparation-and-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="data-preparation-and-dataset">Data preparation and Dataset</h2>
+<p>Here, I have used <code>USArrests</code> dataset excluding the crime <code>UrbanPop</code> and merged it with another dataset <code>state.x77</code> using its <code>Illiteracy</code> variable for 50 states. The Illiteracy was than categorized using its quantiles into three categories <code>low</code>, <code>medium</code>, and <code>high</code> mimiking the simulation example above.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r bg-info folded code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">merge.data.table</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.table</span>(USArrests, <span class="at">keep.rownames =</span> <span class="st">"States"</span>),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.table</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    state.x77[, <span class="st">"Illiteracy"</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>],</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">keep.rownames =</span> <span class="st">"States"</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="st">"States"</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>arrest[, UrbanPop <span class="sc">:</span><span class="er">=</span> <span class="cn">NULL</span>]</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> arrest[, <span class="fu">lapply</span>(.SD, as.numeric), by <span class="ot">=</span> <span class="st">"States"</span>]</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>arrest[, Illiteracy <span class="sc">:</span><span class="er">=</span> <span class="fu">cut.default</span>(</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  Illiteracy,</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">quantile</span>(Illiteracy, <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">1</span>)),</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>),</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>)]</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">melt.data.table</span>(</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> arrest[, <span class="fu">lapply</span>(.SD, as.numeric), </span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> .(States, Illiteracy)],</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">id.vars =</span> <span class="fu">c</span>(<span class="st">"States"</span>, <span class="st">"Illiteracy"</span>),</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">value.name =</span> <span class="st">"Rate"</span>,</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">variable.name =</span> <span class="st">"Crime"</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Merging USArrests and state.x77</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>arrest <span class="ot">&lt;-</span> <span class="fu">as_tidytable</span>(USArrests, <span class="at">.keep_rownames =</span> <span class="st">"States"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  tidytable<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as_tidytable</span>(</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>      state.x77[, <span class="st">"Illiteracy"</span>, <span class="at">drop =</span> <span class="cn">FALSE</span>],</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.keep_rownames =</span> <span class="st">"States"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="st">"States"</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>UrbanPop) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(Murder<span class="sc">:</span>Illiteracy, as.numeric)) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Illiteracy =</span> <span class="fu">cut.default</span>(</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    Illiteracy,</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">quantile</span>(Illiteracy, <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">2</span><span class="sc">/</span><span class="dv">3</span>, <span class="dv">1</span>)),</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"low"</span>, <span class="st">"medium"</span>, <span class="st">"high"</span>),</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">include.lowest =</span> <span class="cn">TRUE</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Illiteracy =</span> <span class="fu">factor</span>(</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    Illiteracy,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"high"</span>, <span class="st">"medium"</span>, <span class="st">"low"</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> Murder<span class="sc">:</span>Rape,</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"Crime"</span>,</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"Rate"</span></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> <span class="fu">nest</span>(<span class="at">.by =</span> <span class="fu">c</span>(Crime))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">Data by Crime</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Murder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false">Assault</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-4" role="tab" aria-controls="tabset-6-4" aria-selected="false">Rape</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
 <div class="cell">
+<details>
+<summary>Data by group</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>arrest</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>       States Illiteracy  Crime Rate
-1:    Alabama       high Murder 13.2
-2:     Alaska       high Murder 10.0
-3:    Arizona       high Murder  8.1
-4:   Arkansas       high Murder  8.8
-5: California     medium Murder  9.0
-6:   Colorado        low Murder  7.9</code></pre>
+<pre><code># A tidytable: 3 × 2
+  Crime   data                
+  &lt;chr&gt;   &lt;list&gt;              
+1 Murder  &lt;tidytable [50 × 3]&gt;
+2 Assault &lt;tidytable [50 × 3]&gt;
+3 Rape    &lt;tidytable [50 × 3]&gt;</code></pre>
 </div>
 </div>
-<section id="results" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="results">Results</h2>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <div class="cell">
-
+<details>
+<summary>Data for crime: Murder</summary>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(arrest[Crime <span class="sc">==</span> <span class="st">"Murder"</span>, data][[<span class="dv">1</span>]], <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 3 × 3
+  States  Illiteracy  Rate
+  &lt;chr&gt;   &lt;fct&gt;      &lt;dbl&gt;
+1 Alabama high        13.2
+2 Alaska  high        10  
+3 Arizona high         8.1</code></pre>
 </div>
-<section id="distribution-3" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="distribution-3">Distribution</h4>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-24-1.svg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="cell">
+<details>
+<summary>Data for crime: Assault</summary>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(arrest[Crime <span class="sc">==</span> <span class="st">"Assault"</span>, data][[<span class="dv">1</span>]], <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 3 × 3
+  States  Illiteracy  Rate
+  &lt;chr&gt;   &lt;fct&gt;      &lt;dbl&gt;
+1 Alabama high         236
+2 Alaska  high         263
+3 Arizona high         294</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-4-tab">
+<div class="cell">
+<details>
+<summary>Data for crime: Rape</summary>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(arrest[Crime <span class="sc">==</span> <span class="st">"Rape"</span>, data][[<span class="dv">1</span>]], <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tidytable: 3 × 3
+  States  Illiteracy  Rate
+  &lt;chr&gt;   &lt;fct&gt;      &lt;dbl&gt;
+1 Alabama high        21.2
+2 Alaska  high        44.5
+3 Arizona high        31  </code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
-<section id="fit-3" class="level4 tab tabset">
-<h4 class="tab tabset anchored" data-anchor-id="fit-3">Fit</h4>
-<section id="murder-1" class="level5 tab">
-<h5 class="tab anchored" data-anchor-id="murder-1">Murder</h5>
+<section id="analysis-1" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-1">Analysis</h2>
+<p>I am following a similar pattern as in the analysis of simulated data: distribution plot, fitting an ANOVA model, effect plot showing the fitted value with a boxplot, and a Post-hoc showing pairwise comparison of the effect of illiteracy levels on arrest rate.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">Distribution</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Fit</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false">Effects</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-4" role="tab" aria-controls="tabset-8-4" aria-selected="false">Post-hoc</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell" data-fig.asp="0.5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">unnest</span>(arrest), <span class="fu">aes</span>(Rate, <span class="at">color =</span> Illiteracy)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Simulated"</span>)) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">linetype =</span> <span class="st">"Fitted"</span>, <span class="at">x =</span> .fitted),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> mdl_fit_df</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_rug</span>(</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> eff_df,</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> fit)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linetype_manual</span>(</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">"Simulated"</span>, <span class="st">"Fitted"</span>),</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"solid"</span>, <span class="st">"dashed"</span>)</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set1"</span>) <span class="sc">+</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Crime"</span>,</span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Density"</span>,</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="cn">NULL</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">facets =</span> <span class="fu">vars</span>(Crime),</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">scales =</span> <span class="st">"free"</span></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-25-1.svg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+<p>Kernel density alongside normal density curves for each crime shows and validates the normal distribution of the real data and help confirm the normality assumption for ANOVA, ensuring that the real data analysis aligns with the assumptions necessary for valid inference.</p>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">Murder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Assult</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false">Rape</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
 <div class="cell">
+<details>
+<summary>ANOVA output for crime: Murder</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mdl_fit[Crime <span class="sc">==</span> <span class="st">"Murder"</span>, Summary][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Rate ~ Illiteracy, data = .SD)
+lm(formula = Rate ~ Illiteracy, data = .x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
@@ -688,9 +892,9 @@ Residuals:
 
 Coefficients:
                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        4.6000     0.7856   5.855 4.46e-07 ***
-Illiteracymedium   2.9067     1.1653   2.494   0.0162 *  
-Illiteracyhigh     6.8118     1.1273   6.043 2.32e-07 ***
+(Intercept)       11.4118     0.8084  14.116  &lt; 2e-16 ***
+Illiteracymedium  -3.9051     1.1808  -3.307  0.00181 ** 
+Illiteracylow     -6.8118     1.1273  -6.043 2.32e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -699,14 +903,17 @@ Multiple R-squared:  0.4382,    Adjusted R-squared:  0.4143
 F-statistic: 18.33 on 2 and 47 DF,  p-value: 1.302e-06</code></pre>
 </div>
 </div>
-</section>
-<section id="assult" class="level5 tab">
-<h5 class="tab anchored" data-anchor-id="assult">Assult</h5>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <div class="cell">
+<details>
+<summary>ANOVA output for crime: Assault</summary>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mdl_fit[Crime <span class="sc">==</span> <span class="st">"Assault"</span>, Summary][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Rate ~ Illiteracy, data = .SD)
+lm(formula = Rate ~ Illiteracy, data = .x)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
@@ -714,9 +921,9 @@ Residuals:
 
 Coefficients:
                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        114.17      17.04   6.702 2.32e-08 ***
-Illiteracymedium    75.50      25.27   2.988 0.004453 ** 
-Illiteracyhigh      99.83      24.44   4.084 0.000171 ***
+(Intercept)        214.00      17.53  12.208 3.51e-16 ***
+Illiteracymedium   -24.33      25.60  -0.950 0.346771    
+Illiteracylow      -99.83      24.44  -4.084 0.000171 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -725,14 +932,17 @@ Multiple R-squared:  0.2786,    Adjusted R-squared:  0.2479
 F-statistic: 9.074 on 2 and 47 DF,  p-value: 0.0004653</code></pre>
 </div>
 </div>
-</section>
-<section id="rape-1" class="level5 tab">
-<h5 class="tab anchored" data-anchor-id="rape-1">Rape</h5>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
 <div class="cell">
+<details>
+<summary>ANOVA output for crime: Rape</summary>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>mdl_fit[Crime <span class="sc">==</span> <span class="st">"Rape"</span>, Summary][[<span class="dv">1</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Rate ~ Illiteracy, data = .SD)
+lm(formula = Rate ~ Illiteracy, data = .x)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
@@ -740,9 +950,9 @@ Residuals:
 
 Coefficients:
                  Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        19.061      2.211   8.620 3.08e-11 ***
-Illiteracymedium    2.372      3.280   0.723    0.473    
-Illiteracyhigh      4.292      3.173   1.353    0.183    
+(Intercept)        23.353      2.275  10.263 1.38e-13 ***
+Illiteracymedium   -1.920      3.323  -0.578    0.566    
+Illiteracylow      -4.292      3.173  -1.353    0.183    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -751,27 +961,84 @@ Multiple R-squared:  0.03766,   Adjusted R-squared:  -0.003286
 F-statistic: 0.9198 on 2 and 47 DF,  p-value: 0.4057</code></pre>
 </div>
 </div>
-</section>
-</section>
-<section id="effects-3" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="effects-3">Effects</h4>
-<div class="cell" data-fig.asp="0.5">
-<div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-28-1.svg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
-</section>
-<section id="post-hoc-3" class="level4 tab">
-<h4 class="tab anchored" data-anchor-id="post-hoc-3">Post-hoc</h4>
+</div>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
 <div class="cell" data-fig.asp="0.5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">unnest</span>(arrest), <span class="fu">aes</span>(Rate, Illiteracy)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">notch =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span>,</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">outlier.colour =</span> <span class="st">"grey"</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_jitter</span>(<span class="at">height =</span> <span class="fl">0.25</span>),</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"grey"</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmin =</span> lower,</span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">xmax =</span> upper,</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> fit</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"firebrick"</span>,</span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> eff_df</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(</span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"Set1"</span></span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span></span>
+<span id="cb44-26"><a href="#cb44-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb44-27"><a href="#cb44-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="fu">vars</span>(Crime), <span class="at">scales =</span> <span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-29-1.svg" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+</div>
+<div id="tabset-8-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-4-tab">
+<div class="cell" data-fig.asp="0.5">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tky_df, <span class="fu">aes</span>(diff, terms)) <span class="sc">+</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xmin =</span> lwr, <span class="at">xmax =</span> upr, <span class="at">x =</span> diff),</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"whitesmoke"</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="dv">0</span>,</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">"dashed"</span>,</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"royalblue"</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(</span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Mean"</span>,</span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">palette =</span> <span class="st">"Set1"</span></span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Illiteracy"</span>,</span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Effect difference"</span>,</span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Pairwise comparison of levels of illiteracy"</span></span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expand_limits</span>(<span class="at">x =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="fu">vars</span>(Crime), <span class="at">scales =</span> <span class="st">"free_x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-30-1.svg" class="img-fluid" style="width:100.0%"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>The analysis using both simulated and real datasets demonstrates the effectiveness of ANOVA in uncovering patterns. Simulating data that closely mirrors the USArrests dataset provided a controlled environment for testing and understanding variable interactions.</p>
+<p>When applied to real data, the analysis confirmed significant differences in arrest rates across illiteracy groups, validating the method. By comparing these results, I highlighted how well-designed simulations can replicate real-world scenarios, offering valuable insights and preparing for real-world analyses.</p>
+<p>This approach underscores the utility of combining simulated and real data, showcasing the robustness and reliability of the analytical methods used.</p>
 
 
 </section>

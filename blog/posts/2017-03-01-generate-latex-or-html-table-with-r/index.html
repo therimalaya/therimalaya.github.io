@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Raju Rimal">
+<meta name="author" content="TheRimalaya">
 <meta name="dcterms.date" content="2017-03-01">
 
 <title>Mathatistics - Create LaTeX, HTML and Markdown tables in R</title>
@@ -127,6 +127,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+<script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
 </head>
 
@@ -197,14 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#creating-tables" id="toc-creating-tables" class="nav-link active" data-scroll-target="#creating-tables">Creating Tables</a>
-  <ul class="collapse">
-  <li><a href="#xtable" id="toc-xtable" class="nav-link" data-scroll-target="#xtable">xtable</a></li>
-  <li><a href="#pander" id="toc-pander" class="nav-link" data-scroll-target="#pander">pander</a></li>
-  <li><a href="#knitr" id="toc-knitr" class="nav-link" data-scroll-target="#knitr">knitr</a></li>
-  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables">tables</a></li>
-  </ul></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
+  <li><a href="#dataset-mtcars" id="toc-dataset-mtcars" class="nav-link active" data-scroll-target="#dataset-mtcars">Dataset: <code>mtcars</code></a></li>
   </ul>
 </nav>
     </div>
@@ -223,7 +219,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Raju Rimal </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
@@ -241,19 +237,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>R can do data analysis and it can create beautiful reports. You can build all these documents directly in R using <code>rmarkdown</code> which is powered by powerful <code>pandoc</code>. In lots of occasions, user just wants to get some output format of tables that we can use in other platform such as Microsoft word, LaTeX, HTML or Markdown. Here I will discuss about some packages that helps us doing so including <code>xtable</code>, <code>pander</code>, <code>knitr</code>, <code>stargazer</code> and <code>tables</code>. I will use a sample dataset and a summary output from a linear model fit and convert them into various format. Although each of them need their own elaborate discussion, I will just use very basics of them since one can always go and dig into the help file for any details.</p>
-<section id="creating-tables" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="creating-tables">Creating Tables</h2>
+<section id="dataset-mtcars" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-mtcars">Dataset: <code>mtcars</code></h2>
 <div class="cell">
 
 </div>
-<section id="xtable" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="xtable">xtable</h3>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">xtable</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">pander</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">knitr</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">tables</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-5" role="tab" aria-controls="tabset-1-5" aria-selected="false">gt</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-6-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-6" role="tab" aria-controls="tabset-1-6" aria-selected="false">kableExtra</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>xtable<span class="sc">::</span><span class="fu">print.xtable</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  xtable<span class="sc">::</span><span class="fu">xtable</span>(mtcars), <span class="at">type =</span> <span class="st">'html'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 
-<!-- html table generated in R 4.3.1 by xtable 1.8-4 package -->
-<!-- Tue Sep 19 10:56:58 2023 -->
+<!-- html table generated in R 4.4.1 by xtable 1.8-4 package -->
+<!-- Sun Oct  6 21:19:59 2024 -->
 
 <table border="1">
 <tbody><tr>
@@ -485,11 +486,13 @@ Hornet Sportabout
 </tr>
 
 </tbody></table>
-</section>
-<section id="pander" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="pander">pander</h3>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pander<span class="sc">::</span><span class="fu">pander</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <caption>Table continues below</caption>
@@ -625,11 +628,13 @@ Hornet Sportabout
 </table>
 </div>
 </div>
-</section>
-<section id="knitr" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="knitr">knitr</h3>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
 <colgroup>
@@ -737,11 +742,13 @@ Hornet Sportabout
 </table>
 </div>
 </div>
-</section>
-<section id="tables" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="tables">tables</h3>
+</div>
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <div class="cell">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tables<span class="sc">::</span><span class="fu">as.tabular</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 
 <table class="Rtable">
@@ -837,13 +844,652 @@ Hornet Sportabout
 
 </div>
 </div>
-</section>
-</section>
-<section id="exercise" class="level2">
-<h2 class="anchored" data-anchor-id="exercise">Exercise</h2>
-<ol type="1">
-<li>Use the <code>mtcars</code> dataset, fit a linear model with <code>mpg</code> as response variable and <code>wt</code>,<code>hp</code> and <code>disp</code> as predictor variable. Generate a LaTeX table and HTML table for the fitted model using xtable.</li>
-</ol>
+</div>
+<div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<div id="tlzapkzdmk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tlzapkzdmk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tlzapkzdmk thead, #tlzapkzdmk tbody, #tlzapkzdmk tfoot, #tlzapkzdmk tr, #tlzapkzdmk td, #tlzapkzdmk th {
+  border-style: none;
+}
+
+#tlzapkzdmk p {
+  margin: 0;
+  padding: 0;
+}
+
+#tlzapkzdmk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tlzapkzdmk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tlzapkzdmk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tlzapkzdmk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tlzapkzdmk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tlzapkzdmk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tlzapkzdmk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tlzapkzdmk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tlzapkzdmk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tlzapkzdmk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tlzapkzdmk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tlzapkzdmk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tlzapkzdmk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tlzapkzdmk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tlzapkzdmk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tlzapkzdmk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tlzapkzdmk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tlzapkzdmk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tlzapkzdmk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tlzapkzdmk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tlzapkzdmk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tlzapkzdmk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tlzapkzdmk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tlzapkzdmk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tlzapkzdmk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tlzapkzdmk .gt_left {
+  text-align: left;
+}
+
+#tlzapkzdmk .gt_center {
+  text-align: center;
+}
+
+#tlzapkzdmk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tlzapkzdmk .gt_font_normal {
+  font-weight: normal;
+}
+
+#tlzapkzdmk .gt_font_bold {
+  font-weight: bold;
+}
+
+#tlzapkzdmk .gt_font_italic {
+  font-style: italic;
+}
+
+#tlzapkzdmk .gt_super {
+  font-size: 65%;
+}
+
+#tlzapkzdmk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tlzapkzdmk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tlzapkzdmk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tlzapkzdmk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tlzapkzdmk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tlzapkzdmk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tlzapkzdmk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#tlzapkzdmk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#tlzapkzdmk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="mpg">mpg</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="disp">disp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="hp">hp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="drat">drat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="qsec">qsec</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="vs">vs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="am">am</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="gear">gear</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="carb">carb</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="mpg" class="gt_row gt_right">21.0</td>
+<td headers="cyl" class="gt_row gt_right">6</td>
+<td headers="disp" class="gt_row gt_right">160</td>
+<td headers="hp" class="gt_row gt_right">110</td>
+<td headers="drat" class="gt_row gt_right">3.90</td>
+<td headers="wt" class="gt_row gt_right">2.620</td>
+<td headers="qsec" class="gt_row gt_right">16.46</td>
+<td headers="vs" class="gt_row gt_right">0</td>
+<td headers="am" class="gt_row gt_right">1</td>
+<td headers="gear" class="gt_row gt_right">4</td>
+<td headers="carb" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="mpg" class="gt_row gt_right">21.0</td>
+<td headers="cyl" class="gt_row gt_right">6</td>
+<td headers="disp" class="gt_row gt_right">160</td>
+<td headers="hp" class="gt_row gt_right">110</td>
+<td headers="drat" class="gt_row gt_right">3.90</td>
+<td headers="wt" class="gt_row gt_right">2.875</td>
+<td headers="qsec" class="gt_row gt_right">17.02</td>
+<td headers="vs" class="gt_row gt_right">0</td>
+<td headers="am" class="gt_row gt_right">1</td>
+<td headers="gear" class="gt_row gt_right">4</td>
+<td headers="carb" class="gt_row gt_right">4</td></tr>
+    <tr><td headers="mpg" class="gt_row gt_right">22.8</td>
+<td headers="cyl" class="gt_row gt_right">4</td>
+<td headers="disp" class="gt_row gt_right">108</td>
+<td headers="hp" class="gt_row gt_right">93</td>
+<td headers="drat" class="gt_row gt_right">3.85</td>
+<td headers="wt" class="gt_row gt_right">2.320</td>
+<td headers="qsec" class="gt_row gt_right">18.61</td>
+<td headers="vs" class="gt_row gt_right">1</td>
+<td headers="am" class="gt_row gt_right">1</td>
+<td headers="gear" class="gt_row gt_right">4</td>
+<td headers="carb" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="mpg" class="gt_row gt_right">21.4</td>
+<td headers="cyl" class="gt_row gt_right">6</td>
+<td headers="disp" class="gt_row gt_right">258</td>
+<td headers="hp" class="gt_row gt_right">110</td>
+<td headers="drat" class="gt_row gt_right">3.08</td>
+<td headers="wt" class="gt_row gt_right">3.215</td>
+<td headers="qsec" class="gt_row gt_right">19.44</td>
+<td headers="vs" class="gt_row gt_right">1</td>
+<td headers="am" class="gt_row gt_right">0</td>
+<td headers="gear" class="gt_row gt_right">3</td>
+<td headers="carb" class="gt_row gt_right">1</td></tr>
+    <tr><td headers="mpg" class="gt_row gt_right">18.7</td>
+<td headers="cyl" class="gt_row gt_right">8</td>
+<td headers="disp" class="gt_row gt_right">360</td>
+<td headers="hp" class="gt_row gt_right">175</td>
+<td headers="drat" class="gt_row gt_right">3.15</td>
+<td headers="wt" class="gt_row gt_right">3.440</td>
+<td headers="qsec" class="gt_row gt_right">17.02</td>
+<td headers="vs" class="gt_row gt_right">0</td>
+<td headers="am" class="gt_row gt_right">0</td>
+<td headers="gear" class="gt_row gt_right">3</td>
+<td headers="carb" class="gt_row gt_right">2</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-1-6" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-6-tab">
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kbl</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:right;"> mpg </th>
+   <th style="text-align:right;"> cyl </th>
+   <th style="text-align:right;"> disp </th>
+   <th style="text-align:right;"> hp </th>
+   <th style="text-align:right;"> drat </th>
+   <th style="text-align:right;"> wt </th>
+   <th style="text-align:right;"> qsec </th>
+   <th style="text-align:right;"> vs </th>
+   <th style="text-align:right;"> am </th>
+   <th style="text-align:right;"> gear </th>
+   <th style="text-align:right;"> carb </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 </td>
+   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.90 </td>
+   <td style="text-align:right;"> 2.620 </td>
+   <td style="text-align:right;"> 16.46 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mazda RX4 Wag </td>
+   <td style="text-align:right;"> 21.0 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 160 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.90 </td>
+   <td style="text-align:right;"> 2.875 </td>
+   <td style="text-align:right;"> 17.02 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Datsun 710 </td>
+   <td style="text-align:right;"> 22.8 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 108 </td>
+   <td style="text-align:right;"> 93 </td>
+   <td style="text-align:right;"> 3.85 </td>
+   <td style="text-align:right;"> 2.320 </td>
+   <td style="text-align:right;"> 18.61 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 4 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet 4 Drive </td>
+   <td style="text-align:right;"> 21.4 </td>
+   <td style="text-align:right;"> 6 </td>
+   <td style="text-align:right;"> 258 </td>
+   <td style="text-align:right;"> 110 </td>
+   <td style="text-align:right;"> 3.08 </td>
+   <td style="text-align:right;"> 3.215 </td>
+   <td style="text-align:right;"> 19.44 </td>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 1 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Hornet Sportabout </td>
+   <td style="text-align:right;"> 18.7 </td>
+   <td style="text-align:right;"> 8 </td>
+   <td style="text-align:right;"> 360 </td>
+   <td style="text-align:right;"> 175 </td>
+   <td style="text-align:right;"> 3.15 </td>
+   <td style="text-align:right;"> 3.440 </td>
+   <td style="text-align:right;"> 17.02 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 0 </td>
+   <td style="text-align:right;"> 3 </td>
+   <td style="text-align:right;"> 2 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ## Exercise
+
+  1. Use the `mtcars` dataset, fit a linear model with `mpg` as response variable and `wt`,`hp` and `disp` as predictor variable. Generate a LaTeX table and HTML table for the fitted model using xtable. -->
 
 
 </section>

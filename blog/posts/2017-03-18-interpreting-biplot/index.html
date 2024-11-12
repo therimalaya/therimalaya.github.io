@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="therimalaya">
+<meta name="author" content="TheRimalaya">
 <meta name="dcterms.date" content="2017-03-18">
 
-<title>Mathatistics - Interpreting Biplot</title>
+<title>Mathatistics - Interpretating Biplot</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -200,6 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#dataset-usarrest" id="toc-dataset-usarrest" class="nav-link active" data-scroll-target="#dataset-usarrest">Dataset: USArrest</a></li>
   <li><a href="#principal-component-analysis" id="toc-principal-component-analysis" class="nav-link" data-scroll-target="#principal-component-analysis">Principal component analysis</a></li>
+  <li><a href="#explore-data-using-biplot" id="toc-explore-data-using-biplot" class="nav-link" data-scroll-target="#explore-data-using-biplot">Explore data using biplot</a></li>
   </ul>
 </nav>
     </div>
@@ -208,11 +209,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Interpreting Biplot</h1>
+<h1 class="title">Interpretating Biplot</h1>
+<p class="subtitle lead">A tool for exploring multivariate data</p>
   <div class="quarto-categories">
     <div class="quarto-category">statistics</div>
     <div class="quarto-category">machine learning</div>
-    <div class="quarto-category">mathematics</div>
+    <div class="quarto-category">data science</div>
   </div>
   </div>
 
@@ -223,7 +225,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>therimalaya </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
@@ -234,6 +236,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 6, 2024</p>
+    </div>
+  </div>
     
   </div>
   
@@ -430,6 +438,9 @@ Cumulative Proportion  0.6201 0.8675 0.95664 1.00000</code></pre>
 </div>
 </div>
 </div>
+</section>
+<section id="explore-data-using-biplot" class="level2">
+<h2 class="anchored" data-anchor-id="explore-data-using-biplot">Explore data using biplot</h2>
 <p>Now lets compare the scores from the first two components, observations and variables in the data matrix. From the <code>USArrests</code> data, lets look at the top five states with highest and lowest arrest for each of these crimes.</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">States with highest arrests</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">States with lowest arrests</a></li></ul>

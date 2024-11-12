@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="therimalaya">
+<meta name="author" content="TheRimalaya">
 <meta name="dcterms.date" content="2017-03-05">
 
 <title>Mathatistics - Model assessment and variable selection</title>
@@ -200,13 +200,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#best-subset-method" id="toc-best-subset-method" class="nav-link active" data-scroll-target="#best-subset-method">Best subset method</a>
   <ul class="collapse">
-  <li><a href="#summaries-of-the-models" id="toc-summaries-of-the-models" class="nav-link" data-scroll-target="#summaries-of-the-models">Summaries of the models</a>
-  <ul class="collapse">
-  <li><a href="#variable-model" id="toc-variable-model" class="nav-link" data-scroll-target="#variable-model">3 Variable Model</a></li>
-  <li><a href="#variable-model-1" id="toc-variable-model-1" class="nav-link" data-scroll-target="#variable-model-1">5 Variable Model</a></li>
-  </ul></li>
+  <li><a href="#completefull-model" id="toc-completefull-model" class="nav-link" data-scroll-target="#completefull-model">Complete/full model</a></li>
+  <li><a href="#selecting-best-subset" id="toc-selecting-best-subset" class="nav-link" data-scroll-target="#selecting-best-subset">Selecting best subset</a></li>
+  <li><a href="#model-summaries" id="toc-model-summaries" class="nav-link" data-scroll-target="#model-summaries">Model summaries</a></li>
   </ul></li>
   <li><a href="#step-wise-selection" id="toc-step-wise-selection" class="nav-link" data-scroll-target="#step-wise-selection">Step-wise selection</a></li>
+  <li><a href="#comparing-best-subset-and-stepwise-selection-method" id="toc-comparing-best-subset-and-stepwise-selection-method" class="nav-link" data-scroll-target="#comparing-best-subset-and-stepwise-selection-method">Comparing best subset and stepwise selection method</a>
+  <ul class="collapse">
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -216,6 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Model assessment and variable selection</h1>
+<p class="subtitle lead">Making simpler model for complex analysis</p>
 </div>
 
 
@@ -225,7 +228,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>therimalaya </p>
+             <p>TheRimalaya </p>
           </div>
   </div>
     
@@ -236,28 +239,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
   
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 8, 2024</p>
+    </div>
+  </div>
     
   </div>
   
 
 </header>
 
-<p>Whenever we add a variable in our model, we are not only adding information but also noise that clutter the information and makes the analysis difficult. Simpler model is always better since they contain less noise and they are easy to interpret. In real life, things are not that simple. But relax, there are statistical methods that make model assessment and perform variable selection and gives optimal set of variables for us.</p>
-<p>Here, I will discuss how to compare model to know which one is better than other. This model assessment help us to select a model with few variable that can perform as good as a model with large number of variables. Here comes the idea of variable selection. I will try to explain these concepts with an example. For the example I will use <code>mtcars</code> data set which is available in R by default. Following are two well know procedure of selecting subset of variables,</p>
+<p>Adding new variables to a model can introduce noise, complicating analysis. Simpler models tend to be better because they’re easier to understand and contain less noise. Statistical methods can help us choose the best variables and improve our models.</p>
+<p>This tutorial will show you how to compare models to find the best one. Using the mtcars dataset available in R, it will explore methods for variable selection that help build efficient models with fewer variables. Here are two popular techniques for selecting the best subset of variables:</p>
 <section id="best-subset-method" class="level1">
 <h1>Best subset method</h1>
-<p>Best subset procedure selects best regression model by running all possible subset of variables. When number of variable is large, the possible combinations of candidate subset become huge. For example, for 2 variable case (<span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span>), there are 4 possible subsets – 1 with no predictors, 2 with single predictors and 1 with both predictors. Similarly, if there are 4 variable case (<span class="math inline">\(X_1, X_2, X_3\)</span> and <span class="math inline">\(X_4\)</span>), there will be 16 possible subset. In general, fitting all possible subset of large number of predictors becomes computationally intensive.</p>
-<p>Once, all the possible model is fitted, they are compared based on some criteria. This model assessment may based on various criteria such as coefficient of determination (<span class="math inline">\(R^2\)</span>), adjusted <span class="math inline">\(R^2\)</span>, Mallow’s CP, AIC and BIC. In R, <a href="https://www.rdocumentation.org/packages/leaps/versions/2.1-1">leaps</a> package can be used for performing this operation. Lets dig into our <code>mtcars</code> example.</p>
+<p>The best subset selection procedure identifies the optimal regression model by evaluating all possible subsets of variables. As the number of variables increases, the number of potential combinations grows exponentially. For instance, with 2 variables, there are 4 possible subsets: one with no predictors, two with single predictors, and one with both predictors. With 4 variables, the number of possible subsets jumps to 16. Consequently, fitting all possible subsets of a large number of predictors can become computationally intensive.</p>
+<p>After fitting all possible models, they are compared based on various criteria. These criteria may include the coefficient of determination (<span class="math inline">\(R^2\)</span>), adjusted <span class="math inline">\(R^2\)</span>, Mallow’s CP, AIC, and BIC. In R, we can use the <a href="https://www.rdocumentation.org/packages/leaps/versions/2.1-1">leaps</a> package for this task. Let’s look at the <code>mtcars</code> example to see this in action.</p>
+<section id="completefull-model" class="level2">
+<h2 class="anchored" data-anchor-id="completefull-model">Complete/full model</h2>
+<div class="cell" data-layout-align="center">
 <details>
-<summary>
-<p><strong>Fitting a complete model:</strong></p>
-<div class="cell" data-layout-align="center">
+<summary>Fitting a complete model</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>full.model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>smry <span class="ot">&lt;-</span> <span class="fu">summary</span>(full.model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</summary>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>smry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>smry <span class="ot">&lt;-</span> <span class="fu">summary</span>(full.model)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>smry</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -288,229 +296,670 @@ Multiple R-squared:  0.869, Adjusted R-squared:  0.8066
 F-statistic: 13.93 on 10 and 21 DF,  p-value: 3.793e-07</code></pre>
 </div>
 </div>
-</details>
 <p>Here, we can see that the model has explained almost 86.9 percent of variation present in <code>mpg</code>, but non of the predictors are significant. This is a hint of having unnecessary variables that has increased model error. Using <code>regsubsets</code> function from <code>leaps</code> package, we can select a subset of predictors based on some criteria.</p>
+</section>
+<section id="selecting-best-subset" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-best-subset">Selecting best subset</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>best.subset <span class="ot">&lt;-</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">regsubsets</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x      =</span> mtcars[, <span class="sc">-</span><span class="dv">1</span>],     <span class="co"># predictor variables</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y      =</span> mtcars[, <span class="dv">1</span>],      <span class="co"># response variable (mpg)</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">nbest  =</span> <span class="dv">1</span>,                <span class="co"># top 1 best model</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nvmax  =</span> <span class="fu">ncol</span>(mtcars) <span class="sc">-</span> <span class="dv">1</span>, <span class="co"># max. number of variable (all)</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">"exhaustive"</span>      <span class="co"># search all possible subset</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>bs.smry <span class="ot">&lt;-</span> <span class="fu">summary</span>(best.subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Selecting best subset model</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>best.subset <span class="ot">&lt;-</span> <span class="fu">regsubsets</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x      =</span> mtcars[, <span class="sc">-</span><span class="dv">1</span>], <span class="co"># predictor variables</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y      =</span> mtcars[, <span class="dv">1</span>], <span class="co"># response variable (mpg)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">nbest  =</span> <span class="dv">1</span>, <span class="co"># top 1 best model</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">nvmax  =</span> <span class="fu">ncol</span>(mtcars) <span class="sc">-</span> <span class="dv">1</span>, <span class="co"># max. number of variable (all)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">"exhaustive"</span> <span class="co"># search all possible subset</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>bs.smry <span class="ot">&lt;-</span> <span class="fu">summary</span>(best.subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>We can combine following summary output with a plot created from additional estimates to get some insight. These estimates are also found in the summary object. The output show which variables are included with a star(<code>*</code>).</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pander<span class="sc">::</span><span class="fu">pander</span>(bs.smry<span class="sc">$</span>outmat)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>bs.est <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">nvar   =</span> <span class="dv">1</span><span class="sc">:</span>(best.subset<span class="sc">$</span>nvmax <span class="sc">-</span> <span class="dv">1</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">adj.r2 =</span> <span class="fu">round</span>(bs.smry<span class="sc">$</span>adjr2, <span class="dv">3</span>),</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">cp     =</span> <span class="fu">round</span>(bs.smry<span class="sc">$</span>cp, <span class="dv">3</span>),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">bic    =</span> <span class="fu">round</span>(bs.smry<span class="sc">$</span>bic, <span class="dv">3</span>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>bs.est <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">gather</span>(bs.est, <span class="st">"estimates"</span>, <span class="st">"value"</span>, <span class="sc">-</span>nvar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Summary of best subset</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>bs.smry<span class="sc">$</span>outmat <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tidytable</span>(<span class="at">.keep_rownames =</span> <span class="st">"model"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">gt</span>(<span class="at">rowname_col =</span> <span class="st">"model"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_vertical_padding</span>(<span class="fl">0.5</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">opt_row_striping</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  gt<span class="sc">::</span><span class="fu">tab_options</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">stub.font.weight =</span> <span class="st">"bold"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>bs.est <span class="ot">&lt;-</span> <span class="fu">tidytable</span>(</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">nvar   =</span> <span class="dv">1</span><span class="sc">:</span>(best.subset<span class="sc">$</span>nvmax <span class="sc">-</span> <span class="dv">1</span>),</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">adj.r2 =</span> <span class="fu">round</span>(bs.smry<span class="sc">$</span>adjr2, <span class="dv">3</span>),</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">cp     =</span> <span class="fu">round</span>(bs.smry<span class="sc">$</span>cp, <span class="dv">3</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">bic    =</span> <span class="fu">round</span>(bs.smry<span class="sc">$</span>bic, <span class="dv">3</span>)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> <span class="fu">c</span>(adj.r2<span class="sc">:</span>bic),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">"estimates"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 7%">
-<col style="width: 9%">
-<col style="width: 6%">
-<col style="width: 9%">
-<col style="width: 6%">
-<col style="width: 9%">
-<col style="width: 6%">
-<col style="width: 6%">
-<col style="width: 9%">
-<col style="width: 9%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">&nbsp;</th>
-<th style="text-align: center;">cyl</th>
-<th style="text-align: center;">disp</th>
-<th style="text-align: center;">hp</th>
-<th style="text-align: center;">drat</th>
-<th style="text-align: center;">wt</th>
-<th style="text-align: center;">qsec</th>
-<th style="text-align: center;">vs</th>
-<th style="text-align: center;">am</th>
-<th style="text-align: center;">gear</th>
-<th style="text-align: center;">carb</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;"><strong>1 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>2 ( 1 )</strong></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>3 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>4 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>5 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>6 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>7 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>8 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;"><strong>9 ( 1 )</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;"><strong>10 ( 1 )</strong></td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-<td style="text-align: center;">*</td>
-</tr>
-</tbody>
+
+<div id="qeivkqyifu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qeivkqyifu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qeivkqyifu thead, #qeivkqyifu tbody, #qeivkqyifu tfoot, #qeivkqyifu tr, #qeivkqyifu td, #qeivkqyifu th {
+  border-style: none;
+}
+
+#qeivkqyifu p {
+  margin: 0;
+  padding: 0;
+}
+
+#qeivkqyifu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qeivkqyifu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qeivkqyifu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 1px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qeivkqyifu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 3.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qeivkqyifu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qeivkqyifu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qeivkqyifu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qeivkqyifu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qeivkqyifu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qeivkqyifu .gt_group_heading {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qeivkqyifu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qeivkqyifu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qeivkqyifu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qeivkqyifu .gt_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qeivkqyifu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qeivkqyifu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qeivkqyifu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qeivkqyifu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qeivkqyifu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qeivkqyifu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qeivkqyifu .gt_last_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qeivkqyifu .gt_first_grand_summary_row {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_last_grand_summary_row_top {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qeivkqyifu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qeivkqyifu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qeivkqyifu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qeivkqyifu .gt_left {
+  text-align: left;
+}
+
+#qeivkqyifu .gt_center {
+  text-align: center;
+}
+
+#qeivkqyifu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qeivkqyifu .gt_font_normal {
+  font-weight: normal;
+}
+
+#qeivkqyifu .gt_font_bold {
+  font-weight: bold;
+}
+
+#qeivkqyifu .gt_font_italic {
+  font-style: italic;
+}
+
+#qeivkqyifu .gt_super {
+  font-size: 65%;
+}
+
+#qeivkqyifu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qeivkqyifu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qeivkqyifu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qeivkqyifu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qeivkqyifu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qeivkqyifu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qeivkqyifu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#qeivkqyifu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qeivkqyifu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a::stub"></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="cyl">cyl</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="disp">disp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="hp">hp</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="drat">drat</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="wt">wt</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="qsec">qsec</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="vs">vs</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="am">am</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="gear">gear</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="carb">carb</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><th id="stub_1_1" scope="row" class="gt_row gt_right gt_stub">1  ( 1 )</th>
+<td headers="stub_1_1 cyl" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 disp" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 hp" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 drat" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 wt" class="gt_row gt_right">*</td>
+<td headers="stub_1_1 qsec" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 vs" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 am" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 gear" class="gt_row gt_right"> </td>
+<td headers="stub_1_1 carb" class="gt_row gt_right"> </td></tr>
+    <tr><th id="stub_1_2" scope="row" class="gt_row gt_right gt_stub">2  ( 1 )</th>
+<td headers="stub_1_2 cyl" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_2 disp" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 hp" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 drat" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 wt" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_2 qsec" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 vs" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 am" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 gear" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_2 carb" class="gt_row gt_right gt_striped"> </td></tr>
+    <tr><th id="stub_1_3" scope="row" class="gt_row gt_right gt_stub">3  ( 1 )</th>
+<td headers="stub_1_3 cyl" class="gt_row gt_right"> </td>
+<td headers="stub_1_3 disp" class="gt_row gt_right"> </td>
+<td headers="stub_1_3 hp" class="gt_row gt_right"> </td>
+<td headers="stub_1_3 drat" class="gt_row gt_right"> </td>
+<td headers="stub_1_3 wt" class="gt_row gt_right">*</td>
+<td headers="stub_1_3 qsec" class="gt_row gt_right">*</td>
+<td headers="stub_1_3 vs" class="gt_row gt_right"> </td>
+<td headers="stub_1_3 am" class="gt_row gt_right">*</td>
+<td headers="stub_1_3 gear" class="gt_row gt_right"> </td>
+<td headers="stub_1_3 carb" class="gt_row gt_right"> </td></tr>
+    <tr><th id="stub_1_4" scope="row" class="gt_row gt_right gt_stub">4  ( 1 )</th>
+<td headers="stub_1_4 cyl" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_4 disp" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_4 hp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_4 drat" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_4 wt" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_4 qsec" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_4 vs" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_4 am" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_4 gear" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_4 carb" class="gt_row gt_right gt_striped"> </td></tr>
+    <tr><th id="stub_1_5" scope="row" class="gt_row gt_right gt_stub">5  ( 1 )</th>
+<td headers="stub_1_5 cyl" class="gt_row gt_right"> </td>
+<td headers="stub_1_5 disp" class="gt_row gt_right">*</td>
+<td headers="stub_1_5 hp" class="gt_row gt_right">*</td>
+<td headers="stub_1_5 drat" class="gt_row gt_right"> </td>
+<td headers="stub_1_5 wt" class="gt_row gt_right">*</td>
+<td headers="stub_1_5 qsec" class="gt_row gt_right">*</td>
+<td headers="stub_1_5 vs" class="gt_row gt_right"> </td>
+<td headers="stub_1_5 am" class="gt_row gt_right">*</td>
+<td headers="stub_1_5 gear" class="gt_row gt_right"> </td>
+<td headers="stub_1_5 carb" class="gt_row gt_right"> </td></tr>
+    <tr><th id="stub_1_6" scope="row" class="gt_row gt_right gt_stub">6  ( 1 )</th>
+<td headers="stub_1_6 cyl" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_6 disp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_6 hp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_6 drat" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_6 wt" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_6 qsec" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_6 vs" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_6 am" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_6 gear" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_6 carb" class="gt_row gt_right gt_striped"> </td></tr>
+    <tr><th id="stub_1_7" scope="row" class="gt_row gt_right gt_stub">7  ( 1 )</th>
+<td headers="stub_1_7 cyl" class="gt_row gt_right"> </td>
+<td headers="stub_1_7 disp" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 hp" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 drat" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 wt" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 qsec" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 vs" class="gt_row gt_right"> </td>
+<td headers="stub_1_7 am" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 gear" class="gt_row gt_right">*</td>
+<td headers="stub_1_7 carb" class="gt_row gt_right"> </td></tr>
+    <tr><th id="stub_1_8" scope="row" class="gt_row gt_right gt_stub">8  ( 1 )</th>
+<td headers="stub_1_8 cyl" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_8 disp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 hp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 drat" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 wt" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 qsec" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 vs" class="gt_row gt_right gt_striped"> </td>
+<td headers="stub_1_8 am" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 gear" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_8 carb" class="gt_row gt_right gt_striped">*</td></tr>
+    <tr><th id="stub_1_9" scope="row" class="gt_row gt_right gt_stub">9  ( 1 )</th>
+<td headers="stub_1_9 cyl" class="gt_row gt_right"> </td>
+<td headers="stub_1_9 disp" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 hp" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 drat" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 wt" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 qsec" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 vs" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 am" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 gear" class="gt_row gt_right">*</td>
+<td headers="stub_1_9 carb" class="gt_row gt_right">*</td></tr>
+    <tr><th id="stub_1_10" scope="row" class="gt_row gt_right gt_stub">10  ( 1 )</th>
+<td headers="stub_1_10 cyl" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 disp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 hp" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 drat" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 wt" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 qsec" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 vs" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 am" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 gear" class="gt_row gt_right gt_striped">*</td>
+<td headers="stub_1_10 carb" class="gt_row gt_right gt_striped">*</td></tr>
+  </tbody>
+  
+  
 </table>
 </div>
 </div>
-<details>
-<summary>
-We can make a plot to visualise the properties of these individual models and select a model with specific number of predictor that can give minimum BIC, or minimum CP or maximum adjusted rsquared.
-</summary>
-<div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>bs.est.select <span class="ot">&lt;-</span> bs.est <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(estimates) <span class="sc">%&gt;%</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    (value <span class="sc">==</span> <span class="fu">max</span>(value) <span class="sc">&amp;</span> estimates <span class="sc">==</span> <span class="st">"adj.r2"</span>) <span class="sc">|</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    (value <span class="sc">==</span> <span class="fu">min</span>(value) <span class="sc">&amp;</span> estimates <span class="sc">!=</span> <span class="st">"adj.r2"</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>assessment.plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(bs.est, <span class="fu">aes</span>(nvar, value, <span class="at">color =</span> estimates)) <span class="sc">+</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"lightgray"</span>) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>estimates, <span class="at">scale =</span> <span class="st">'free_y'</span>) <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of variables in the model"</span>,</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Value of Estimate"</span>) <span class="sc">+</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> bs.est.select, <span class="at">fill =</span> <span class="st">"red"</span>,</span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"nvar:"</span>, nvar, <span class="st">'</span><span class="sc">\n</span><span class="st">'</span>, <span class="st">"value:"</span>, value)),</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> bs.est.select, </span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">3</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>),</span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">family =</span> <span class="st">"monospace"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</details>
+<p>We can make a plot to visualise the properties of these individual models and select a model with specific number of predictor that can give minimum BIC, or minimum CP or maximum adjusted rsquared.</p>
 <div class="cell" data-layout-align="center">
+<details>
+<summary>Plotting Adj-Rsq, BIC, and CP</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bs.est.select <span class="ot">&lt;-</span> bs.est <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(estimates) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    (value <span class="sc">==</span> <span class="fu">max</span>(value) <span class="sc">&amp;</span> estimates <span class="sc">==</span> <span class="st">"adj.r2"</span>) <span class="sc">|</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      (value <span class="sc">==</span> <span class="fu">min</span>(value) <span class="sc">&amp;</span> estimates <span class="sc">!=</span> <span class="st">"adj.r2"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(bs.est, <span class="fu">aes</span>(nvar, value, <span class="at">color =</span> estimates)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"lightgray"</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>estimates, <span class="at">scale =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of variables in the model"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Value of Estimate"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> bs.est.select, <span class="at">fill =</span> <span class="st">"red"</span>,</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">21</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="st">"nvar:"</span>, nvar, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="st">"value:"</span>, value)),</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> bs.est.select,</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">3</span>, <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">family =</span> <span class="st">"monospace"</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/assessment.plot-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p><img src="index_files/figure-html/plt-best-subset-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Adj-Rsq, BIC, and Mallows’ CP for models with increasing number of predictors</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -518,15 +967,24 @@ We can make a plot to visualise the properties of these individual models and se
 <p>From these plots, we see that with 5 variables we will obtain maximum adjusted coefficient of determination (<span class="math inline">\(R^2\)</span>). Similarly, both BIC and Mallow CP will be minimum for models with only 3 predictor variables. With the help of table above, we can identify these variables. From the table, row corresponding to 3 variables, we see that the three predictors are <code>wt</code>, <code>qsec</code> and <code>am</code>. To obtain maximum adjusted <span class="math inline">\(R^2\)</span>, <code>disp</code> and <code>hp</code> should be added to the previous 3 predictors.</p>
 <p>This way, we can reduce a model to few variables optimising different assessment criteria. Let look at the fit of these reduced models:</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> qsec <span class="sc">+</span> am, <span class="at">data =</span> mtcars)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>model<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(model<span class="fl">.3</span>, . <span class="sc">~</span> . <span class="sc">+</span> disp <span class="sc">+</span> hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Reduced Model</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> qsec <span class="sc">+</span> am, <span class="at">data =</span> mtcars)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>model<span class="fl">.5</span> <span class="ot">&lt;-</span> <span class="fu">update</span>(model<span class="fl">.3</span>, . <span class="sc">~</span> . <span class="sc">+</span> disp <span class="sc">+</span> hp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
-<section id="summaries-of-the-models" class="level2 tabset">
-<h2 class="tabset anchored" data-anchor-id="summaries-of-the-models">Summaries of the models</h2>
-<section id="variable-model" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="variable-model">3 Variable Model</h3>
+</section>
+<section id="model-summaries" class="level2">
+<h2 class="anchored" data-anchor-id="model-summaries">Model summaries</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">3 Variable Model</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">5 Variable Model</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Model summary of model with 3 variables</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model<span class="fl">.3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -550,11 +1008,13 @@ Multiple R-squared:  0.8497,    Adjusted R-squared:  0.8336
 F-statistic: 52.75 on 3 and 28 DF,  p-value: 1.21e-11</code></pre>
 </div>
 </div>
-</section>
-<section id="variable-model-1" class="level3 tab">
-<h3 class="tab anchored" data-anchor-id="variable-model-1">5 Variable Model</h3>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Model summary of model with 5 variables</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -580,11 +1040,17 @@ Multiple R-squared:  0.8637,    Adjusted R-squared:  0.8375
 F-statistic: 32.96 on 5 and 26 DF,  p-value: 1.844e-10</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <p>From these output, it seems that although adjusted <span class="math inline">\(R^2\)</span> has increased in later model, the additional variables are not significant. we can compare these two model with an ANOVA test which compares the residual variance between these two models. We can write the hypothesis as,</p>
 <p><span class="math inline">\(H_0:\)</span> <em>Model 1</em> and <em>Model 2</em> are same vs <span class="math inline">\(H_1:\)</span> <em>Model 1</em> and <em>Model 2</em> are different</p>
 <p>where, <em>Model 1</em> and <em>Model 2</em> represents 3 variable and 5 variable model</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model<span class="fl">.3</span>, model<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Anova comparing Model with 3 and 5 variables</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(model<span class="fl">.3</span>, model<span class="fl">.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -598,22 +1064,277 @@ Model 2: mpg ~ wt + qsec + am + disp + hp
 <p>The ANOVA result can not reject the hypothesis so claim that <em>Model 1</em> and <em>Model 2</em> are same. So, it is better to select the simpler model with 3 predictor variables.</p>
 </section>
 </section>
-</section>
 <section id="step-wise-selection" class="level1">
 <h1>Step-wise selection</h1>
-<p>When the number of increases, a exhaustive search of all possible subset is computationally intensive. This disadvantage can be overcome by using step-wise selection procedure. A step-wise variable selection procedure can be,</p>
-<dl>
-<dt><strong>Forward Selection Procedure</strong></dt>
-<dd>
-In this procedure …
-</dd>
-<dt><strong>Backward Elimination Procedure</strong></dt>
-<dd>
-Here …
-</dd>
-</dl>
+<p>In this section, we’ll explore another type of variable selection method, similar yet distinct from best subset selection method. We will explore forward and backward stepwise selection methods using the <code>mtcars</code> dataset in R. We’ll briefly compare these methods and provide insights into their application.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Forward Selection</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Backward Selection</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Forward selection starts with an empty model, and predictors are added one by one based on a selection criterion, typically the Akaike Information Criterion (AIC).</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Forward selection</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial empty model</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>initial_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> <span class="dv">1</span>, <span class="at">data =</span> mtcars)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model with all predictors</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise forward selection</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>forward_model <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">stepAIC</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  initial_model, </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction =</span> <span class="st">"forward"</span>, </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">scope =</span> <span class="fu">list</span>(<span class="at">lower =</span> initial_model, <span class="at">upper =</span> full_model)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the forward selection model</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(forward_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=115.94
+mpg ~ 1
+
+       Df Sum of Sq     RSS     AIC
++ wt    1    847.73  278.32  73.217
++ cyl   1    817.71  308.33  76.494
++ disp  1    808.89  317.16  77.397
++ hp    1    678.37  447.67  88.427
++ drat  1    522.48  603.57  97.988
++ vs    1    496.53  629.52  99.335
++ am    1    405.15  720.90 103.672
++ carb  1    341.78  784.27 106.369
++ gear  1    259.75  866.30 109.552
++ qsec  1    197.39  928.66 111.776
+&lt;none&gt;              1126.05 115.943
+
+Step:  AIC=73.22
+mpg ~ wt
+
+       Df Sum of Sq    RSS    AIC
++ cyl   1    87.150 191.17 63.198
++ hp    1    83.274 195.05 63.840
++ qsec  1    82.858 195.46 63.908
++ vs    1    54.228 224.09 68.283
++ carb  1    44.602 233.72 69.628
++ disp  1    31.639 246.68 71.356
+&lt;none&gt;              278.32 73.217
++ drat  1     9.081 269.24 74.156
++ gear  1     1.137 277.19 75.086
++ am    1     0.002 278.32 75.217
+
+Step:  AIC=63.2
+mpg ~ wt + cyl
+
+       Df Sum of Sq    RSS    AIC
++ hp    1   14.5514 176.62 62.665
++ carb  1   13.7724 177.40 62.805
+&lt;none&gt;              191.17 63.198
++ qsec  1   10.5674 180.60 63.378
++ gear  1    3.0281 188.14 64.687
++ disp  1    2.6796 188.49 64.746
++ vs    1    0.7059 190.47 65.080
++ am    1    0.1249 191.05 65.177
++ drat  1    0.0010 191.17 65.198
+
+Step:  AIC=62.66
+mpg ~ wt + cyl + hp
+
+       Df Sum of Sq    RSS    AIC
+&lt;none&gt;              176.62 62.665
++ am    1    6.6228 170.00 63.442
++ disp  1    6.1762 170.44 63.526
++ carb  1    2.5187 174.10 64.205
++ drat  1    2.2453 174.38 64.255
++ qsec  1    1.4010 175.22 64.410
++ gear  1    0.8558 175.76 64.509
++ vs    1    0.0599 176.56 64.654
+
+Call:
+lm(formula = mpg ~ wt + cyl + hp, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.9290 -1.5598 -0.5311  1.1850  5.8986 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 38.75179    1.78686  21.687  &lt; 2e-16 ***
+wt          -3.16697    0.74058  -4.276 0.000199 ***
+cyl         -0.94162    0.55092  -1.709 0.098480 .  
+hp          -0.01804    0.01188  -1.519 0.140015    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.512 on 28 degrees of freedom
+Multiple R-squared:  0.8431,    Adjusted R-squared:  0.8263 
+F-statistic: 50.17 on 3 and 28 DF,  p-value: 2.184e-11</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Backward selection begins with the full model, removing one predictor at a time to improve the model according to the chosen criterion, typically AIC.</p>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Backward selection</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Full model with all predictors</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>full_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> ., <span class="at">data =</span> mtcars)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Stepwise backward selection</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>backward_model <span class="ot">&lt;-</span> MASS<span class="sc">::</span><span class="fu">stepAIC</span>(</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  full_model, </span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">direction =</span> <span class="st">"backward"</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Summary of the backward selection model</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(backward_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Start:  AIC=70.9
+mpg ~ cyl + disp + hp + drat + wt + qsec + vs + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- cyl   1    0.0799 147.57 68.915
+- vs    1    0.1601 147.66 68.932
+- carb  1    0.4067 147.90 68.986
+- gear  1    1.3531 148.85 69.190
+- drat  1    1.6270 149.12 69.249
+- disp  1    3.9167 151.41 69.736
+- hp    1    6.8399 154.33 70.348
+- qsec  1    8.8641 156.36 70.765
+&lt;none&gt;              147.49 70.898
+- am    1   10.5467 158.04 71.108
+- wt    1   27.0144 174.51 74.280
+
+Step:  AIC=68.92
+mpg ~ disp + hp + drat + wt + qsec + vs + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- vs    1    0.2685 147.84 66.973
+- carb  1    0.5201 148.09 67.028
+- gear  1    1.8211 149.40 67.308
+- drat  1    1.9826 149.56 67.342
+- disp  1    3.9009 151.47 67.750
+- hp    1    7.3632 154.94 68.473
+&lt;none&gt;              147.57 68.915
+- qsec  1   10.0933 157.67 69.032
+- am    1   11.8359 159.41 69.384
+- wt    1   27.0280 174.60 72.297
+
+Step:  AIC=66.97
+mpg ~ disp + hp + drat + wt + qsec + am + gear + carb
+
+       Df Sum of Sq    RSS    AIC
+- carb  1    0.6855 148.53 65.121
+- gear  1    2.1437 149.99 65.434
+- drat  1    2.2139 150.06 65.449
+- disp  1    3.6467 151.49 65.753
+- hp    1    7.1060 154.95 66.475
+&lt;none&gt;              147.84 66.973
+- am    1   11.5694 159.41 67.384
+- qsec  1   15.6830 163.53 68.200
+- wt    1   27.3799 175.22 70.410
+
+Step:  AIC=65.12
+mpg ~ disp + hp + drat + wt + qsec + am + gear
+
+       Df Sum of Sq    RSS    AIC
+- gear  1     1.565 150.09 63.457
+- drat  1     1.932 150.46 63.535
+&lt;none&gt;              148.53 65.121
+- disp  1    10.110 158.64 65.229
+- am    1    12.323 160.85 65.672
+- hp    1    14.826 163.35 66.166
+- qsec  1    26.408 174.94 68.358
+- wt    1    69.127 217.66 75.350
+
+Step:  AIC=63.46
+mpg ~ disp + hp + drat + wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+- drat  1     3.345 153.44 62.162
+- disp  1     8.545 158.64 63.229
+&lt;none&gt;              150.09 63.457
+- hp    1    13.285 163.38 64.171
+- am    1    20.036 170.13 65.466
+- qsec  1    25.574 175.67 66.491
+- wt    1    67.572 217.66 73.351
+
+Step:  AIC=62.16
+mpg ~ disp + hp + wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+- disp  1     6.629 160.07 61.515
+&lt;none&gt;              153.44 62.162
+- hp    1    12.572 166.01 62.682
+- qsec  1    26.470 179.91 65.255
+- am    1    32.198 185.63 66.258
+- wt    1    69.043 222.48 72.051
+
+Step:  AIC=61.52
+mpg ~ hp + wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+- hp    1     9.219 169.29 61.307
+&lt;none&gt;              160.07 61.515
+- qsec  1    20.225 180.29 63.323
+- am    1    25.993 186.06 64.331
+- wt    1    78.494 238.56 72.284
+
+Step:  AIC=61.31
+mpg ~ wt + qsec + am
+
+       Df Sum of Sq    RSS    AIC
+&lt;none&gt;              169.29 61.307
+- am    1    26.178 195.46 63.908
+- qsec  1   109.034 278.32 75.217
+- wt    1   183.347 352.63 82.790
+
+Call:
+lm(formula = mpg ~ wt + qsec + am, data = mtcars)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.4811 -1.5555 -0.7257  1.4110  4.6610 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   9.6178     6.9596   1.382 0.177915    
+wt           -3.9165     0.7112  -5.507 6.95e-06 ***
+qsec          1.2259     0.2887   4.247 0.000216 ***
+am            2.9358     1.4109   2.081 0.046716 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 2.459 on 28 degrees of freedom
+Multiple R-squared:  0.8497,    Adjusted R-squared:  0.8336 
+F-statistic: 52.75 on 3 and 28 DF,  p-value: 1.21e-11</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-best-subset-and-stepwise-selection-method" class="level1">
+<h1>Comparing best subset and stepwise selection method</h1>
+<p>Best subset selection considers all possible combinations of predictors and selects the model with the best performance based on a specified criterion (e.g., AIC, BIC, adjusted R²). While comprehensive, this method can be computationally expensive for datasets with a large number of predictors.</p>
+<ul>
+<li><strong>Best Subset Selection</strong>: Evaluates every possible model, providing the optimal model based on the criterion. It ensures the best fit but at a high computational cost.</li>
+<li><strong>Stepwise Selection (Forward and Backward)</strong>: Evaluates models sequentially. It’s more computationally efficient but may not guarantee the globally optimal model.</li>
+</ul>
+<p>Stepwise selection methods, whether forward or backward, provide a practical approach to model selection by adding or removing predictors based on defined criteria. While not as exhaustive as best subset selection, they offer a balance between computational efficiency and model performance. By understanding and applying these methods within the <code>mtcars</code> dataset, we can navigate model selection systematically and efficiently.</p>
+<section id="glossary" class="level2">
+<h2 class="anchored" data-anchor-id="glossary">Glossary</h2>
+<ol type="1">
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Coefficient_of_determination">R-squared (R²)</a></strong>: A statistical measure representing the proportion of the variance for the dependent variable that’s explained by the independent variables in the model. R² values range from 0 to 1, with higher values indicating better model performance.</p></li>
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Coefficient_of_determination#Adjusted_R2">Adjusted R-squared (R² adjusted)</a></strong>: Adjusted R² modifies R² to account for the number of predictors in the model. It provides a more accurate measure when comparing models with a different number of predictors, as it penalizes the addition of non-informative predictors.</p></li>
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">Akaike Information Criterion (AIC)</a></strong>: AIC is an estimator of the relative quality of statistical models for a given set of data. It balances the goodness of fit of the model with the number of predictors, penalizing more complex models to avoid overfitting. Lower AIC values indicate better models.</p></li>
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Bayesian_information_criterion">Bayesian Information Criterion (BIC)</a></strong>: Similar to AIC, BIC also evaluates model quality but imposes a more substantial penalty for the number of predictors. BIC is used to discourage overfitting, and lower BIC values indicate a better model.</p></li>
+<li><p><strong><a href="https://en.wikipedia.org/wiki/Mallows%27_Cp">Mallow’s CP</a></strong>: Mallow’s CP criterion assesses the trade-off between model complexity and goodness of fit. Lower values of CP are desired, with CP values close to the number of predictors plus one indicating well-fitted models.</p></li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
