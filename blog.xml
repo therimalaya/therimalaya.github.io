@@ -10,7 +10,1136 @@
 <atom:link href="https://mathatistics.com/blog.xml" rel="self" type="application/rss+xml"/>
 <description>My personal blog where I share my experiences and my learning journey.</description>
 <generator>quarto-1.2.335</generator>
-<lastBuildDate>Mon, 19 Jun 2023 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 04 May 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Practicing Joins using dplyr in R</title>
+  <dc:creator>Raju Rimal</dc:creator>
+  <link>https://mathatistics.com/blog/posts/2025-05-05-join-with-dplyr-advanced/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<style>
+.knitsql-table {
+  overflow-x: scroll;
+}
+</style>
+
+
+
+ ]]></description>
+  <guid>https://mathatistics.com/blog/posts/2025-05-05-join-with-dplyr-advanced/index.html</guid>
+  <pubDate>Sun, 04 May 2025 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Statistical models</title>
+  <dc:creator>Raju Rimal</dc:creator>
+  <link>https://mathatistics.com/blog/posts/2025-03-18-statistical-models/index.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="basic-statistical-models" class="level2">
+<h2 class="anchored" data-anchor-id="basic-statistical-models">Basic Statistical Models</h2>
+</section>
+<section id="general-linear-model" class="level2">
+<h2 class="anchored" data-anchor-id="general-linear-model">General Linear Model</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Linear Regression</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Logistic Regression</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<ul>
+<li><strong>Response Variable</strong>: Continuous</li>
+<li><strong>Predictor Variables</strong>: Continuous/Categorical</li>
+<li><strong>Key Assumptions</strong>:
+<ul>
+<li><strong>Linearity</strong>: The relationship between predictors and response is linear.</li>
+<li><strong>Independence</strong>: Observations are independent of each other.</li>
+<li><strong>Homoscedasticity</strong>: Constant variance of errors.</li>
+<li><strong>Normality</strong>: Errors (residuals) are normally distributed.</li>
+</ul></li>
+<li><strong>Violations &amp; Remedies</strong>:
+<ul>
+<li><strong>Non-linearity</strong> → Use polynomial terms or splines.</li>
+<li><strong>Heteroscedasticity</strong> → Use weighted least squares regression.</li>
+<li><strong>Non-normality of errors</strong> → Apply transformations (log, square root).</li>
+</ul></li>
+<li><strong>Statistical Inference</strong>:
+<ul>
+<li>Hypothesis tests (<strong>t-test, F-test</strong>)</li>
+<li>Confidence intervals for regression coefficients</li>
+<li>Analysis of Variance (<strong>ANOVA</strong>)</li>
+</ul></li>
+<li><strong>Estimation Method</strong>:
+<ul>
+<li><strong>Ordinary Least Squares (OLS)</strong>: Minimizes the sum of squared residuals.</li>
+</ul></li>
+<li><strong>Mathematical Expression</strong>: <img src="https://latex.codecogs.com/png.latex?Y%20=%20%5Cbeta_0%20+%20%5Csum%20%5Cbeta_i%20X_i%20+%20%5Cepsilon,%20%5Cquad%20%5Cepsilon%20%5Csim%20N(0,%20%5Csigma%5E2)"> <img src="https://latex.codecogs.com/png.latex?%5Chat%7B%5Cbeta%7D%20=%20(X%5ETX)%5E%7B-1%7DX%5ETY"></li>
+</ul>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<ul>
+<li><strong>Response Variable</strong>: Binary (0/1)</li>
+<li><strong>Predictor Variables</strong>: Continuous/Categorical</li>
+<li><strong>Key Assumptions</strong>:
+<ul>
+<li><strong>Linearity in log-odds</strong>: The logit transformation of the probability of success is linearly related to the predictors.</li>
+<li><strong>Independence</strong>: Observations are independent.</li>
+<li><strong>No multicollinearity</strong>: Predictors should not be highly correlated.</li>
+<li><strong>Large sample size</strong>: Asymptotic properties improve inference.</li>
+</ul></li>
+<li><strong>Violations &amp; Remedies</strong>:
+<ul>
+<li><strong>Non-linearity in log-odds</strong> → Use polynomial terms, splines, or interaction terms.</li>
+<li><strong>Multicollinearity</strong> → Remove or combine highly correlated variables (VIF check).</li>
+<li><strong>Separation issue</strong> → Use penalized regression (e.g., LASSO, ridge).</li>
+</ul></li>
+<li><strong>Statistical Inference</strong>:
+<ul>
+<li><strong>Wald Test, Likelihood Ratio Test</strong></li>
+<li><strong>Odds Ratios</strong></li>
+<li><strong>Confidence Intervals for Coefficients</strong></li>
+</ul></li>
+<li><strong>Estimation Method</strong>:
+<ul>
+<li><strong>Maximum Likelihood Estimation (MLE)</strong></li>
+</ul></li>
+<li><strong>Mathematical Expression</strong>: <img src="https://latex.codecogs.com/png.latex?P(Y=1)%20=%20%5Cfrac%7Be%5E%7B%5Cbeta_0%20+%20%5Csum%20%5Cbeta_i%20X_i%7D%7D%7B1%20+%20e%5E%7B%5Cbeta_0%20+%20%5Csum%20%5Cbeta_i%20X_i%7D%7D"> <img src="https://latex.codecogs.com/png.latex?%5Clog%20%5Cleft(%20%5Cfrac%7BP(Y=1)%7D%7B1%20-%20P(Y=1)%7D%20%5Cright)%20=%20%5Cbeta_0%20+%20%5Csum%20%5Cbeta_i%20X_i"></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://mathatistics.com/blog/posts/2025-03-18-statistical-models/index.html</guid>
+  <pubDate>Mon, 17 Mar 2025 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Merging multiple datasets</title>
+  <dc:creator>Raju Rimal</dc:creator>
+  <link>https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<style>
+.knitsql-table {
+  overflow-x: scroll;
+}
+</style>
+<p>This post explores the fundamentals of joining tables in R using the&nbsp;<code>dplyr</code>&nbsp;package, with a focus on both core concepts and practical edge cases. You’ll learn how keys link datasets, how different join types handle unmatched rows, and strategies for tackling real-world challenges like missing values, multi-key joins, and pre-processing with intermediate variables. To bridge the gap for database users, every join example includes its SQL equivalent. Finally, a reproducible dummy dataset is provided so you can follow along and experiment.</p>
+<section id="example-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="example-dataset">Example dataset</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" aria-controls="tabset-2-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" aria-controls="tabset-2-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" aria-labelledby="tabset-2-1-tab">
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Employee table</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Department Table</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># Employees: </span></span>
+<span id="cb1-2"><span class="co" style="color: #5E5E5E;">#&gt; emp_id 3 has NA dept_id; </span></span>
+<span id="cb1-3"><span class="co" style="color: #5E5E5E;">#&gt; emp_id 5's dept_id (4) is missing</span></span>
+<span id="cb1-4">employees <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tibble</span>(</span>
+<span id="cb1-5">  <span class="at" style="color: #657422;">emp_id =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">4</span>, <span class="dv" style="color: #AD0000;">5</span>, <span class="dv" style="color: #AD0000;">6</span>),</span>
+<span id="cb1-6">  <span class="at" style="color: #657422;">first_name =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb1-7">    <span class="st" style="color: #20794D;">"Alice Susanna"</span>, <span class="st" style="color: #20794D;">"Bob"</span>, <span class="st" style="color: #20794D;">"Mary Anne"</span>, </span>
+<span id="cb1-8">    <span class="st" style="color: #20794D;">"Diana"</span>, <span class="st" style="color: #20794D;">"Eve"</span>, <span class="st" style="color: #20794D;">"Frank"</span></span>
+<span id="cb1-9">  ),</span>
+<span id="cb1-10">  <span class="at" style="color: #657422;">last_name =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb1-11">    <span class="st" style="color: #20794D;">"Smith"</span>, <span class="st" style="color: #20794D;">"Johnson"</span>, <span class="st" style="color: #20794D;">"Brown"</span>, </span>
+<span id="cb1-12">    <span class="st" style="color: #20794D;">"Lee"</span>, <span class="st" style="color: #20794D;">"Davis"</span>, <span class="st" style="color: #20794D;">"DeVito Jr."</span></span>
+<span id="cb1-13">  ),</span>
+<span id="cb1-14">  <span class="at" style="color: #657422;">dept_id =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">2</span>, <span class="cn" style="color: #8f5902;">NA</span>, <span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">4</span>, <span class="dv" style="color: #AD0000;">2</span>),</span>
+<span id="cb1-15">  <span class="at" style="color: #657422;">salary =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb1-16">    <span class="dv" style="color: #AD0000;">60000</span>, <span class="dv" style="color: #AD0000;">75000</span>, <span class="dv" style="color: #AD0000;">80000</span>, </span>
+<span id="cb1-17">    <span class="dv" style="color: #AD0000;">90000</span>, <span class="dv" style="color: #AD0000;">65000</span>, <span class="dv" style="color: #AD0000;">70000</span></span>
+<span id="cb1-18">  )</span>
+<span id="cb1-19">)</span>
+<span id="cb1-20"></span>
+<span id="cb1-21"><span class="fu" style="color: #4758AB;">print</span>(employees)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  emp_id first_name    last_name  dept_id salary
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1      1 Alice Susanna Smith            1  60000
+2      2 Bob           Johnson          2  75000
+3      3 Mary Anne     Brown           NA  80000
+4      4 Diana         Lee              3  90000
+5      5 Eve           Davis            4  65000
+6      6 Frank         DeVito Jr.       2  70000</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;">#&gt; Departments: </span></span>
+<span id="cb3-2"><span class="co" style="color: #5E5E5E;">#&gt; - dept_id 5 has no employees</span></span>
+<span id="cb3-3"><span class="co" style="color: #5E5E5E;">#&gt; - dept_id 2 appears once</span></span>
+<span id="cb3-4">departments <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tibble</span>(</span>
+<span id="cb3-5">  <span class="at" style="color: #657422;">dept_id =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">1</span>, <span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">3</span>, <span class="dv" style="color: #AD0000;">5</span>),</span>
+<span id="cb3-6">  <span class="at" style="color: #657422;">dept_name =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb3-7">    <span class="st" style="color: #20794D;">"HR"</span>, <span class="st" style="color: #20794D;">"Engineering"</span>, <span class="st" style="color: #20794D;">"Marketing"</span>, <span class="st" style="color: #20794D;">"Finance"</span></span>
+<span id="cb3-8">  ),</span>
+<span id="cb3-9">  <span class="at" style="color: #657422;">manager_first =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb3-10">    <span class="st" style="color: #20794D;">"alice"</span>, <span class="st" style="color: #20794D;">"robert"</span>, <span class="st" style="color: #20794D;">"diana"</span>, <span class="st" style="color: #20794D;">"carol"</span></span>
+<span id="cb3-11">  ),</span>
+<span id="cb3-12">  <span class="at" style="color: #657422;">manager_last =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb3-13">    <span class="st" style="color: #20794D;">"smith"</span>, <span class="st" style="color: #20794D;">"johnson"</span>, <span class="st" style="color: #20794D;">"lee"</span>, <span class="st" style="color: #20794D;">"taylor"</span></span>
+<span id="cb3-14">  ),</span>
+<span id="cb3-15">  <span class="at" style="color: #657422;">budget =</span> <span class="fu" style="color: #4758AB;">c</span>(</span>
+<span id="cb3-16">    <span class="dv" style="color: #AD0000;">500000</span>, <span class="dv" style="color: #AD0000;">1000000</span>, <span class="dv" style="color: #AD0000;">750000</span>, <span class="dv" style="color: #AD0000;">600000</span></span>
+<span id="cb3-17">  )</span>
+<span id="cb3-18">)</span>
+<span id="cb3-19"></span>
+<span id="cb3-20"><span class="fu" style="color: #4758AB;">print</span>(departments)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  dept_id dept_name   manager_first manager_last  budget
+    &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;         &lt;chr&gt;          &lt;dbl&gt;
+1       1 HR          alice         smith         500000
+2       2 Engineering robert        johnson      1000000
+3       3 Marketing   diana         lee           750000
+4       5 Finance     carol         taylor        600000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" aria-labelledby="tabset-2-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">library</span>(RSQLite)</span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;">library</span>(DBI)</span>
+<span id="cb5-3">con <span class="ot" style="color: #003B4F;">&lt;-</span> DBI<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">dbConnect</span>(<span class="fu" style="color: #4758AB;">SQLite</span>(), <span class="st" style="color: #20794D;">"database.db"</span>)</span>
+<span id="cb5-4"><span class="cf" style="color: #003B4F;">if</span> (<span class="sc" style="color: #5E5E5E;">!</span>RSQLite<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">dbExistsTable</span>(con, <span class="st" style="color: #20794D;">"departments"</span>)) {</span>
+<span id="cb5-5">  <span class="fu" style="color: #4758AB;">dbWriteTable</span>(con, <span class="at" style="color: #657422;">name =</span> <span class="st" style="color: #20794D;">"departments"</span>, <span class="at" style="color: #657422;">value =</span> departments)</span>
+<span id="cb5-6">}</span>
+<span id="cb5-7"><span class="cf" style="color: #003B4F;">if</span> (<span class="sc" style="color: #5E5E5E;">!</span>RSQLite<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">dbExistsTable</span>(con, <span class="st" style="color: #20794D;">"employees"</span>)) {</span>
+<span id="cb5-8">  <span class="fu" style="color: #4758AB;">dbWriteTable</span>(con, <span class="at" style="color: #657422;">name =</span> <span class="st" style="color: #20794D;">"employees"</span>, <span class="at" style="color: #657422;">value =</span> employees)</span>
+<span id="cb5-9">}</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1">PRAGMA table_info(employees);</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">cid</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: right;">notnull</th>
+<th style="text-align: left;">dflt_value</th>
+<th style="text-align: right;">pk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">emp_id</td>
+<td style="text-align: left;">REAL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">first_name</td>
+<td style="text-align: left;">TEXT</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">last_name</td>
+<td style="text-align: left;">TEXT</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">dept_id</td>
+<td style="text-align: left;">REAL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">salary</td>
+<td style="text-align: left;">REAL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1">PRAGMA table_info(departments);</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>5 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">cid</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: right;">notnull</th>
+<th style="text-align: left;">dflt_value</th>
+<th style="text-align: right;">pk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">dept_id</td>
+<td style="text-align: left;">REAL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">dept_name</td>
+<td style="text-align: left;">TEXT</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">manager_first</td>
+<td style="text-align: left;">TEXT</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">manager_last</td>
+<td style="text-align: left;">TEXT</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">budget</td>
+<td style="text-align: left;">REAL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="mutating-joins" class="level2">
+<h2 class="anchored" data-anchor-id="mutating-joins">Mutating Joins</h2>
+<p>Mutating joins combine columns from two tables based on matching keys, preserving rows depending on the join type.</p>
+<section id="inner-join-inner_join" class="level3">
+<h3 class="anchored" data-anchor-id="inner-join-inner_join">Inner Join | <code>inner_join()</code></h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>We can use <code>inner_join()</code> function from <code>dplyr</code> to inner join the data. Inner join retains <em>only rows with matching keys in both tables</em>. The output table contains all columns, excluding the unmatched rows from both tables.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/inner-join.svg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" aria-controls="tabset-3-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" aria-controls="tabset-3-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">employees <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb8-2">  <span class="fu" style="color: #4758AB;">inner_join</span>(departments, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"dept_id"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;">select</span>(emp_id, first_name, last_name, salary, dept_name)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  emp_id first_name    last_name  salary dept_name  
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;      
+1      1 Alice Susanna Smith       60000 HR         
+2      2 Bob           Johnson     75000 Engineering
+3      4 Diana         Lee         90000 Marketing  
+4      6 Frank         DeVito Jr.  70000 Engineering</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" aria-labelledby="tabset-3-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><span class="kw" style="color: #003B4F;">SELECT</span></span>
+<span id="cb10-2"> emp.emp_id,</span>
+<span id="cb10-3"> emp.first_name,</span>
+<span id="cb10-4"> emp.last_name,</span>
+<span id="cb10-5"> emp.salary,</span>
+<span id="cb10-6"> dept.dept_name </span>
+<span id="cb10-7"> <span class="kw" style="color: #003B4F;">FROM</span> employees <span class="kw" style="color: #003B4F;">AS</span> emp</span>
+<span id="cb10-8">  <span class="kw" style="color: #003B4F;">INNER</span> <span class="kw" style="color: #003B4F;">JOIN</span> departments <span class="kw" style="color: #003B4F;">as</span> dept</span>
+<span id="cb10-9">    <span class="kw" style="color: #003B4F;">ON</span> emp.dept_id <span class="op" style="color: #5E5E5E;">=</span> dept.dept_id;</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">salary</th>
+<th style="text-align: left;">dept_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Alice Susanna</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: left;">HR</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: left;">Johnson</td>
+<td style="text-align: right;">75000</td>
+<td style="text-align: left;">Engineering</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Diana</td>
+<td style="text-align: left;">Lee</td>
+<td style="text-align: right;">90000</td>
+<td style="text-align: left;">Marketing</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Frank</td>
+<td style="text-align: left;">DeVito Jr.</td>
+<td style="text-align: right;">70000</td>
+<td style="text-align: left;">Engineering</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Here,</p>
+<ul>
+<li>Rows with&nbsp;<code>dept_id = NA</code>&nbsp;(Charlie) and&nbsp;<code>dept_id = 4</code>&nbsp;(Eve) were dropped (no match in&nbsp;<code>departments</code>).</li>
+<li><code>dept_id = 5</code>&nbsp;(Finance) was dropped (no match in&nbsp;<code>employees</code>).</li>
+<li><code>dept_id = 2</code>&nbsp;appears twice (Bob and Frank), causing&nbsp;<strong>row expansion</strong>.</li>
+</ul>
+</section>
+<section id="left-join-left_join" class="level3">
+<h3 class="anchored" data-anchor-id="left-join-left_join">Left Join | <code>left_join()</code></h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Left Join Keeps&nbsp;<em>all rows from the left table</em>, adding matched columns from the right table. The unmatched rows from the left table get&nbsp;<code>NA</code>&nbsp;for right-table columns. The left table is preserved entirely and the right table is <em>attached</em> where possible.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/left-join.svg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" aria-controls="tabset-4-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" aria-controls="tabset-4-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">employees <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb11-2">  <span class="fu" style="color: #4758AB;">left_join</span>(departments, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"dept_id"</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb11-3">  <span class="fu" style="color: #4758AB;">select</span>(<span class="fu" style="color: #4758AB;">names</span>(employees), dept_name)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  emp_id first_name    last_name  dept_id salary dept_name  
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;      
+1      1 Alice Susanna Smith            1  60000 HR         
+2      2 Bob           Johnson          2  75000 Engineering
+3      3 Mary Anne     Brown           NA  80000 &lt;NA&gt;       
+4      4 Diana         Lee              3  90000 Marketing  
+5      5 Eve           Davis            4  65000 &lt;NA&gt;       
+6      6 Frank         DeVito Jr.       2  70000 Engineering</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><span class="kw" style="color: #003B4F;">SELECT</span> </span>
+<span id="cb13-2">  emp.<span class="op" style="color: #5E5E5E;">*</span>, dept.dept_name</span>
+<span id="cb13-3">  <span class="kw" style="color: #003B4F;">FROM</span> employees <span class="kw" style="color: #003B4F;">AS</span> emp</span>
+<span id="cb13-4">  <span class="kw" style="color: #003B4F;">LEFT</span> <span class="kw" style="color: #003B4F;">JOIN</span> departments  <span class="kw" style="color: #003B4F;">AS</span> dept</span>
+<span id="cb13-5">    <span class="kw" style="color: #003B4F;">ON</span> emp.dept_id <span class="op" style="color: #5E5E5E;">=</span> dept.dept_id;</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>6 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: right;">salary</th>
+<th style="text-align: left;">dept_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Alice Susanna</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: left;">HR</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: left;">Johnson</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">75000</td>
+<td style="text-align: left;">Engineering</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Mary Anne</td>
+<td style="text-align: left;">Brown</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">80000</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Diana</td>
+<td style="text-align: left;">Lee</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">90000</td>
+<td style="text-align: left;">Marketing</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Eve</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">65000</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Frank</td>
+<td style="text-align: left;">DeVito Jr.</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">70000</td>
+<td style="text-align: left;">Engineering</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>here,</p>
+<ul>
+<li>All employees are retained, even those with&nbsp;<code>NA</code>&nbsp;or unmatched&nbsp;<code>dept_id</code>.</li>
+<li><code>dept_id = 4</code>&nbsp;(Eve) and&nbsp;<code>NA</code>&nbsp;(Charlie) have&nbsp;<code>NA</code>&nbsp;for department columns.</li>
+</ul>
+</section>
+<section id="right-join-right_join" class="level3">
+<h3 class="anchored" data-anchor-id="right-join-right_join">Right Join | <code>right_join()</code></h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Similar to Left Join, Right join Keeps&nbsp;<em>all rows from the right table</em>, adding matched columns from the left table. The unmatched rows from the right table get&nbsp;<code>NA</code>&nbsp;for left-table columns. The right table is preserved entirely and the left table is <em>attached</em> where possible.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/right-join.svg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" aria-controls="tabset-5-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" aria-controls="tabset-5-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" aria-labelledby="tabset-5-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">employees <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb14-2">  <span class="fu" style="color: #4758AB;">right_join</span>(departments, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"dept_id"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 9
+  emp_id first_name    last_name  dept_id salary dept_name   manager_first
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;        
+1      1 Alice Susanna Smith            1  60000 HR          alice        
+2      2 Bob           Johnson          2  75000 Engineering robert       
+3      4 Diana         Lee              3  90000 Marketing   diana        
+4      6 Frank         DeVito Jr.       2  70000 Engineering robert       
+5     NA &lt;NA&gt;          &lt;NA&gt;             5     NA Finance     carol        
+# ℹ 2 more variables: manager_last &lt;chr&gt;, budget &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><span class="kw" style="color: #003B4F;">SELECT</span> <span class="op" style="color: #5E5E5E;">*</span></span>
+<span id="cb16-2">  <span class="kw" style="color: #003B4F;">FROM</span> employees <span class="kw" style="color: #003B4F;">AS</span> emp</span>
+<span id="cb16-3">  <span class="kw" style="color: #003B4F;">RIGHT</span> <span class="kw" style="color: #003B4F;">JOIN</span> departments  <span class="kw" style="color: #003B4F;">AS</span> dept</span>
+<span id="cb16-4">    <span class="kw" style="color: #003B4F;">ON</span> emp.dept_id <span class="op" style="color: #5E5E5E;">=</span> dept.dept_id;</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>5 records</caption>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: right;">salary</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: left;">dept_name</th>
+<th style="text-align: left;">manager_first</th>
+<th style="text-align: left;">manager_last</th>
+<th style="text-align: right;">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Alice Susanna</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">HR</td>
+<td style="text-align: left;">alice</td>
+<td style="text-align: left;">smith</td>
+<td style="text-align: right;">500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: left;">Johnson</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">75000</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Engineering</td>
+<td style="text-align: left;">robert</td>
+<td style="text-align: left;">johnson</td>
+<td style="text-align: right;">1000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Diana</td>
+<td style="text-align: left;">Lee</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">90000</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Marketing</td>
+<td style="text-align: left;">diana</td>
+<td style="text-align: left;">lee</td>
+<td style="text-align: right;">750000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Frank</td>
+<td style="text-align: left;">DeVito Jr.</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">70000</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Engineering</td>
+<td style="text-align: left;">robert</td>
+<td style="text-align: left;">johnson</td>
+<td style="text-align: right;">1000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Finance</td>
+<td style="text-align: left;">carol</td>
+<td style="text-align: left;">taylor</td>
+<td style="text-align: right;">600000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>here,</p>
+<ul>
+<li>All departments are retained, even those with&nbsp;unmatched&nbsp;<code>dept_id</code>. The corresponding <code>emp_id</code> was set to NA if not matched with items in the departments.</li>
+<li><code>dept_id = 5</code> (Finance department) where carol is the manager is retained even if she des not have any matched records in employees table.</li>
+</ul>
+</section>
+<section id="full-join-full_join" class="level3">
+<h3 class="anchored" data-anchor-id="full-join-full_join">Full Join | <code>full_join()</code></h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Full join keeps&nbsp;<em>all rows from both tables</em>, filling&nbsp;<code>NA</code>&nbsp;where no match exists. Output is the union of both tables, with missing values for unmatched rows. In other words, it combines all data preserving everything.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/outer-join.svg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" aria-controls="tabset-6-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" aria-controls="tabset-6-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1">employees <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb17-2">    <span class="fu" style="color: #4758AB;">full_join</span>(departments, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"dept_id"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 9
+  emp_id first_name    last_name  dept_id salary dept_name   manager_first
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;        
+1      1 Alice Susanna Smith            1  60000 HR          alice        
+2      2 Bob           Johnson          2  75000 Engineering robert       
+3      3 Mary Anne     Brown           NA  80000 &lt;NA&gt;        &lt;NA&gt;         
+4      4 Diana         Lee              3  90000 Marketing   diana        
+5      5 Eve           Davis            4  65000 &lt;NA&gt;        &lt;NA&gt;         
+6      6 Frank         DeVito Jr.       2  70000 Engineering robert       
+7     NA &lt;NA&gt;          &lt;NA&gt;             5     NA Finance     carol        
+# ℹ 2 more variables: manager_last &lt;chr&gt;, budget &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><span class="kw" style="color: #003B4F;">SELECT</span> <span class="op" style="color: #5E5E5E;">*</span> </span>
+<span id="cb19-2"><span class="kw" style="color: #003B4F;">FROM</span> employees </span>
+<span id="cb19-3"><span class="kw" style="color: #003B4F;">FULL</span> <span class="kw" style="color: #003B4F;">OUTER</span> <span class="kw" style="color: #003B4F;">JOIN</span> departments </span>
+<span id="cb19-4">    <span class="kw" style="color: #003B4F;">ON</span> employees.dept_id <span class="op" style="color: #5E5E5E;">=</span> departments.dept_id;</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>7 records</caption>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 11%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: right;">salary</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: left;">dept_name</th>
+<th style="text-align: left;">manager_first</th>
+<th style="text-align: left;">manager_last</th>
+<th style="text-align: right;">budget</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Alice Susanna</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">HR</td>
+<td style="text-align: left;">alice</td>
+<td style="text-align: left;">smith</td>
+<td style="text-align: right;">500000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: left;">Johnson</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">75000</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Engineering</td>
+<td style="text-align: left;">robert</td>
+<td style="text-align: left;">johnson</td>
+<td style="text-align: right;">1000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Mary Anne</td>
+<td style="text-align: left;">Brown</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">80000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Diana</td>
+<td style="text-align: left;">Lee</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">90000</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Marketing</td>
+<td style="text-align: left;">diana</td>
+<td style="text-align: left;">lee</td>
+<td style="text-align: right;">750000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Eve</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">65000</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Frank</td>
+<td style="text-align: left;">DeVito Jr.</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">70000</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Engineering</td>
+<td style="text-align: left;">robert</td>
+<td style="text-align: left;">johnson</td>
+<td style="text-align: right;">1000000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Finance</td>
+<td style="text-align: left;">carol</td>
+<td style="text-align: left;">taylor</td>
+<td style="text-align: right;">600000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>here,</p>
+<ul>
+<li>Includes all employees&nbsp;<strong>and</strong>&nbsp;all departments, even unmatched ones.</li>
+<li><code>dept_id = 5</code>&nbsp;(Finance) appears with&nbsp;<code>NA</code>&nbsp;for employee columns.</li>
+</ul>
+</section>
+</section>
+<section id="filtering-joins" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-joins">Filtering Joins</h2>
+<p>Filtering joins subset rows from one table based on another, without merging columns.</p>
+<section id="semi-join-semi_join" class="level3">
+<h3 class="anchored" data-anchor-id="semi-join-semi_join">Semi-Join | <code>semi_join()</code></h3>
+<div class="columns">
+<div class="column">
+<p>Semi-Join Returns rows from the left table&nbsp;<em>that have a match in the right table</em>. It returns a subset of the left table but no columns from the right table are added. For example: filtering the employees who belongs to one of the department in the <code>departments</code> table based on their <code>dept_id</code> information.</p>
+</div><div class="column">
+<p><img src="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/semi-join.svg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" aria-controls="tabset-7-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" aria-controls="tabset-7-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1">employees <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb20-2">  <span class="fu" style="color: #4758AB;">semi_join</span>(departments, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"dept_id"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  emp_id first_name    last_name  dept_id salary
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+1      1 Alice Susanna Smith            1  60000
+2      2 Bob           Johnson          2  75000
+3      4 Diana         Lee              3  90000
+4      6 Frank         DeVito Jr.       2  70000</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><span class="kw" style="color: #003B4F;">SELECT</span> employees.<span class="op" style="color: #5E5E5E;">*</span> </span>
+<span id="cb22-2"><span class="kw" style="color: #003B4F;">FROM</span> employees </span>
+<span id="cb22-3"><span class="kw" style="color: #003B4F;">WHERE</span> <span class="kw" style="color: #003B4F;">EXISTS</span> (</span>
+<span id="cb22-4">  <span class="kw" style="color: #003B4F;">SELECT</span> <span class="dv" style="color: #AD0000;">1</span> <span class="kw" style="color: #003B4F;">FROM</span> departments </span>
+<span id="cb22-5">  <span class="kw" style="color: #003B4F;">WHERE</span> employees.dept_id <span class="op" style="color: #5E5E5E;">=</span> departments.dept_id</span>
+<span id="cb22-6">);</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>4 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: right;">salary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Alice Susanna</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">60000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Bob</td>
+<td style="text-align: left;">Johnson</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">75000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Diana</td>
+<td style="text-align: left;">Lee</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">90000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Frank</td>
+<td style="text-align: left;">DeVito Jr.</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">70000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>here,</p>
+<ul>
+<li>Keeps only employees with&nbsp;<code>dept_id</code>&nbsp;present in&nbsp;<code>departments</code>.</li>
+<li>Drops&nbsp;<code>emp_id=3</code>&nbsp;(<code>NA</code>) and&nbsp;<code>emp_id=5</code>&nbsp;(unmatched&nbsp;<code>dept_id=4</code>).</li>
+</ul>
+</section>
+<section id="anti-join-anti_join" class="level3">
+<h3 class="anchored" data-anchor-id="anti-join-anti_join">Anti-Join | <code>anti_join()</code></h3>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Anti-Join returns rows from the left table&nbsp;<em>with no match in the right table</em>. For example: filtering the employees who do not belong to any of the department in the <code>departments</code> table.</p>
+</div><div class="column" style="width:40%;">
+<p><img src="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/anti-join.svg" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" aria-controls="tabset-8-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" aria-controls="tabset-8-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">employees <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb23-2">  <span class="fu" style="color: #4758AB;">anti_join</span>(departments, <span class="at" style="color: #657422;">by =</span> <span class="st" style="color: #20794D;">"dept_id"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  emp_id first_name last_name dept_id salary
+   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+1      3 Mary Anne  Brown          NA  80000
+2      5 Eve        Davis           4  65000</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><span class="kw" style="color: #003B4F;">SELECT</span> employees.<span class="op" style="color: #5E5E5E;">*</span> </span>
+<span id="cb25-2"><span class="kw" style="color: #003B4F;">FROM</span> employees </span>
+<span id="cb25-3"><span class="kw" style="color: #003B4F;">WHERE</span> <span class="kw" style="color: #003B4F;">NOT</span> <span class="kw" style="color: #003B4F;">EXISTS</span> (</span>
+<span id="cb25-4">  <span class="kw" style="color: #003B4F;">SELECT</span> <span class="dv" style="color: #AD0000;">1</span> <span class="kw" style="color: #003B4F;">FROM</span> departments </span>
+<span id="cb25-5">  <span class="kw" style="color: #003B4F;">WHERE</span> employees.dept_id <span class="op" style="color: #5E5E5E;">=</span> departments.dept_id</span>
+<span id="cb25-6">);</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>2 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">dept_id</th>
+<th style="text-align: right;">salary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Mary Anne</td>
+<td style="text-align: left;">Brown</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">80000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Eve</td>
+<td style="text-align: left;">Davis</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">65000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>here, only employees with&nbsp;<code>dept_id</code>&nbsp;not in&nbsp;<code>departments</code>&nbsp;(or&nbsp;<code>NA</code>) are kept.</p>
+</section>
+</section>
+<section id="advanced-cases-preprocessing-and-multiple-keys" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-cases-preprocessing-and-multiple-keys">Advanced Cases: Preprocessing and Multiple Keys</h2>
+<p>Suppose we need find the employees with their departments who are also manager in their department. Here we have two issues to deal with:</p>
+<ol type="a">
+<li><p>We need multiple keys (fields/ variables) to join. For example: <code>dept_id</code> in both table and <code>first_name</code>/ <code>last_name</code> from employees table and <code>manager_first</code>/ <code>manager_last</code> from departments table.</p>
+<blockquote class="blockquote">
+<p>To solve this we can use multiple keys to join the tables. We can use semi-join or inner-join on employees table using department tables.</p>
+</blockquote></li>
+<li><p>The <code>first_name</code> and <code>last_name</code> from employees table has uppercase characters and middle name in <code>first_name</code> field while <code>manager_first</code> and <code>manager_last</code> from departments tables are all lowercase. We need to preprocess them before using them as a joining key.</p>
+<blockquote class="blockquote">
+<p>To solve this, we lowercase the first word from <code>first_name</code> and <code>manager_first</code> and the last word from <code>last_name</code> and <code>manager_last</code> from tables employees and departments respectively.</p>
+</blockquote></li>
+</ol>
+<div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" aria-controls="tabset-9-1" aria-selected="true">R</a></li><li class="nav-item"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" aria-controls="tabset-9-2" aria-selected="false">SQL</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" aria-labelledby="tabset-9-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1">employees <span class="sc" style="color: #5E5E5E;">|&gt;</span> </span>
+<span id="cb26-2">  <span class="fu" style="color: #4758AB;">mutate</span>(</span>
+<span id="cb26-3">    <span class="at" style="color: #657422;">fname =</span> stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">word</span>(first_name, <span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">tolower</span>(),</span>
+<span id="cb26-4">    <span class="at" style="color: #657422;">lname =</span> stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">word</span>(last_name, <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">tolower</span>()</span>
+<span id="cb26-5">  ) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">inner_join</span>(</span>
+<span id="cb26-6">    departments <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">mutate</span>(</span>
+<span id="cb26-7">      <span class="at" style="color: #657422;">fname =</span> stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">word</span>(manager_first, <span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">tolower</span>(),</span>
+<span id="cb26-8">      <span class="at" style="color: #657422;">lname =</span> stringr<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">word</span>(manager_last, <span class="sc" style="color: #5E5E5E;">-</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">tolower</span>()</span>
+<span id="cb26-9">    ) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">select</span>(dept_name, fname, lname, dept_id),</span>
+<span id="cb26-10">    <span class="at" style="color: #657422;">by =</span> <span class="fu" style="color: #4758AB;">join_by</span>(<span class="st" style="color: #20794D;">'fname'</span>, <span class="st" style="color: #20794D;">'lname'</span>, <span class="st" style="color: #20794D;">'dept_id'</span>)</span>
+<span id="cb26-11">  ) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">-</span>dept_id, <span class="sc" style="color: #5E5E5E;">-</span>fname, <span class="sc" style="color: #5E5E5E;">-</span>lname)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  emp_id first_name    last_name salary dept_name
+   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;    
+1      1 Alice Susanna Smith      60000 HR       
+2      4 Diana         Lee        90000 Marketing</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><span class="kw" style="color: #003B4F;">SELECT</span> </span>
+<span id="cb28-2">  emp.emp_id, emp.first_name, emp.last_name, </span>
+<span id="cb28-3">  emp.salary, dept.dept_name</span>
+<span id="cb28-4"><span class="kw" style="color: #003B4F;">FROM</span> employees emp</span>
+<span id="cb28-5"><span class="kw" style="color: #003B4F;">JOIN</span> departments dept <span class="kw" style="color: #003B4F;">ON</span> emp.dept_id <span class="op" style="color: #5E5E5E;">=</span> dept.dept_id</span>
+<span id="cb28-6"><span class="kw" style="color: #003B4F;">WHERE</span> </span>
+<span id="cb28-7">    <span class="co" style="color: #5E5E5E;">-- First name: match first word</span></span>
+<span id="cb28-8">    <span class="fu" style="color: #4758AB;">LOWER</span>(<span class="fu" style="color: #4758AB;">SUBSTR</span>(</span>
+<span id="cb28-9">      emp.first_name, <span class="dv" style="color: #AD0000;">1</span>, </span>
+<span id="cb28-10">      <span class="fu" style="color: #4758AB;">INSTR</span>(emp.first_name <span class="op" style="color: #5E5E5E;">||</span> <span class="st" style="color: #20794D;">' '</span>, <span class="st" style="color: #20794D;">' '</span>) <span class="op" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb28-11">    )) <span class="op" style="color: #5E5E5E;">=</span> </span>
+<span id="cb28-12">    <span class="fu" style="color: #4758AB;">LOWER</span>(<span class="fu" style="color: #4758AB;">SUBSTR</span>(</span>
+<span id="cb28-13">      dept.manager_first, <span class="dv" style="color: #AD0000;">1</span>, </span>
+<span id="cb28-14">      <span class="fu" style="color: #4758AB;">INSTR</span>(dept.manager_first <span class="op" style="color: #5E5E5E;">||</span> <span class="st" style="color: #20794D;">' '</span>, <span class="st" style="color: #20794D;">' '</span>) <span class="op" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb28-15">    ))</span>
+<span id="cb28-16">    </span>
+<span id="cb28-17">    <span class="co" style="color: #5E5E5E;">-- Last name: match last word</span></span>
+<span id="cb28-18">    <span class="kw" style="color: #003B4F;">AND</span> </span>
+<span id="cb28-19">    <span class="fu" style="color: #4758AB;">LOWER</span>(<span class="fu" style="color: #4758AB;">SUBSTR</span>(</span>
+<span id="cb28-20">      emp.last_name, </span>
+<span id="cb28-21">      <span class="fu" style="color: #4758AB;">INSTR</span>(<span class="st" style="color: #20794D;">' '</span> <span class="op" style="color: #5E5E5E;">||</span> emp.last_name, <span class="st" style="color: #20794D;">' '</span>) <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb28-22">    )) <span class="op" style="color: #5E5E5E;">=</span> </span>
+<span id="cb28-23">    <span class="fu" style="color: #4758AB;">LOWER</span>(<span class="fu" style="color: #4758AB;">SUBSTR</span>(</span>
+<span id="cb28-24">      dept.manager_last, </span>
+<span id="cb28-25">      <span class="fu" style="color: #4758AB;">INSTR</span>(<span class="st" style="color: #20794D;">' '</span> <span class="op" style="color: #5E5E5E;">||</span> dept.manager_last, <span class="st" style="color: #20794D;">' '</span>) <span class="op" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">1</span></span>
+<span id="cb28-26">    ));</span></code></pre></div>
+<div class="knitsql-table">
+<table class="table table-sm table-striped">
+<caption>2 records</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">emp_id</th>
+<th style="text-align: left;">first_name</th>
+<th style="text-align: left;">last_name</th>
+<th style="text-align: right;">salary</th>
+<th style="text-align: left;">dept_name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Alice Susanna</td>
+<td style="text-align: left;">Smith</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: left;">HR</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Diana</td>
+<td style="text-align: left;">Lee</td>
+<td style="text-align: right;">90000</td>
+<td style="text-align: left;">Marketing</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Since the&nbsp;<code>employees</code>&nbsp;table uses&nbsp;<code>first_name</code>/<code>last_name</code>&nbsp;while&nbsp;<code>departments</code>&nbsp;uses&nbsp;<code>manager_first</code>/<code>manager_last</code>, I standardized the keys by:</p>
+<ol type="1">
+<li>Extracting the&nbsp;<strong>first word</strong>&nbsp;from&nbsp;<code>first_name</code>&nbsp;and the&nbsp;<strong>last word</strong>&nbsp;from&nbsp;<code>last_name</code>&nbsp;(to handle middle names/suffixes).</li>
+<li>Converting them to lowercase for case-insensitive matching.</li>
+</ol>
+<p>Also, check out a post, I have used all these concepts in a real dataset.</p>
+<p>Joins are essential for combining data in R. With&nbsp;<code>dplyr</code>, you can handle mismatched keys, missing values, and multi-column joins—just clean your keys first and verify results with&nbsp;<code>anti_join()</code>. Try these techniques on your own data, or explore more examples&nbsp;here.</p>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/index.html</guid>
+  <pubDate>Mon, 17 Mar 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://mathatistics.com/blog/posts/2025-04-28-join-with-dplyr/images/inner-join.svg" medium="image" type="image/svg+xml"/>
+</item>
 <item>
   <title>Melanoma Incidence in Nordic Countries</title>
   <dc:creator>Raju Rimal</dc:creator>

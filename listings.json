@@ -2,6 +2,9 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/posts/2025-05-05-join-with-dplyr-advanced/index.html",
+      "/blog/posts/2025-03-18-statistical-models/index.html",
+      "/blog/posts/2025-04-28-join-with-dplyr/index.html",
       "/blog/posts/2023-06-20-nordic-melanoma/index.html",
       "/blog/posts/2022-12-02-age-adjusted-rates/index.html",
       "/blog/posts/2023-02-04-simulation-anova-and-analysis/index.html",
@@ -9,6 +12,114 @@
       "/blog/posts/2017-03-18-interpreting-biplot/index.html",
       "/blog/posts/2017-03-05-model-assessment-and-variable-selection-prodecure/index.html",
       "/blog/posts/2017-03-01-importing-and-exporting-data-in-R/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/index.html",
+      "/courses/Python-programming-for-data-scientist/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-1/index.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-2/index.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-3/index.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-4/index.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-5/index.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-6/index.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-7/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-5/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-5/matrix-magic.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-5/array-action.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-1/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-1/getting-started.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-1/R-basics.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-1/data-structure.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-6/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-6/list.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-6/purrr.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-7/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-7/Project-1.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-3/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-3/basic-string.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-3/factor-in-r.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-2/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-2/import-data.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-2/simulating-data.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-1/Module-4/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/Module-4/data.frame.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-4/data.table.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-4/tidyverse.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-4/comparison.html",
+      "/courses/R-programming-and-data-analysis/Section-1/Module-4/tidytable.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-1/index.html",
+      "/courses/R-programming-and-data-analysis/Section-2/index.html",
+      "/courses/R-programming-and-data-analysis/Section-3/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-2/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-2/Module-1/index.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-2/index.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-3/index.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-4/index.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-2/Module-1/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-2/Module-1/01-ggplot2.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-1/customizing-plot.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-1/ggplot2-advanced.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-1/faceting.html",
+      "/courses/R-programming-and-data-analysis/Section-2/Module-1/extension.html"
+    ]
+  },
+  {
+    "listing": "/courses/R-programming-and-data-analysis/Section-3/index.html",
+    "items": [
+      "/courses/R-programming-and-data-analysis/Section-3/Module-1/index.html",
+      "/courses/R-programming-and-data-analysis/Section-3/Module-2/index.html",
+      "/courses/R-programming-and-data-analysis/Section-3/Module-3/index.html",
+      "/courses/R-programming-and-data-analysis/Section-3/Module-4/index.html",
+      "/courses/R-programming-and-data-analysis/Section-3/Module-5/index.html"
     ]
   }
 ]
